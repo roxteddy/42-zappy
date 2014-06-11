@@ -1,39 +1,79 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
+#    By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/10 15:07:05 by fcorre           ###   ########.fr        #
+#    Created: 2014/03/04 11:09:53 by pciavald          #+#    #+#              #
+#    Updated: 2014/06/11 22:48:24 by pciavald         ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
-.PHONY: all clean fclean re
+NAME	=	client
+C		=	cc
+F		=	-O0 -g3 -Wall -Wextra -Werror
 
-FILES = 
-CFLAGS = -Wall -Wextra -Werror -O3 -I ./inc
-SRC = $(addprefix src/, $(FILES))
-OBJ = $(SRC:src/%.c=obj/%.o)
-NAME = client
-CC = gcc
+SDIR	=	./src/
+IDIR	=	./inc/
+ODIR	=	./obj/
 
-all: $(NAME)
+I		=	-I $(IDIR)
+I		+=	-I libft/includes
+L		=	-L libft
+LIB		=	-lft
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+EXT		+=	Makefile
+EXT		+=	$(IDIR)$(NAME).h
 
-obj/%.o: src/%.c
-	@mkdir -p obj/
-	$(CC) $(CFLAGS) -c $< -o $@
+SRC		=	main.c \
+
+S		=	$(addprefix $(SDIR), $(SRC))
+
+OBJ		=	$(SRC:.c=.o)
+O		=	$(addprefix $(ODIR), $(OBJ))
+
+all: lib $(NAME)
+
+$(NAME): $(O) $(EXT)
+	@echo "creating $(NAME)..."
+	@$(C) $(F) $(I) $(L) -o $@ $(O) $(LIB)
+	@echo "done."
+
+$(ODIR)%.o: $(SDIR)%.c $(EXT)
+	@echo "compiling $<..."
+	@$(C) $(F) -c -o $@ $< $(I)
+
+$(O): | $(ODIR)
+$(ODIR):
+	@mkdir $(ODIR)
 
 clean:
-	rm -rf obj/
+	@echo "cleaning object files..."
+	@rm -rf $(ODIR)
 
-fclean: clean
-	rm -rf $(NAME)
+fclean: libclean clean
+	@echo "cleaning $(NAME) binary..."
+	@rm -rf $(NAME)
+
+launch: all
+	@echo "launching."
+	@./$(NAME) 1
+
+lib:
+	@make -C libft
+
+libclean:
+	@make fclean -C libft
+
+gdb: all
+	@echo "entering debug mode."
+	@sudo gdb -q --args $(NAME) 1
+
+lldb: all
+	@echo "entering debug mode."
+	@lldb $(NAME)
 
 re: fclean all
 
-
+.PHONY: all clean fclean re
