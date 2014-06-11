@@ -1,6 +1,5 @@
 from connexions import Sock
 from stuff import log
-#import object_map
 
 class Game(object):
     teams = {}
@@ -46,17 +45,19 @@ class Game(object):
             )
             if len(message) != 9:
                 raise Exception("wrong parameters")
+            if not self.coordinate(*message[0:2]):
+                raise Exception("bad coordinates %d/%d" % (message[0], message[1]))
+            x, y, l = message[0], message[1], message[2:]
+            for i in range(0, len(l)):
+                if l[i]:
+                    if l[i] > 1 or l[i] < 0:
+                        raise Exception("bad number of object %d" % i)
+                    else:
+                        self.map[y][x].append(ObjectFactory(i, x, y))
         except Exception, e:
             log(e)
             return None
-        if not self.coordinate(*message[0:2]):
-            log("bad coordinates %d/%d" % (message[0], message[1]))
-            return None
-        x, y, l = message[0], message[1], message[2:]
-        for i in range(0, len(l)):
-            if l[i]:
-                self.map[y][x].append(ObjectFactory(i, x, y))
-
+        
     @classmethod
     def tna(cls, message):
         if message[0] in cls.teams:
