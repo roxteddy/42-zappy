@@ -1,13 +1,19 @@
 from connexions import Sock
 from gui import Game
+from stuff import log
+
 import sys
 
 def loop(s, g):
     while True:
         message = s.read().split()
+        if not message:
+            continue
         func = getattr(g, message.pop(0), None)
         if func:
             func(message)
+        else:
+            log("unknown function")
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:

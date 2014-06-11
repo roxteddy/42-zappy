@@ -1,6 +1,31 @@
 from connexions import Sock
 from stuff import log
 
+class Egg(object):
+    def __init__(self, o, e, n, X, Y):
+        """
+        o = eclot ? 0 = non, 1 = oui
+        e = numero de l'oeuf
+        n = numero du joueur qui a pondu
+        X = coordonnee X
+        Y = coordonnee Y
+        """
+        self.o = o
+        self.e = e
+        self.n = n
+        self.X = X
+        self.Y = Y
+        log("Egg %d created at %d / %d from player %d" % (self.e, self.X, self.Y, self.n))
+
+    def __unicode__(self):
+        return "%s: %d" % (self.team, self.n)
+
+    def __repr__(self):
+        return unicode(self)
+
+    def __eq__(self, other):
+        return self.e == other.e
+
 class Player(object):
     def __init__(self, N, n, X, Y, O, L):
         self.n = n
@@ -23,8 +48,15 @@ class Player(object):
 class Game(object):
     teams = {}
     map = {}
+    eggs = []
     def __init__(self, Sock):
         self.s = Sock
+
+    def coordinate(self, x, y, o = None):
+        if x > self.x or y > self.y or (o is not None and (o > 4 or o <= 0)) or x <= 0 or y <= 0:
+            return False
+        else:
+            return True
 
     def msz(self, message):
         """
@@ -36,10 +68,9 @@ class Game(object):
         5 = phiras
         6 = thystame
         """
-        if len(message) != 2:
-            log("wrong parameters")
-            return None
         try:
+            if len(message) != 2:
+                raise Exception("wrong parameters")
             self.x = int(message[0])
             self.y = int(message[1])
         except Exception, e:
@@ -49,7 +80,6 @@ class Game(object):
             self.map[i] = {}
             for j in range(1, self.x + 1):
                 self.map[i][j] = (0, 0, 0, 0, 0, 0, 0)
-
 
     def bct(self, message):
         try:
@@ -61,33 +91,64 @@ class Game(object):
         except Exception, e:
             log(e)
             return None
-        if not message[0] in self.map or not message[1] in self.map[message[0]]:
-            print self.map
+        if not self.coordinate(*message[0:1]):
             log("bad coordinates %d/%d" % (message[0], message[1]))
             return None
         self.map[message[0]][message[1]] = message[2:]
 
     @classmethod
     def tna(cls, message):
+        if message[0] in cls.teams:
+            log("team %s already exists" % message[0])
+            return None
         cls.teams[message[0]] = []
 
+    def enw(self, message):
+        try:
+            if len(message) != 4:
+                raise Exception("wrong parameters")
+            if message[1][0] != '#' or message[0][0] != '#':
+                raise Exception("bad player number")
+            message[1] = message[1][1:]
+            message[0] = message[0][1:]
+            message = tuple(
+                [int(integer) for integer in message]
+            )
+            e = Egg(0, *message)
+            if not self.coordinate(message[2], message[3]):
+                raise Exception("bad coordinates %d / %d" % (message[2], message[3]))
+            for egg in self.eggs:
+                if e == egg:
+                    raise Exception("bad egg number (already exists)")
+                    return None
+            for t in self.__class__.teams.keys():
+                for player in self.__class__.teams[t]:
+                    if message[1] == player.n:
+                        self.eggs.append(e)
+                        return None
+            raise Exception("player %d does not exist" % message[1])
+        except Exception, e:
+            log(e)
+            return None
+
     def smg(self, message):
-        log("server says" + message)
+        log("server says " + message[0])
 
     def pnw(self, message):
-        team = message.pop(5)
-        if not team in self.__class__.teams:
-            log("team %s does not exist" % team)
-            return None
         try:
+            if len(message) != 6:
+                raise Exception("wrong parameters")
+            team = message.pop(5)
+            if not team in self.__class__.teams:
+                raise Exception("team %s does not exist" % team)
             if message[0][0] != '#':
                 raise Exception("bad player number")
             message[0] = message[0][1:]
             message = tuple(
                 [int(integer) for integer in message]
             )
-            if len(message) != 5:
-                raise Exception("wrong parameters")
+            if not self.coordinate(*message[1:3]):
+                raise Exception("bad coordinates %d / %d / %d" % (message[1], message[2], message[3]))
             p = Player(team, *message[0:5])
             for t in self.__class__.teams.keys():
                 for player in self.__class__.teams[t]:
