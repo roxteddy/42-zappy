@@ -76,9 +76,9 @@ class Game(object):
         except Exception, e:
             log(e)
             return None
-        for i in range(1, self.y + 1):
+        for i in range(0, self.y):
             self.map[i] = {}
-            for j in range(1, self.x + 1):
+            for j in range(0, self.x):
                 self.map[i][j] = (0, 0, 0, 0, 0, 0, 0)
 
     def bct(self, message):
