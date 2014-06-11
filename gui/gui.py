@@ -1,50 +1,7 @@
 from connexions import Sock
 from stuff import log
+#import object_map
 
-class Entity(object):
-    def __init__(self, X, Y):
-        self.X = X
-        self.Y = Y
-
-    def __repr__(self):
-        return unicode(self)
-
-class Egg(Entity):
-    def __init__(self, o, e, n, X, Y):
-        """
-        o = eclot ? 0 = non, 1 = oui
-        e = numero de l'oeuf
-        n = numero du joueur qui a pondu
-        X = coordonnee X
-        Y = coordonnee Y
-        """
-        super(Egg, self).__init__(X, Y)
-        self.o = o
-        self.e = e
-        self.n = n
-        log("Egg %d created at %d / %d from player %d" % (self.e, self.X, self.Y, self.n))
-
-    def __unicode__(self):
-        return "%s: %d" % (self.team, self.n)
-
-    def __eq__(self, other):
-        return self.e == other.e
-
-class Player(Entity):
-    def __init__(self, N, n, X, Y, O, L):
-        super(Player, self).__init__(X, Y)
-        self.n = n
-        self.O = O
-        self.L = L
-        self.team = N
-        log("Player %d created at %d / %d, from %s" % (self.n, self.X, self.Y, self.team))
-
-    def __unicode__(self):
-        return "%s: %d" % (self.team, self.n)
-
-    def __eq__(self, other):
-        return self.n == other.n
-        
 class Game(object):
     teams = {}
     map = {}
@@ -53,7 +10,7 @@ class Game(object):
         self.s = Sock
 
     def coordinate(self, x, y, o = None):
-        if x > self.x or y > self.y or (o is not None and (o > 4 or o <= 0)) or x <= 0 or y <= 0:
+        if x > self.x or y > self.y or (o is not None and (o > 4 or o <= 0)) or x < 0 or y < 0:
             return False
         else:
             return True
@@ -79,9 +36,10 @@ class Game(object):
         for i in range(0, self.y):
             self.map[i] = {}
             for j in range(0, self.x):
-                self.map[i][j] = (0, 0, 0, 0, 0, 0, 0)
+                self.map[i][j] = []
 
     def bct(self, message):
+        from object_map import ObjectFactory
         try:
             message = tuple(
                 [int(integer) for integer in message]
@@ -91,10 +49,13 @@ class Game(object):
         except Exception, e:
             log(e)
             return None
-        if not self.coordinate(*message[0:1]):
+        if not self.coordinate(*message[0:2]):
             log("bad coordinates %d/%d" % (message[0], message[1]))
             return None
-        self.map[message[0]][message[1]] = message[2:]
+        x, y, l = message[0], message[1], message[2:]
+        for i in range(0, len(l)):
+            if l[i]:
+                self.map[y][x].append(ObjectFactory(i, x, y))
 
     @classmethod
     def tna(cls, message):
@@ -104,6 +65,7 @@ class Game(object):
         cls.teams[message[0]] = []
 
     def enw(self, message):
+        from object_map import Egg
         try:
             if len(message) != 4:
                 raise Exception("wrong parameters")
@@ -135,6 +97,7 @@ class Game(object):
         log("server says " + message[0])
 
     def pnw(self, message):
+        from object_map import Player
         try:
             if len(message) != 6:
                 raise Exception("wrong parameters")
