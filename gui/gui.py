@@ -1,7 +1,15 @@
 from connexions import Sock
 from stuff import log
 
-class Egg(object):
+class Entity(object):
+    def __init__(self, X, Y):
+        self.X = X
+        self.Y = Y
+
+    def __repr__(self):
+        return unicode(self)
+
+class Egg(Entity):
     def __init__(self, o, e, n, X, Y):
         """
         o = eclot ? 0 = non, 1 = oui
@@ -10,27 +18,22 @@ class Egg(object):
         X = coordonnee X
         Y = coordonnee Y
         """
+        super(Egg, self).__init__(X, Y)
         self.o = o
         self.e = e
         self.n = n
-        self.X = X
-        self.Y = Y
         log("Egg %d created at %d / %d from player %d" % (self.e, self.X, self.Y, self.n))
 
     def __unicode__(self):
         return "%s: %d" % (self.team, self.n)
 
-    def __repr__(self):
-        return unicode(self)
-
     def __eq__(self, other):
         return self.e == other.e
 
-class Player(object):
+class Player(Entity):
     def __init__(self, N, n, X, Y, O, L):
+        super(Player, self).__init__(X, Y)
         self.n = n
-        self.X = X
-        self.Y = Y
         self.O = O
         self.L = L
         self.team = N
@@ -38,9 +41,6 @@ class Player(object):
 
     def __unicode__(self):
         return "%s: %d" % (self.team, self.n)
-
-    def __repr__(self):
-        return unicode(self)
 
     def __eq__(self, other):
         return self.n == other.n
