@@ -60,32 +60,51 @@ class Game(object):
                     else:
                         self.map[y][x].append(ObjectFactory(i, x, y))
         except Exception, e:
-            log(e)
-            return None
+            return log(e)
         
     @classmethod
     def tna(cls, message):
         if message[0] in cls.teams:
-            log("team %s already exists" % message[0])
-            return None
+            return log("team %s already exists" % message[0])
         cls.teams[message[0]] = []
+
+    def eht(self, message):
+        try:
+            if message[0][0] != '#':
+                raise Exception("bad number")
+            message = int(message[0][1:])
+        except Exception, e:
+            return log(e)
+        from object_map import Egg
+        for i in self.map:
+            for x in self.map[i]:
+                for t in self.map[i][x]:
+                    if isinstance(t, Egg) and t.e == message:
+                        if t.o == 1:
+                            return log("egg %d has already hatched out" % message)
+                        else:
+                            index = self.map[i][x].index(t)
+                            self.map[i][x][index].o = 1
+                            return log("egg %d has hatched out" % message)
+        return log("egg %d not found" % message[0])
 
     def edi(self, message):
         from object_map import Egg
         try:
+            if message[0][0] != '#':
+                raise Exception("bad number")
             message[0] = int(message[0][1:])
         except Exception, e:
-            log(e)
-            return None
+            return log(e)
         for i in self.map:
             for x in self.map[i]:
                 for t in self.map[i][x]:
                     if isinstance(t, Egg) and message[0] == t.e:
+                        if t.o == 0:
+                            return log("egg %d has not hatched out, it cannot die" % message[0])
                         self.map[i][x].remove(t)
-                        log ("egg %d died" % message[0])
-                        return None
-        log("egg %d not found" % message[0])
-        
+                        return log("egg %d died" % message[0])
+        return log("egg %d not found" % message[0])        
 
     def enw(self, message):
         from object_map import Egg
@@ -114,8 +133,7 @@ class Game(object):
                         return None
             raise Exception("player %d does not exist" % message[1])
         except Exception, e:
-            log(e)
-            return None
+            return log(e)
 
     def smg(self, message):
         log("server says " + message[0])
@@ -142,8 +160,7 @@ class Game(object):
                     if p == player:
                         raise Exception("player %d already exists" % p.n)
         except Exception, e:
-            log(e)
-            return None
+            return log(e)
         self.__class__.teams[team].append(p)
 
     
