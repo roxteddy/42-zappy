@@ -17,7 +17,7 @@ def loop(s, g):
             func(message)
         else:
             log("unknown function")
-        print Game.map
+        print g.print_map()
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:

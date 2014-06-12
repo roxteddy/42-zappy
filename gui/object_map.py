@@ -12,8 +12,8 @@ class Entity(object):
     def __repr__(self):
         return unicode(self)
 
-#    def remove_from_map(self):
-#        Game.map[self.Y][self.X].remove(self)
+    def remove_from_map(self):
+        Game.map[self.Y][self.X].remove(self)
 
 class Food(Entity):
     def __init__(self, X, Y):
@@ -60,6 +60,8 @@ class Egg(Entity):
         log("Egg %d created at %d / %d from player %d" % (self.e, self.X, self.Y, self.n))
 
     def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
         return self.e == other.e
 
 class Player(Entity):
