@@ -8,6 +8,9 @@ class Game(object):
     def __init__(self, Sock):
         self.s = Sock
 
+    def welcome(self):
+        self.s.send("GRAPHIC")
+
     def coordinate(self, x, y, o = None):
         if x > self.x or y > self.y or (o is not None and (o > 4 or o <= 0)) or x < 0 or y < 0:
             return False
@@ -65,6 +68,20 @@ class Game(object):
             return None
         cls.teams[message[0]] = []
 
+    def edi(self, message):
+        try:
+            message[0] = int(message[0][1:])
+        except Exception, e:
+            log(e)
+            return None
+        for egg in self.eggs:
+            if egg == message[0]:
+                self.eggs.remove(egg)
+                log("egg %d is dead" % message[0])
+                return None
+        log("egg %d not found" % message[0])
+        
+
     def enw(self, message):
         from object_map import Egg
         try:
@@ -77,7 +94,7 @@ class Game(object):
             message = tuple(
                 [int(integer) for integer in message]
             )
-            e = Egg(0, *message)
+            e = Egg(*message)
             if not self.coordinate(message[2], message[3]):
                 raise Exception("bad coordinates %d / %d" % (message[2], message[3]))
             for egg in self.eggs:

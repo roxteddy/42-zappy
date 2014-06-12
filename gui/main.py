@@ -9,6 +9,9 @@ def loop(s, g):
         message = s.read().split()
         if not message:
             continue
+        if message[0] == 'BIENVENUE':
+            g.welcome()
+            continue
         func = getattr(g, message.pop(0), None)
         if func:
             func(message)

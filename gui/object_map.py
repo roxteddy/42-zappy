@@ -44,8 +44,9 @@ class Thystame(Entity):
         super(Thystame, self).__init__(X, Y)
 
 class Egg(Entity):
-    def __init__(self, o, e, n, X, Y):
+    def __init__(self, e, n, X, Y, d = 0, o = 0):
         """
+        d = mort ? 0 = non, 1 = oui
         o = eclot ? 0 = non, 1 = oui
         e = numero de l'oeuf
         n = numero du joueur qui a pondu
