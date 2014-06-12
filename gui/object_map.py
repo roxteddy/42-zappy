@@ -59,9 +59,6 @@ class Egg(Entity):
         self.n = n
         log("Egg %d created at %d / %d from player %d" % (self.e, self.X, self.Y, self.n))
 
-    def __unicode__(self):
-        return "%s: %d" % (self.team, self.n)
-
     def __eq__(self, other):
         return self.e == other.e
 
@@ -73,9 +70,6 @@ class Player(Entity):
         self.L = L
         self.team = N
         log("Player %d created at %d / %d, from %s" % (self.n, self.X, self.Y, self.team))
-
-    def __unicode__(self):
-        return "%s: %d" % (self.team, self.n)
 
     def __eq__(self, other):
         return self.n == other.n

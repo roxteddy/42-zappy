@@ -69,16 +69,20 @@ class Game(object):
         cls.teams[message[0]] = []
 
     def edi(self, message):
+        from object_map import Egg
         try:
             message[0] = int(message[0][1:])
         except Exception, e:
             log(e)
             return None
-        for egg in self.eggs:
-            if egg == message[0]:
-                self.eggs.remove(egg)
-                log("egg %d is dead" % message[0])
-                return None
+        for i in self.map:
+            for x in self.map[i]:
+                for e in self.map[i][x]:
+                    print e
+                    if isinstance(self.map[i][x], Egg) and x == e:
+                        self.map[i][x].remove(x)
+                        log ("egg %d died" % message[0])
+                        return None
         log("egg %d not found" % message[0])
         
 
@@ -97,14 +101,15 @@ class Game(object):
             e = Egg(*message)
             if not self.coordinate(message[2], message[3]):
                 raise Exception("bad coordinates %d / %d" % (message[2], message[3]))
-            for egg in self.eggs:
-                if e == egg:
-                    raise Exception("bad egg number (already exists)")
-                    return None
+            for i in self.map:
+                for x in self.map[i]:
+                    for e in self.map[i][x]:
+                        if isinstance(self.map[i][x], Egg):
+                            raise Exception ("egg %d already exist" % message[0])
             for t in self.__class__.teams.keys():
                 for player in self.__class__.teams[t]:
                     if message[1] == player.n:
-                        self.eggs.append(e)
+                        self.map[message[2]][message[3]].append(e)
                         return None
             raise Exception("player %d does not exist" % message[1])
         except Exception, e:
