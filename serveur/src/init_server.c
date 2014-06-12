@@ -6,16 +6,17 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:04:21 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/12 14:27:52 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/12 15:03:57 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 #include <netdb.h>
+#include <sys/socket.h>
 
 void	init_server(t_data *data)
 {
-	struct sock_addr_in		sin;
+	struct sockaddr_in		sin;
 	struct protoent			*proto;
 	int						sock;
 
