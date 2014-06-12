@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   clean_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/12 14:20:34 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/12 14:21:25 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "server.h"
 #include <stdlib.h>
+#include <strings.h>
 
-void	ft_error(char *str)
+void    clean_fd(t_fd *fd)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+    fd->type = FD_FREE;
+    fd->fct_read = NULL;
+    fd->fct_write = NULL;
+    bzero(fd->buf_read, BUF_SIZE + 1);
+    bzero(fd->buf_write, BUF_SIZE + 1);
 }
