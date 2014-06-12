@@ -4,7 +4,6 @@ from stuff import log
 class Game(object):
     teams = {}
     map = {}
-    eggs = []
     def __init__(self, Sock):
         self.s = Sock
 
@@ -16,6 +15,9 @@ class Game(object):
             return False
         else:
             return True
+    def print_map(self):
+        for key in self.map:
+            print key, self.map[key]
 
     def msz(self, message):
         """
@@ -75,6 +77,13 @@ class Game(object):
         except Exception, e:
             log(e)
             return None
+        for i in self.map:
+            for x in self.map[i]:
+                for t in self.map[i][x]:
+                    if isinstance(t, Egg) and message[0] == t.e:
+                        self.map[i][x].remove(t)
+                        log ("egg %d died" % message[0])
+                        return None
         log("egg %d not found" % message[0])
         
 
@@ -96,7 +105,6 @@ class Game(object):
             for i in self.map:
                 for x in self.map[i]:
                     for t in self.map[i][x]:
-                        print type(t)
                         if isinstance(t, Egg):
                             raise Exception ("egg %d already exist" % message[0])
             for t in self.__class__.teams.keys():
