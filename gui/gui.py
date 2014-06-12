@@ -77,9 +77,8 @@ class Game(object):
             return None
         for i in self.map:
             for x in self.map[i]:
-                for e in self.map[i][x]:
-                    print e
-                    if isinstance(self.map[i][x], Egg) and x == e:
+                for t in self.map[i][x]:
+                    if isinstance(t, Egg) and t == message[0]:
                         self.map[i][x].remove(x)
                         log ("egg %d died" % message[0])
                         return None
@@ -103,8 +102,8 @@ class Game(object):
                 raise Exception("bad coordinates %d / %d" % (message[2], message[3]))
             for i in self.map:
                 for x in self.map[i]:
-                    for e in self.map[i][x]:
-                        if isinstance(self.map[i][x], Egg):
+                    for t in self.map[i][x]:
+                        if isinstance(t, Egg):
                             raise Exception ("egg %d already exist" % message[0])
             for t in self.__class__.teams.keys():
                 for player in self.__class__.teams[t]:
