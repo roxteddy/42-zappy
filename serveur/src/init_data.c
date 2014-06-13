@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:09:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 14:49:33 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/13 16:10:11 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void		init_teams(t_data *data)
 	current = data->teams;
 	while (current)
 	{
-		current->level = 1;
-		current->max_players = data->max_clients;
+		current->slots = data->max_clients;
+		current->list = NULL;
 		current = current->next;
 	}
 }

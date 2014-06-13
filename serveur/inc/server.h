@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 14:56:01 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/13 18:17:14 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,27 @@
 //DEBUG
 # include <stdio.h>
 
+typedef struct		s_player
+{
+	int				cs;
+	int				x;
+	int				y;
+	int				level;
+	int				food;
+	int				linemate;
+	int				deraumere;
+	int				sibur;
+	int				mendiane;
+	int				phiras;
+	int				thystame;
+}					t_player;
+
+typedef struct		s_plist
+{
+	t_player		*player;
+	struct s_plist	*next;
+}					t_plist;
+
 typedef struct      s_fd
 {
     int             type;
@@ -33,6 +54,7 @@ typedef struct      s_fd
     void            (*fct_write)();
     char            buf_read[BUF_SIZE + 1];
     char            buf_write[BUF_SIZE + 1];
+	t_player		player;
 }                   t_fd;
 
 typedef struct		s_cmd
@@ -44,8 +66,8 @@ typedef struct		s_cmd
 typedef struct		s_tlist
 {
 	char			*name;
-	int				level;
-	int				max_players;
+	int				slots;
+	t_plist			*list;
 	struct s_tlist	*next;
 }					t_tlist;
 
