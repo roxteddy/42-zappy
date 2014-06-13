@@ -1,65 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt.c                                              :+:      :+:    :+:   */
+/*   opt2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/12 12:26:21 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/13 14:04:16 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 #include <stdlib.h>
-#include <string.h>
 
-static void	get_port(char *arg, t_data *data, char *name)
+void	get_port(char *arg, t_data *data)
 {
 	if (arg)
 		data->port = atoi(arg);
 	else
-		usage(name);
-}
-static void	init_opt(t_data *data)
-{
-	data->port = -1;
-	data->x = -1;
-	data->y = -1;
-	data->teams = NULL;
-	data->max_clients = -1;
-	data->time = -1;
+		usage(data->name);
 }
 
-static void	check_opt(t_data *data, char *name)
+void	get_width(char *arg, t_data *data)
 {
-	if (data->port == -1 || data->x == -1 || data->y == -1 || data->teams == NULL
-		|| data->max_clients == -1 || data->time == -1)
-		usage(name);
+	if (arg)
+		data->x = atoi(arg);
+	else
+		usage(data->name);
 }
 
-void		get_opt(char **argv, t_data *data)
+void	get_height(char *arg, t_data *data)
 {
-	int		i;
+	if (arg)
+		data->y = atoi(arg);
+	else
+		usage(data->name);
+}
 
-	init_opt(data);
-	i = 0;
-	while (argv[++i])
-	{
-		if (!strcmp(argv[i], "-p"))
-			get_port(argv[++i], data, argv[0]);
-		else if (!strcmp(argv[i], "-x"))
-			get_width(argv[++i], data, argv[0]);
-		else if (!strcmp(argv[i], "-y"))
-			get_height(argv[++i], data, argv[0]);
-		else if (!strcmp(argv[i], "-n"))
-			get_teams(argv, &i, data, argv[0]);
-		else if (!strcmp(argv[i], "-c"))
-			get_maxclients(argv[++i], data, argv[0]);
-		else if (!strcmp(argv[i], "-t"))
-			get_time(argv[++i], data, argv[0]);
-		else
-			usage(argv[0]);
-	}
-	check_opt(data, argv[0]);
+void	get_teams(char **argv, int *i, t_data *data)
+{
+	while (argv[++(*i)] && argv[*i][0] != '-')
+		team_add(data, argv[*i]);
+	*i -= 1;
+}
+
+void	get_maxclients(char *arg, t_data *data)
+{
+	if (arg)
+		data->max_clients = atoi(arg);
+	else
+		usage(data->name);
+}
+
+void	get_time(char *arg, t_data *data)
+{
+	if (arg)
+		data->time = atoi(arg);
+	else
+		usage(data->name);
 }

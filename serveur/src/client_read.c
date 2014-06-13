@@ -1,34 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tlist.c                                            :+:      :+:    :+:   */
+/*   client_read.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 08:22:25 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/10 15:45:06 by fcorre           ###   ########.fr       */
+/*   Created: 2014/06/13 13:34:32 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/13 13:34:56 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
-#include <stdlib.h>
-#include <string.h>
-
-void	tlist_add(t_tlist **teams, char *name)
+void	client_read(void)
 {
-	t_tlist		*new;
 
-	if ((new = (t_tlist*)malloc(sizeof(*new))) == NULL)
-		ft_error();
-	new->name = strdup(name);
-	if (*teams)
-	{
-		new->next = *teams;
-		*teams = new;
-	}
-	else
-	{
-		new->next = NULL;
-		*teams = new;
-	}
 }
