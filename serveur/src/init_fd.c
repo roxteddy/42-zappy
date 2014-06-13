@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tlist.c                                            :+:      :+:    :+:   */
+/*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 08:22:25 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/10 15:45:06 by fcorre           ###   ########.fr       */
+/*   Created: 2014/05/23 18:59:03 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/13 14:37:19 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include <stdlib.h>
-#include <string.h>
 
-void	tlist_add(t_tlist **teams, char *name)
+void	init_fd(t_data *data)
 {
-	t_tlist		*new;
+	int		i;
 
-	if ((new = (t_tlist*)malloc(sizeof(*new))) == NULL)
-		ft_error();
-	new->name = strdup(name);
-	if (*teams)
+	data->fd_nb = 0;
+	FD_ZERO(&data->fd_read);
+	FD_ZERO(&data->fd_write);
+	i = -1;
+	while (++i < data->max_fd)
 	{
-		new->next = *teams;
-		*teams = new;
-	}
-	else
-	{
-		new->next = NULL;
-		*teams = new;
+		if (data->fds[i].type != FD_FREE)
+		{
+			FD_SET(i, &data->fd_read);
+			if (*data->fds[i].buf_write)
+				FD_SET(i, &data->fd_write);
+			data->fd_nb = (data->fd_nb > i) ? data->fd_nb : i;
+		}
 	}
 }

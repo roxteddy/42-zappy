@@ -1,5 +1,5 @@
 from connexions import Sock
-from gui import Game
+from game import Game
 from stuff import log
 
 import sys
@@ -18,6 +18,7 @@ def loop(s, g):
         else:
             log("unknown function")
         print g.print_map()
+        print g.teams
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
