@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 18:17:14 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/13 18:21:33 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_cmd				cmd[] = {	{"avance", &cmd_forward},
 void	check_fd(t_data *data);
 void    clean_fd(t_fd *fd);
 void	client_read(t_data *data, int cs);
-void	client_write(void);
+void	client_write(t_data *data, int cs);
 void	error(char *str);
 void	get_height(char *arg, t_data *data);
 void	get_maxclients(char *arg, t_data *data);
