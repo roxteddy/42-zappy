@@ -1,5 +1,5 @@
 from stuff import log
-from gui import Game
+from game import Game
 
 class Entity(object):
     def __init__(self, X, Y):
@@ -72,6 +72,9 @@ class Player(Entity):
         self.L = L
         self.team = N
         log("Player %d created at %d / %d, from %s" % (self.n, self.X, self.Y, self.team))
+
+    def __unicode__(self):
+        return "%s %d: %d/%d" % (self.__class__.__name__, self.n, self.X, self.Y)
 
     def __eq__(self, other):
         return self.n == other.n
