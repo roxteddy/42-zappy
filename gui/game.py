@@ -89,9 +89,7 @@ class Game(object):
                 self.map[y][x] = []
                 print self.map[y][x]
             for i in range(0, len(map)):
-                if not map[i] in range(0, 2):
-                    raise Exception("bad number of object %d" % i)
-                elif map[i] == 1:
+                for u in range(1, map[i] + 1):
                     self.map[y][x].append(ObjectFactory(i, x, y))
         except Exception, e:
             return log(e)
