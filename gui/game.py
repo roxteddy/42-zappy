@@ -198,6 +198,7 @@ class Game(object):
     
     def pdr(self, message):
         from object_map import ObjectFactory
+        X, Y = 0, 0
         try:
             if len(message) != 2:
                 raise Exception("wrong parameters")
@@ -255,7 +256,7 @@ class Game(object):
         for t in self.__class__.teams.keys():
             for player in self.__class__.teams[t]:
                 if  message[0] == player.n:
-                    self.__class__.teams[t][index(player)].L = message[1]
+                    self.__class__.teams[t][self.__class__.teams[t].index(player)].L = message[1]
                     return None
         return log("player %d not found" % message[0])
 
@@ -278,7 +279,7 @@ class Game(object):
             for i in self.map:
                 for x in self.map[i]:
                     for t in self.map[i][x]:
-                        if isinstance(t, Egg):
+                        if isinstance(t, Egg) and t == e:
                             raise Exception ("egg %d already exist" % message[0])
             for t in self.__class__.teams.keys():
                 for player in self.__class__.teams[t]:
