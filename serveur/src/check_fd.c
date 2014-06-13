@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_fd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 14:52:12 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/05/23 19:37:00 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/13 14:56:28 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include <stdlib.h>
 
-int		main(int ac, char **av)
+void	check_fd(t_data *data)
 {
-	t_data	data;
+	int		i;
 
-	(void)ac;
-	init_data(&data, av);
-	init_server(&data);
-	while("loop")
+	i = -1;
+	while (++i < data->max_fd && data->sel > 0)
 	{
-		init_fd(&data);
-		data.sel = select(data.fd_nb + 1, &data.fd_read, &data.fd_write,
-						  NULL, &data.timeout);
-		check_fd(&data);
+		if (FD_ISSET(i, &data->fd_read))
+			data->fds[i].fct_read(data, i);
+		if (FD_ISSET(i, &data->fd_write))
+			data->fds[i].fct_write(data, i);
+		if (FD_ISSET(i, &data->fd_read) || FD_ISSET(i, &data->fd_write))
+			data->sel--;
 	}
-	return (0);
 }

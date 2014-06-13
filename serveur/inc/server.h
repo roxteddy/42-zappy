@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 14:18:38 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/13 14:56:01 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # define FD_CLIENT  2
 
 # define BUF_SIZE	1024
+# define TIMEOUT_S	3
+# define TIMEOUT_US	0
+
+# include <sys/select.h>
+
+//DEBUG
+# include <stdio.h>
 
 typedef struct      s_fd
 {
@@ -63,8 +70,13 @@ typedef struct		s_data
 	int				max_clients;
 	int				time;
 	t_square		**map;
+	int				fd_nb;
 	int				max_fd;
 	t_fd			*fds;
+	int				sel;
+	fd_set			fd_read;
+	fd_set			fd_write;
+	struct timeval	timeout;
 }					t_data;
 
 /*
@@ -81,8 +93,9 @@ t_cmd				cmd[] = {	{"avance", &cmd_forward},
 								{"fork", &cmd_fork},
 								{"connect_nbr", &cmd_max}	};
 */
+void	check_fd(t_data *data);
 void    clean_fd(t_fd *fd);
-void	client_read(void);
+void	client_read(t_data *data, int cs);
 void	client_write(void);
 void	error(char *str);
 void	get_height(char *arg, t_data *data);
@@ -92,6 +105,7 @@ void	get_teams(char **argv, int *i, t_data *data);
 void	get_time(char *arg, t_data *data);
 void	get_width(char *arg, t_data *data);
 void	init_data(t_data *data, char **av);
+void	init_fd(t_data *data);
 void	init_server(t_data *data);
 void    srv_accept(t_data *data, int sock);
 void	team_add(t_data *data, char *name);

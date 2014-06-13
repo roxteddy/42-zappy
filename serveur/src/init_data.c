@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:09:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 14:19:33 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/13 14:49:33 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,6 @@ void			init_data(t_data *data, char **av)
 	get_opt(data, av);
 	init_teams(data);
 	init_map(data);
+	data->timeout.tv_sec = TIMEOUT_S;
+	data->timeout.tv_usec = TIMEOUT_US;
 }
