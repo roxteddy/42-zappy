@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 14:52:12 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/14 14:01:02 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int		main(int ac, char **av)
 
 	(void)ac;
 	init_data(&data, av);
+//
+	printf("DATA INIT OK\n");
 	init_server(&data);
+//
+	printf("SERVER INIT OK\n");
 	while("loop")
 	{
 		init_fd(&data);

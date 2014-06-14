@@ -6,14 +6,53 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 13:34:32 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 15:14:00 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/14 10:37:03 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
+#include <stdlib.h>
 #include <strings.h>
 #include <sys/socket.h>
 #include <unistd.h>
+
+static char  *strsub(char *str, int start, int len)
+{
+    char    *sub;
+
+    sub = (char *)malloc(sizeof(char) * (len + 1));
+    strncpy(sub, str + start, len);
+    sub[len] = '\0';
+    return (sub);
+}
+
+static void	bufread_handl(t_data *data, char *str, int cs)
+{
+	int		i;
+	int		len;
+	char	*cmd;
+
+	i = 0;
+	while (str[i])
+	{
+		len = 0;
+		while (str[i + len] && str[i + len] != '\n')
+			len++;
+		if (str[i + len])
+		{
+			cmd = strsub(str, i, len);
+			cmd_handl(data, cmd, cs);
+			free(cmd);
+			i += len + 1;
+			len = 0;
+		}
+		if (!str[i + len])
+		{
+			strncpy(str, str + i, BUF_SIZE);
+			return ;
+		}
+	}
+}
 
 void	client_read(t_data *data, int cs)
 {
@@ -28,8 +67,5 @@ void	client_read(t_data *data, int cs)
 	}
 	else if (data->fds[cs].buf_read[strlen(data->fds[cs].buf_read) - 1]
 			 == '\n')
-	{
-		printf("%s", data->fds[cs].buf_read);
-		bzero(data->fds[cs].buf_read, BUF_SIZE + 1);
-	}
+		bufread_handl(data, data->fds[cs].buf_read, cs);
 }

@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:09:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 16:10:11 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/14 14:00:08 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 
 static void		check_opt(t_data *data)
 {
+//DEBUG
+	printf("port %d - x %d - y %d - teams %p - max client %d - time %d\n", data->port, data->x, data->y, data->teams, data->max_clients, data->time);
+
 	if (data->port == -1 || data->x == -1 || data->y == -1
-		|| data->teams == NULL || data->max_clients == -1 || data->time == -1)
+		  || data->teams == NULL || data->max_clients == -1 || data->time == -1)
 		usage(data->name);
 }
 
@@ -99,6 +102,7 @@ void			init_data(t_data *data, char **av)
 	data->x = -1;
 	data->y = -1;
 	data->teams = NULL;
+	data->eggs = NULL;
 	data->max_clients = -1;
 	data->time = -1;
 	data->map = NULL;

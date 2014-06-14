@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/05/23 17:13:22 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 13:32:05 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/14 10:34:28 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ void	srv_accept(t_data *data, int sock)
 	data->fds[cs].type = FD_CLIENT;
 	data->fds[cs].fct_read = client_read;
 	data->fds[cs].fct_write = client_write;
+	send(cs, "BIENVENUE\n", 10, 0);
 }

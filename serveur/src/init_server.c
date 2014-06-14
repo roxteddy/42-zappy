@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:04:21 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/13 13:39:12 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/14 14:02:04 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	init_server(t_data *data)
 	int						sock;
 
 	if (!(proto = (struct protoent*)getprotobyname("tcp")))
-        perror("getprotobyname");
+        error(data->name);
     if ((sock = socket(PF_INET, SOCK_STREAM, proto->p_proto)) == -1)
-        perror("socket");
+        error(data->name);
 	sin.sin_family = AF_INET;
     sin.sin_addr.s_addr = INADDR_ANY;
     sin.sin_port = htons(data->port);
     if (bind(sock, (struct sockaddr*)&sin, sizeof(sin)) == -1)
-        perror("bind");
+        error(data->name);
     if (listen(sock, 42) == -1)
-        perror("listen");
+        error(data->name);
     data->fds[sock].type = FD_SERV;
     data->fds[sock].fct_read = srv_accept;
 }
