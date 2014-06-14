@@ -15,19 +15,19 @@
 all: serveur client gfx
 
 serveur:
-	make -I serveur/
+	make -C serveur/
 
 client:
-	make -I client/
+	make -C client/
 
 clean:
-	make -I serveur/ clean
-	make -I client/ clean
-	make -I gfx/ clean
+	make -C serveur/ clean
+	make -C client/ clean
+	make -C gfx/ clean
 
 fclean:
-	make -I serveur/ fclean
-	make -I client/ fclean
-	make -I gfx/ fclean
+	make -C serveur/ fclean
+	make -C client/ fclean
+	make -C gui/ fclean
 
 re: fclean all

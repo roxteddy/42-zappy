@@ -11,38 +11,33 @@
 # **************************************************************************** #
 
 NAME	=	client
-C		=	cc
-F		=	-O0 -g3 -Wall -Wextra -Werror
+CC		=	gcc
+FLAGS	=	-O3 -Wall -Wextra -Werror
 
 SDIR	=	./src/
 IDIR	=	./inc/
 ODIR	=	./obj/
 
-I		=	-I $(IDIR)
-I		+=	-I libft/includes
-L		=	-L libft
-LIB		=	-lft
-
 EXT		+=	Makefile
 EXT		+=	$(IDIR)$(NAME).h
 
-SRC		=	main.c \
+SRC		=	main.c error.c data.c\
 
 S		=	$(addprefix $(SDIR), $(SRC))
 
 OBJ		=	$(SRC:.c=.o)
 O		=	$(addprefix $(ODIR), $(OBJ))
 
-all: lib $(NAME)
+all: $(NAME)
 
 $(NAME): $(O) $(EXT)
 	@echo "creating $(NAME)..."
-	@$(C) $(F) $(I) $(L) -o $@ $(O) $(LIB)
+	@$(CC) $(FLAGS) -I $(IDIR) -o $@ $(O)
 	@echo "done."
 
 $(ODIR)%.o: $(SDIR)%.c $(EXT)
 	@echo "compiling $<..."
-	@$(C) $(F) -c -o $@ $< $(I)
+	@$(CC) $(FLAGS) -c -o $@ $< -I $(IDIR)
 
 $(O): | $(ODIR)
 $(ODIR):
@@ -52,27 +47,9 @@ clean:
 	@echo "cleaning object files..."
 	@rm -rf $(ODIR)
 
-fclean: libclean clean
+fclean: clean
 	@echo "cleaning $(NAME) binary..."
 	@rm -rf $(NAME)
-
-launch: all
-	@echo "launching."
-	@./$(NAME) 1
-
-lib:
-	@make -C libft
-
-libclean:
-	@make fclean -C libft
-
-gdb: all
-	@echo "entering debug mode."
-	@sudo gdb -q --args $(NAME) 1
-
-lldb: all
-	@echo "entering debug mode."
-	@lldb $(NAME)
 
 re: fclean all
 
