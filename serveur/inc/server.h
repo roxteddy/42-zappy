@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 13:35:59 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/14 17:49:33 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,20 @@
 //DEBUG
 # include <stdio.h>
 
+typedef struct		s_spell
+{
+	int				x;
+	int				y;
+	int				level;
+	t_player		*owner;
+	t_plist			*plist;
+	int				success;
+}					t_spell;
+
 typedef struct		s_egg
 {
 	int				id;
+	int				owner;
 	char			*team;
 	int				food;
 	int				x;
@@ -59,6 +70,9 @@ typedef struct		s_player
 	int				mendiane;
 	int				phiras;
 	int				thystame;
+	char			*msg;
+	int				drop;
+	int				get;
 }					t_player;
 
 typedef struct		s_plist
@@ -137,11 +151,20 @@ t_cmd				cmd[] = {	{"avance", &cmd_forward},
 								{"connect_nbr", &cmd_max}	};
 */
 void	check_fd(t_data *data);
-void    clean_fd(t_fd *fd);
+void	clean_fd(t_fd *fd);
 void	client_read(t_data *data, int cs);
 void	client_write(t_data *data, int cs);
-void    cmd_handl(t_data *data, char *cmd, int cs);
-void    egg_del(t_egg **list, t_egg *egg);
+void	cmd_handl(t_data *data, char *cmd, int cs);
+void	cmd_bct(t_data *data, int cs, char **cmd);
+void	cmd_mct(t_data *data, int cs, char **cmd);
+void	cmd_msz(t_data *data, int cs, char **cmd);
+void    cmd_pin(t_data *data, int cs, char **cmd);
+void	cmd_plv(t_data *data, int cs, char **cmd);
+void	cmd_ppo(t_data *data, int cs, char **cmd);
+void	cmd_sgt(t_data *data, int cs, char **cmd);
+void	cmd_sst(t_data *data, int cs, char **cmd);
+void	cmd_tna(t_data *data, int cs, char **cmd);
+void	egg_del(t_egg **list, t_egg *egg);
 void	error(char *str);
 void	get_height(char *arg, t_data *data);
 void	get_maxclients(char *arg, t_data *data);
@@ -149,6 +172,34 @@ void    get_port(char *arg, t_data *data);
 void	get_teams(char **argv, int *i, t_data *data);
 void	get_time(char *arg, t_data *data);
 void	get_width(char *arg, t_data *data);
+void	gui_bct(t_square *square, int cs);
+void	gui_ebo(t_egg *egg, int cs);
+void	gui_edi(t_egg *egg, int cs);
+void	gui_eht(t_egg *egg, int cs);
+void	gui_elist(t_data *data, int cs);
+void	gui_enw(t_egg *egg, int cs);
+void	gui_init(t_data *data, int cs);
+void	gui_mct(t_data *data, int cs);
+void	gui_msz(t_data *data, int cs);
+void	gui_pbc(t_player *player, int cs);
+void	gui_pdi(t_player *player, int cs);
+void	gui_pdr(t_player *player, int cs);
+void	gui_pex(t_player *player, int cs);
+void	gui_pfk(t_player *player, int cs);
+void	gui_pgt(t_player *player, int cs);
+void	gui_pic(t_spell *t_spell, int cs);
+void	gui_pie(t_spell *spell, int cs);
+void	gui_plist(t_data *data, int cs);
+void	gui_pin(t_player *player, int cs);
+void	gui_pnw(t_player *player, int cs);
+void	gui_plv(t_player *player, int cs);
+void	gui_ppo(t_player *player, int cs);
+void	gui_sbp(void *null, int cs);
+void	gui_seg(t_tlist *team, int cs);
+void	gui_sgt(t_data *data, int cs);
+void	gui_smg(char *msg, int cs);
+void	gui_suc(void *null, int cs);
+void    gui_tna(t_data *data, int cs);
 void	init_data(t_data *data, char **av);
 void	init_fd(t_data *data);
 void	init_server(t_data *data);

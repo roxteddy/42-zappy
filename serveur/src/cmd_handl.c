@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 10:22:52 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 13:42:10 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/14 15:00:35 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void		join_team(t_data *data, char *cmd, int cs)
 	{
 		if (teams->slots)
 		{
+			data->fds[cs].type = FD_PLAYER;
 			dprintf(cs, "%d\n", --(teams->slots));
 			player_init(data, teams, cs);
 			dprintf(cs, "%d %d\n", data->x, data->y);
@@ -39,16 +40,13 @@ static void		join_team(t_data *data, char *cmd, int cs)
 
 static void		client_handl(t_data *data, char *cmd, int cs)
 {
-	if (!strcmp(cmd, "GRAPHIC\n"))
+	if (!strcmp(cmd, "GRAPHIC"))
 	{
 		data->fds[cs].type = FD_GUI;
-		//GUI INIT
+		gui_init(data, cs);
 	}
 	else
-	{
-		data->fds[cs].type = FD_PLAYER;
 		join_team(data, cmd, cs);
-	}
 }
 
 void			cmd_handl(t_data *data, char *cmd, int cs)
