@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 17:49:33 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 18:41:18 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define FD_GUI		4
 
 # define BUF_SIZE	1024
-# define TIMEOUT_S	3
+# define TIMEOUT_S	0
 # define TIMEOUT_US	0
 
 # define N			1
@@ -55,6 +55,12 @@ typedef struct		s_egg
 	struct s_egg	*next;
 }					t_egg;
 
+typedef struct		s_alist
+{
+	void			(*action)();
+	struct timeval	timer;
+}					t_alist;
+
 typedef struct		s_player
 {
 	char			*team;
@@ -73,6 +79,7 @@ typedef struct		s_player
 	char			*msg;
 	int				drop;
 	int				get;
+	t_alist			actions;
 }					t_player;
 
 typedef struct		s_plist
