@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 15:00:55 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 15:54:26 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:12:30 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	gui_init(t_data *data, int cs)
 {
-	cmd_msz(data, cs);
-	cmd_sgt(data, cs);
-	cmd_mct(data, cs);
-	cmd_tna(data, cs);
+	gui_msz(data, cs);
+	gui_sgt(data, cs);
+	gui_mct(data, cs);
+	gui_tna(data, cs);
 	gui_plist(data, cs);
 	gui_elist(data, cs);
 }
