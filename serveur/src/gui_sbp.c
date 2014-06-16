@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 17:48:08 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 17:49:54 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:13:40 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -18,5 +18,5 @@
 void	gui_sbp(void *null, int cs)
 {
 	(void)null;
-	dprintf(cs, "sbp\n");.
+	dprintf(cs, "sbp\n");
 }

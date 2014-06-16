@@ -6,12 +6,12 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 11:17:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 13:35:32 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:14:33 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include <strings.h>
+#include <string.h>
 #include <stdlib.h>
 #include <time.h>
 

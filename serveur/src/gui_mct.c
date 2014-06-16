@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 16:43:43 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 16:47:48 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:12:32 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ void	gui_mct(t_data *data, int cs)
 	{
 		j = -1;
 		while(++j < data->y)
-			gui_bct(&data->map[i][j], int cs);
+			gui_bct(&data->map[i][j], cs);
 	}
 }
