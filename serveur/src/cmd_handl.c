@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 10:22:52 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:18:27 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/16 19:25:49 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,15 @@ static void		client_handl(t_data *data, char *cmd, int cs)
 {
 	if (!strcmp(cmd, "GRAPHIC"))
 	{
+		printf("New GUI connected\n");
 		data->fds[cs].type = FD_GUI;
 		gui_init(data, cs);
 	}
 	else
+	{
+		printf("New player connected\n");
 		join_team(data, cmd, cs);
+	}
 }
 
 void			cmd_handl(t_data *data, char *cmd, int cs)
