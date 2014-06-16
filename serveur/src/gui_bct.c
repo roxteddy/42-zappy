@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 16:32:15 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 16:41:16 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:10:47 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	gui_bct(t_square *square, int cs)
 {
 	dprintf(cs, "bct %d %d %d %d %d %d %d %d %d\n",
 			square->x,
-			wquare->y,
+			square->y,
 			square->food,
 			square->linemate,
 			square->deraumere,

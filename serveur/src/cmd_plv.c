@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 16:17:38 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 16:19:38 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:09:45 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -22,5 +22,5 @@ void	cmd_plv(t_data *data, int cs, char **cmd)
 
 	if (cmd[1] && cmd[1][0] == '#')
 		pid = atoi(cmd[1] + 1);
-	gui_plv(data->fds[pid]->player, cs);
+	gui_plv(&data->fds[pid].player, cs);
 }
