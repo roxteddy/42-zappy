@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 15:15:47 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 16:41:55 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 18:59:55 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	cmd_bct(t_data *data, int cs, char **cmd)
 		(!cmd[2] || (y = atoi(cmd[2]) >= data->y)))
 		dprintf(cs, "error\n");
 	else
-		gui_bct(&data->map[x][y]);
+		gui_bct(&data->map[x][y], cs);
 }

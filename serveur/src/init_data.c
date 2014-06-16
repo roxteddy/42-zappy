@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:09:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 14:00:08 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:07:16 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static void		init_map(t_data *data)
 		j = -1;
 		while (++j < data->y)
 		{
+			data->map[i][j].x = i;
+			data->map[i][j].y = j;
 			data->map[i][j].food = rand() % 10;
 			data->map[i][j].linemate = rand() % 10;
 			data->map[i][j].deraumere = rand() % 10;

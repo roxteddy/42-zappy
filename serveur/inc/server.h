@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 18:59:06 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/16 19:06:42 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ typedef struct		s_tlist
 
 typedef struct		s_square
 {
+	int				x;
+	int				y;
 	int				food;
 	int				linemate;
 	int				deraumere;
