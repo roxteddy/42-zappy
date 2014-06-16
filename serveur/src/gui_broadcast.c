@@ -6,11 +6,13 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/16 18:42:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 18:45:32 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 18:49:58 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	gui_broadcast(t_data *data, (*gui_msg)(void*), void *arg)
+#include "server.h"
+
+void	gui_broadcast(t_data *data, void (*gui_msg)(void*, int), void *arg)
 {
 
 }
