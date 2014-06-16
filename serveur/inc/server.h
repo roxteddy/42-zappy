@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:06:42 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:49:46 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 
 //DEBUG
 # include <stdio.h>
+
+typedef struct timeval		t_timeval;
 
 typedef struct		s_egg
 {
