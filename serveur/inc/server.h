@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 18:41:18 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 18:48:32 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,6 @@
 
 //DEBUG
 # include <stdio.h>
-
-typedef struct		s_spell
-{
-	int				x;
-	int				y;
-	int				level;
-	t_player		*owner;
-	t_plist			*plist;
-	int				success;
-}					t_spell;
 
 typedef struct		s_egg
 {
@@ -122,6 +112,16 @@ typedef struct		s_square
 	int				phiras;
 	int				thystame;
 }					t_square;
+
+typedef struct		s_spell
+{
+	int				x;
+	int				y;
+	int				level;
+	t_player		*owner;
+	t_plist			*plist;
+	int				success;
+}					t_spell;
 
 typedef struct		s_data
 {
