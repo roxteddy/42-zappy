@@ -6,13 +6,13 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 13:34:32 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 10:37:03 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:17:37 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
 

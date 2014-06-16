@@ -6,13 +6,13 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 10:22:52 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 15:00:35 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/16 19:18:27 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 #include <sys/socket.h>
 
 static void		join_team(t_data *data, char *cmd, int cs)
