@@ -12,13 +12,15 @@ def loop(s, g):
         if message[0] == 'BIENVENUE':
             g.welcome()
             continue
-        func = getattr(g, message.pop(0), None)
+        mes = message.pop(0)
+        func = getattr(g, mes, None)
         if func:
             func(message)
         else:
-            log("unknown function")
-        print g.print_map()
-        print g.teams
+            log("unknown function:" + mes + " " + "".join(message))
+# debug 
+#        print g.print_map()
+#        print g.teams
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:

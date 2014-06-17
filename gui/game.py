@@ -87,7 +87,6 @@ class Game(object):
             if self.map[y][x]:
                 del self.map[y][x]
                 self.map[y][x] = []
-                print self.map[y][x]
             for i in range(0, len(map)):
                 for u in range(1, map[i] + 1):
                     self.map[y][x].append(ObjectFactory(i, x, y))
