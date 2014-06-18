@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:49:46 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/18 19:12:31 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct		s_player
 	int				o;
 	int				level;
 	int				food;
+	struct timeval	food_t;
 	int				linemate;
 	int				deraumere;
 	int				sibur;
