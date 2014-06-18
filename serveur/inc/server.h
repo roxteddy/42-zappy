@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:49:46 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/18 18:36:24 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 
 //DEBUG
 # include <stdio.h>
-
-typedef struct timeval		t_timeval;
 
 typedef struct		s_egg
 {
@@ -93,7 +91,7 @@ typedef struct      s_fd
 typedef struct		s_cmd
 {
 	char			*cmd;
-	void			(*fct) (void);
+	void			(*fct)(void);
 }					t_cmd;
 
 typedef struct		s_tlist
@@ -169,7 +167,7 @@ void	cmd_handl(t_data *data, char *cmd, int cs);
 void	cmd_bct(t_data *data, int cs, char **cmd);
 void	cmd_mct(t_data *data, int cs, char **cmd);
 void	cmd_msz(t_data *data, int cs, char **cmd);
-void    cmd_pin(t_data *data, int cs, char **cmd);
+void	cmd_pin(t_data *data, int cs, char **cmd);
 void	cmd_plv(t_data *data, int cs, char **cmd);
 void	cmd_ppo(t_data *data, int cs, char **cmd);
 void	cmd_sgt(t_data *data, int cs, char **cmd);
@@ -179,7 +177,7 @@ void	egg_del(t_egg **list, t_egg *egg);
 void	error(char *str);
 void	get_height(char *arg, t_data *data);
 void	get_maxclients(char *arg, t_data *data);
-void    get_port(char *arg, t_data *data);
+void	get_port(char *arg, t_data *data);
 void	get_teams(char **argv, int *i, t_data *data);
 void	get_time(char *arg, t_data *data);
 void	get_width(char *arg, t_data *data);
@@ -210,13 +208,13 @@ void	gui_seg(t_tlist *team, int cs);
 void	gui_sgt(t_data *data, int cs);
 void	gui_smg(char *msg, int cs);
 void	gui_suc(void *null, int cs);
-void    gui_tna(t_data *data, int cs);
+void	gui_tna(t_data *data, int cs);
 void	init_data(t_data *data, char **av);
 void	init_fd(t_data *data);
 void	init_server(t_data *data);
-void    player_add(t_plist **plist, t_player *player);
+void	player_add(t_plist **plist, t_player *player);
 void	player_init(t_data *data, t_tlist *team, int cs);
-void    srv_accept(t_data *data, int sock);
+void	srv_accept(t_data *data, int sock);
 void	team_add(t_data *data, char *name);
 void	usage(char *str);
 

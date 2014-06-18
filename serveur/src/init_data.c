@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:09:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:07:16 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/18 18:50:54 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void		get_opt(t_data *data, char **av)
 
 static void		init_teams(t_data *data)
 {
-	t_tlist *current;
+	t_tlist		*current;
 
 	current = data->teams;
 	while (current)

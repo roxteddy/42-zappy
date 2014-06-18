@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_diff.c                                        :+:      :+:    :+:   */
+/*   time_add.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/16 19:48:32 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/18 18:28:30 by pciavald         ###   ########.fr       */
+/*   Created: 2014/06/18 18:58:11 by pciavald          #+#    #+#             */
+/*   Updated: 2014/06/18 19:17:32 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 #include <sys/time.h>
 typedef struct timeval		t_timeval;
 
-int		time_diff(t_timeval *t1, t_timeval *t2)
+t_timeval		time_add(t_data *data, t_timeval *time, int coef)
 {
-	if (t2->tv_usec > t1->tv_usec)
-		return (1);
-	if (t2->tv_usec == t1->tv_usec)
-		return (0);
-	if (t2->tv_usec < t1->tv_usec)
-		return (-1);
+	t_timeval				t;
+	long unsigned int		sum;
+
+	sum = (time->tv_sec * 1000000) + time->tv_usec + (data->time * coef);
+	while (sum > 1000000)
+	{
+		t.tv_sec++;
+		sum -= 1000000;
+	}
+	t.tv_usec = sum;
+	return (t);
 }
