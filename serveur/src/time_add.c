@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/18 18:58:11 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/18 19:17:32 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/18 19:35:19 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ t_timeval		time_add(t_data *data, t_timeval *time, int coef)
 	t_timeval				t;
 	long unsigned int		sum;
 
-	sum = (time->tv_sec * 1000000) + time->tv_usec + (data->time * coef);
-	while (sum > 1000000)
+	sum = (time->tv_sec * 1000000) + time->tv_usec
+		+ (10000000 / data->time * coef);
+	while (sum >= 1000000)
 	{
 		t.tv_sec++;
 		sum -= 1000000;
