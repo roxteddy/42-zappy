@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 11:17:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:14:33 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/18 19:13:12 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void			player_init(t_data *data, t_tlist *team, int cs)
 	player->cs = cs;
 	player->level = 1;
 	player->food = 10;
+	player->food_t = gettimeofday();
 	player->linemate = 0;
 	player->deraumere = 0;
     player->sibur = 0;
