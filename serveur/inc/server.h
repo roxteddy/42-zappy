@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 19:12:31 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/18 20:12:43 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 
 //DEBUG
 # include <stdio.h>
-
-typedef struct timeval		t_timeval;
 
 typedef struct		s_egg
 {
@@ -146,22 +144,9 @@ typedef struct		s_data
 	fd_set			fd_read;
 	fd_set			fd_write;
 	struct timeval	timeout;
+	t_cmd			cmds[12];
 }					t_data;
 
-/*
-t_cmd				cmd[] = {	{"avance", &cmd_forward},
-								{"droite", &cmd_right},
-								{"gauche", &cmd_left},
-								{"voir", &cmd_look},
-								{"inventaire", &cmd_invent},
-								{"prend", &cmd_take},
-								{"pose", &cmd_drop},
-								{"expulse", &cmd_push},
-								{"broadcast", &cmd_bcast},
-								{"incantation", &cmd_incant},
-								{"fork", &cmd_fork},
-								{"connect_nbr", &cmd_max}	};
-*/
 void	check_fd(t_data *data);
 void	clean_fd(t_fd *fd);
 void	client_read(t_data *data, int cs);
