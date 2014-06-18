@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 20:12:43 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/18 20:13:56 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define E			2
 # define S			3
 # define W			4
+
+# define FOOD_T		7
 
 # include <sys/select.h>
 
@@ -202,6 +204,7 @@ void	init_fd(t_data *data);
 void	init_server(t_data *data);
 void	player_add(t_plist **plist, t_player *player);
 void	player_init(t_data *data, t_tlist *team, int cs);
+void	routine_food(t_data *data);
 void	srv_accept(t_data *data, int sock);
 void	team_add(t_data *data, char *name);
 void	usage(char *str);
