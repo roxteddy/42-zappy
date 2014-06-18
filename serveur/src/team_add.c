@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   team_add.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/04 08:22:25 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/14 11:55:27 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "server.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-void	ft_error(char *str)
+void	team_add(t_data *data, char *name)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+	t_tlist		*new;
+
+	if ((new = (t_tlist*)malloc(sizeof(t_tlist))) == NULL)
+		perror("malloc");
+	new->name = strdup(name);
+	new->list = NULL;
+	new->next = data->teams;
+	data->teams = new;
 }

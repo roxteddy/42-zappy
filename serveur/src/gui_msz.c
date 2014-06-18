@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   gui_msz.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 16:28:36 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/14 16:54:22 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "server.h"
 #include <stdio.h>
-#include <stdlib.h>
 
-void	ft_error(char *str)
+void	gui_msz(t_data *data, int cs)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+	dprintf(cs, "msz %d %d\n", data->x, data->y);
 }

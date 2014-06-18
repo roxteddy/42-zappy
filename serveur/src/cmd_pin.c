@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   cmd_pin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 16:22:17 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/16 19:19:26 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** "pin #n X Y q q q q q q q\n" "pin #n\n" Inventaire d’un joueur.
+*/
 
-#include <stdio.h>
+#include "server.h"
 #include <stdlib.h>
 
-void	ft_error(char *str)
+void	cmd_pin(t_data *data, int cs, char **cmd)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+	int		pid;
+
+	if (cmd[1] && cmd[1][0] == '#')
+		pid = atoi(cmd[1] + 1);
+	gui_pin(&data->fds[pid].player, cs);
 }

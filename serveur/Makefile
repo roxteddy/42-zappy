@@ -6,14 +6,50 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/10 15:52:12 by fcorre           ###   ########.fr        #
+#    Updated: 2014/06/16 19:36:37 by pciavald         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 .PHONY: all clean fclean re
 
-FILES = main.c opt.c opt2.c tlist.c usage.c ft_error.c
-CFLAGS = -Wall -Wextra -Werror -O3 -I ./inc
+FILES = main.c\
+		opt.c\
+		team_add.c\
+		usage.c\
+		init_data.c\
+		init_server.c\
+		srv_accept.c\
+		client_read.c\
+		client_write.c\
+		clean_fd.c\
+		error.c\
+		check_fd.c\
+		init_fd.c\
+		cmd_handl.c\
+		player_init.c\
+		player_add.c\
+		egg_del.c\
+		gui_init.c\
+		cmd_bct.c\
+		cmd_mct.c\
+		cmd_tna.c\
+		cmd_msz.c\
+		cmd_sgt.c\
+		gui_pnw.c\
+		gui_plist.c\
+		gui_enw.c\
+		gui_elist.c\
+		gui_ppo.c\
+		cmd_ppo.c\
+		gui_plv.c\
+		cmd_plv.c\
+		gui_bct.c\
+		gui_msz.c\
+		gui_mct.c\
+		gui_pex.c\
+		gui_sgt.c\
+		gui_tna.c
+CFLAGS = -Wall -Wextra -Werror -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)
 NAME = serveur
@@ -33,5 +69,8 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+
+launch: all
+	./serveur -p 4242 -x 20 -y 20 -n "lol" -c 100 -t 1
 
 re: fclean all

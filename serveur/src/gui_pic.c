@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   gui_pic.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 18:54:18 by pciavald         ###   ########.fr       */
+/*   Created: 2014/06/14 17:01:50 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/16 19:12:56 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** "pic X Y L #n #n …\n" - Premier joueur lance l’incantation pour tous les
+** suivants sur la case
+*/
 
 #include "server.h"
-#include <stdlib.h>
+#include <stdio.h>
 
-int		main(int ac, char **av)
+void	gui_pic(t_spell *spell, int cs)
 {
-	t_data	data;
+	t_plist	*plist;
 
-	(void)ac;
-	init_data(&data, av);
-	//
-	printf("DATA INIT OK\n");
-	init_server(&data);
-	//
-	printf("SERVER INIT OK\n");
-	while ("loop")
+	dprintf(cs, "pic %d %d %d #%d", spell->x, spell->y, spell->level,
+			spell->owner->cs);
+	plist = spell->plist;
+	while (plist)
 	{
-		init_fd(&data);
-		data.sel = select(data.fd_nb + 1, &data.fd_read, &data.fd_write,
-				NULL, &data.timeout);
-		check_fd(&data);
+		dprintf(cs, " #%d", plist->player->cs);
+		plist = plist->next;
 	}
-	return (0);
+	dprintf(cs, "\n");
 }

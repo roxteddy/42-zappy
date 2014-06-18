@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   gui_pdi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 17:30:07 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/14 17:32:11 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** "pdi #n\n" - Le joueur est mort de faim.
+*/
 
+#include "server.h"
 #include <stdio.h>
-#include <stdlib.h>
 
-void	ft_error(char *str)
+void	gui_pdi(t_player *player, int cs)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+	dprintf(cs, "pdi #%d\n", player->cs);
 }

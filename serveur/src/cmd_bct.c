@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   cmd_bct.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 15:15:47 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/16 18:59:55 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "server.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-void	ft_error(char *str)
+void	cmd_bct(t_data *data, int cs, char **cmd)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
+	int		x;
+	int		y;
+
+	if ((!cmd[1] || (x = atoi(cmd[1]) >= data->x)) ||
+		(!cmd[2] || (y = atoi(cmd[2]) >= data->y)))
+		dprintf(cs, "error\n");
 	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+		gui_bct(&data->map[x][y], cs);
 }

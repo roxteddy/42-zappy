@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   gui_sbp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 17:48:08 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/16 19:13:40 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** "sbp\n" - Mauvais paramètres pour la commande
+*/
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "stdio.h"
 
-void	ft_error(char *str)
+void	gui_sbp(void *null, int cs)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+	(void)null;
+	dprintf(cs, "sbp\n");
 }

@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 18:54:18 by pciavald         ###   ########.fr       */
+/*   Created: 2014/05/23 18:59:03 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/13 14:37:19 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include <stdlib.h>
 
-int		main(int ac, char **av)
+void	init_fd(t_data *data)
 {
-	t_data	data;
+	int		i;
 
-	(void)ac;
-	init_data(&data, av);
-	//
-	printf("DATA INIT OK\n");
-	init_server(&data);
-	//
-	printf("SERVER INIT OK\n");
-	while ("loop")
+	data->fd_nb = 0;
+	FD_ZERO(&data->fd_read);
+	FD_ZERO(&data->fd_write);
+	i = -1;
+	while (++i < data->max_fd)
 	{
-		init_fd(&data);
-		data.sel = select(data.fd_nb + 1, &data.fd_read, &data.fd_write,
-				NULL, &data.timeout);
-		check_fd(&data);
+		if (data->fds[i].type != FD_FREE)
+		{
+			FD_SET(i, &data->fd_read);
+			if (*data->fds[i].buf_write)
+				FD_SET(i, &data->fd_write);
+			data->fd_nb = (data->fd_nb > i) ? data->fd_nb : i;
+		}
 	}
-	return (0);
 }

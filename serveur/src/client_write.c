@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   client_write.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 18:54:18 by pciavald         ###   ########.fr       */
+/*   Created: 2014/05/23 18:05:21 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/16 19:18:13 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include <stdlib.h>
+#include <sys/socket.h>
+#include <string.h>
 
-int		main(int ac, char **av)
+void	client_write(t_data *data, int cs)
 {
-	t_data	data;
+	size_t	blen;
 
-	(void)ac;
-	init_data(&data, av);
-	//
-	printf("DATA INIT OK\n");
-	init_server(&data);
-	//
-	printf("SERVER INIT OK\n");
-	while ("loop")
-	{
-		init_fd(&data);
-		data.sel = select(data.fd_nb + 1, &data.fd_read, &data.fd_write,
-				NULL, &data.timeout);
-		check_fd(&data);
-	}
-	return (0);
+	if ((blen = strlen(data->fds[cs].buf_write)))
+		send(cs, data->fds[cs].buf_write, blen, 0);
+	bzero(data->fds[cs].buf_write, BUF_SIZE + 1);
 }

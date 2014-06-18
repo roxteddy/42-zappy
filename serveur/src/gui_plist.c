@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   gui_plist.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 18:54:18 by pciavald         ###   ########.fr       */
+/*   Created: 2014/06/14 15:39:46 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/14 15:45:28 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include <stdlib.h>
 
-int		main(int ac, char **av)
+void	gui_plist(t_data *data, int cs)
 {
-	t_data	data;
+	t_tlist		*team;
+	t_plist		*plist;
 
-	(void)ac;
-	init_data(&data, av);
-	//
-	printf("DATA INIT OK\n");
-	init_server(&data);
-	//
-	printf("SERVER INIT OK\n");
-	while ("loop")
+	team = data->teams;
+	while (team)
 	{
-		init_fd(&data);
-		data.sel = select(data.fd_nb + 1, &data.fd_read, &data.fd_write,
-				NULL, &data.timeout);
-		check_fd(&data);
+		plist = team->list;
+		while (plist)
+		{
+			gui_pnw(plist->player, cs);
+			plist = plist->next;
+		}
+		team = team->next;
 	}
-	return (0);
 }

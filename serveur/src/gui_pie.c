@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   gui_pie.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 17:20:20 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/16 19:13:13 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** "pie X Y R\n" - Fin de l’incantation sur la case donnée avec le
+** résultat R (0 ou 1).
+*/
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "server.h"
 
-void	ft_error(char *str)
+void	gui_pie(t_spell *spell, int cs)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+	dprintf(cs, "pie %d %d %d\n", spell->x, spell->y, spell->success);
 }

@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   cmd_plv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 16:17:38 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/16 19:09:45 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** "plv #n L\n" "plv #n\n" Niveau d’un joueur.
+*/
 
-#include <stdio.h>
+#include "server.h"
 #include <stdlib.h>
 
-void	ft_error(char *str)
+void	cmd_plv(t_data *data, int cs, char **cmd)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+	int		pid;
+
+	if (cmd[1] && cmd[1][0] == '#')
+		pid = atoi(cmd[1] + 1);
+	gui_plv(&data->fds[pid].player, cs);
 }

@@ -1,54 +1,50 @@
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "client.h"
 
-int		contains(char *needle, char **haystack, int size)
-{
-	int		i;
 
-	i = 0;
-	while (i < size)
-	{
-		if (ft_strequ(needle, haystack[i]))
-		{
-			if (i != size - 1 && haystack[i + 1][0] != '-')
-				return (1);
-		}
-		i++;
-	}
+
+int		check_host_opt(char **tab)
+{
+	if (!strcmp(tab[1], "-n") && !strcmp(tab[3], "-p") && !strcmp(tab[5], "-h"))
+		return (init_args(tab[6], tab[2], atoi(tab[4])));
+	if (!strcmp(tab[1], "-n") && !strcmp(tab[5], "-p") && !strcmp(tab[3], "-h"))
+		return (init_args(tab[4], tab[2], atoi(tab[6])));
+	if (!strcmp(tab[1], "-p") && !strcmp(tab[3], "-n") && !strcmp(tab[5], "-h"))
+		return (init_args(tab[6], tab[4], atoi(tab[2])));
+	if (!strcmp(tab[1], "-p") && !strcmp(tab[5], "-n") && !strcmp(tab[3], "-h"))
+		return (init_args(tab[4], tab[6], atoi(tab[2])));
+	if (!strcmp(tab[1], "-h") && !strcmp(tab[3], "-p") && !strcmp(tab[5], "-n"))
+		return (init_args(tab[2], tab[6], atoi(tab[4])));
+	if (!strcmp(tab[1], "-h") && !strcmp(tab[5], "-p") && !strcmp(tab[3], "-n"))
+		return (init_args(tab[2], tab[4], atoi(tab[6])));
 	return (0);
 }
 
 int		check_args(int argc, char **argv)
 {
-	if (contains("-n", argv, argc) && contains("-p", argv, argc))
+	if (argc == 5)
 	{
-		if (argc == 7 && contains("-h", argv, argc))
-			return (1);
-		else if (argc == 5)
-			return (1);
+ 		if (!strcmp(argv[1], "-n") && !strcmp(argv[3], "-p"))
+			return (init_args("localhost", argv[2], atoi(argv[4])));
+		else if (!strcmp(argv[1], "-p") && !strcmp(argv[3], "-n"))
+			return (init_args("localhost", argv[4], atoi(argv[2])));
+		return (0);
+	}
+	else if (argc == 7)
+	{
+		if (!strcmp(argv[1], "-n") && !strcmp(argv[3], "-p") && !strcmp(argv[5], "-h"))
+			return (check_host_opt(argv));
 	}
 	return (0);
-}
-
-void	usage(void)
-{
-	ft_putendl("Usage: ./client -n <team> -p <port> [-h <hostname>]");
-	ft_putendl(" -n nom d'equipe");
-	ft_putendl(" -p port");
-	ft_putendl(" -h nom de la machine [localhost]");
-}
-
-void	quit(int err)
-{
-	if (err == USAGE)
-		usage();
-	exit(err);
 }
 
 int		main(int argc, char **argv)
 {
 	if (check_args(argc, argv))
 	{
-		ft_putendl("ok");
+		printf("ok");
 	}
 	else
 		quit(USAGE);

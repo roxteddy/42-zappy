@@ -1,5 +1,5 @@
 from stuff import log
-from gui import Game
+from game import Game
 
 class Entity(object):
     def __init__(self, X, Y):
@@ -12,8 +12,8 @@ class Entity(object):
     def __repr__(self):
         return unicode(self)
 
-#    def remove_from_map(self):
-#        Game.map[self.Y][self.X].remove(self)
+    def remove_from_map(self):
+        Game.map[self.Y][self.X].remove(self)
 
 class Food(Entity):
     def __init__(self, X, Y):
@@ -44,8 +44,9 @@ class Thystame(Entity):
         super(Thystame, self).__init__(X, Y)
 
 class Egg(Entity):
-    def __init__(self, o, e, n, X, Y):
+    def __init__(self, e, n, X, Y, d = 0, o = 0):
         """
+        d = mort ? 0 = non, 1 = oui
         o = eclot ? 0 = non, 1 = oui
         e = numero de l'oeuf
         n = numero du joueur qui a pondu
@@ -58,10 +59,9 @@ class Egg(Entity):
         self.n = n
         log("Egg %d created at %d / %d from player %d" % (self.e, self.X, self.Y, self.n))
 
-    def __unicode__(self):
-        return "%s: %d" % (self.team, self.n)
-
     def __eq__(self, other):
+        if not isinstance(other, self.__class__):
+            return False
         return self.e == other.e
 
 class Player(Entity):
@@ -74,7 +74,7 @@ class Player(Entity):
         log("Player %d created at %d / %d, from %s" % (self.n, self.X, self.Y, self.team))
 
     def __unicode__(self):
-        return "%s: %d" % (self.team, self.n)
+        return "%s %d: %d/%d" % (self.__class__.__name__, self.n, self.X, self.Y)
 
     def __eq__(self, other):
         return self.n == other.n

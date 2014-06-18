@@ -1,5 +1,5 @@
 from connexions import Sock
-from gui import Game
+from game import Game
 from stuff import log
 
 import sys
@@ -9,12 +9,18 @@ def loop(s, g):
         message = s.read().split()
         if not message:
             continue
-        func = getattr(g, message.pop(0), None)
+        if message[0] == 'BIENVENUE':
+            g.welcome()
+            continue
+        mes = message.pop(0)
+        func = getattr(g, mes, None)
         if func:
             func(message)
         else:
-            log("unknown function")
-        print Game.map
+            log("unknown function:" + mes + " " + "".join(message))
+# debug 
+#        print g.print_map()
+#        print g.teams
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:

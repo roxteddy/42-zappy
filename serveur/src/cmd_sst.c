@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cmd_sst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 18:54:18 by pciavald         ###   ########.fr       */
+/*   Created: 2014/06/14 17:40:26 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/14 17:43:16 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** "sgt T\n" "sst T\n" Modification de l’unité de temps sur le serveur.
+*/
 
 #include "server.h"
 #include <stdlib.h>
 
-int		main(int ac, char **av)
+void	cmd_sst(t_data *data, int cs, char **cmd)
 {
-	t_data	data;
 
-	(void)ac;
-	init_data(&data, av);
-	//
-	printf("DATA INIT OK\n");
-	init_server(&data);
-	//
-	printf("SERVER INIT OK\n");
-	while ("loop")
-	{
-		init_fd(&data);
-		data.sel = select(data.fd_nb + 1, &data.fd_read, &data.fd_write,
-				NULL, &data.timeout);
-		check_fd(&data);
-	}
-	return (0);
+	if (cmd[1])
+		data->time = atoi(cmd[1]);
+// FONCTION MODIFIANTE > LE SGT DOIT ETRE BROADCAST A TOUS LES GUI
+	gui_sgt(data, cs);
 }

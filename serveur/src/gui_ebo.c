@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   gui_ebo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/10 15:45:18 by fcorre            #+#    #+#             */
-/*   Updated: 2014/06/12 14:19:59 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 17:34:59 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/16 19:10:56 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** "ebo #e\n" - Un joueur s’est connecté pour l’œuf
+*/
+#include "server.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-
-void	ft_error(char *str)
+void	gui_ebo(t_egg *egg, int cs)
 {
-	if (str)
-		fprintf(stderr, "Zappy: %s error\n", str);
-	else
-		fprintf(stderr, "Zappy: error");
-	exit(1);
+	dprintf(cs, "ebo #%d\n", egg->id);
 }
