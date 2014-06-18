@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 20:13:56 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/18 20:29:54 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ typedef struct		s_egg
 typedef struct		s_alist
 {
 	void			(*action)();
+	char			**cmd;
 	struct timeval	timer;
+	struct s_alist	*next;
 }					t_alist;
 
 typedef struct		s_player
