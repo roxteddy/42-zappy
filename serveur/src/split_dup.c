@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_split.c                                       :+:      :+:    :+:   */
+/*   split_dup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/20 19:56:27 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 21:22:35 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/20 20:32:13 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/20 20:38:08 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <string.h>
 
-void	free_split(char **tab)
+char	**split_dup(char **split)
 {
 	int		i;
+	char	**dup;
 
+	i = 0;
+	while (split[i])
+		i++;
+	dup = (char**)malloc(sizeof(char *) * (i + 1));
 	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
+	while (split[++i])
+		dup[i] = strdup(split[i]);
+	split[i] = NULL;
+	return (dup);
 }

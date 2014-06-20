@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/20 19:44:21 by pciavald         ###   ########.fr        #
+#    Updated: 2014/06/20 21:15:52 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,7 +49,15 @@ FILES = main.c \
 		gui_pex.c \
 		gui_sgt.c \
 		gui_tna.c \
-		cmd_invent.c
+		cmd_invent.c \
+		action_add.c \
+		free_split.c \
+		ft_itoa.c \
+		team_join.c \
+		split_dup.c \
+		strsplit.c \
+		time_add.c \
+		strsub.c
 CFLAGS = -Wall -Wextra -Werror -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)
@@ -72,6 +80,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 launch: all
-	./serveur -p 4242 -x 20 -y 20 -n "lol" -c 100 -t 1
+	./serveur -p 4242 -x 20 -y 20 -n lol -c 100 -t 1
 
 re: fclean all

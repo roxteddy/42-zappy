@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 13:34:32 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:17:37 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/20 21:15:09 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,6 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
-
-static char  *strsub(char *str, int start, int len)
-{
-    char    *sub;
-
-    sub = (char *)malloc(sizeof(char) * (len + 1));
-    strncpy(sub, str + start, len);
-    sub[len] = '\0';
-    return (sub);
-}
 
 static void	bufread_handl(t_data *data, char *str, int cs)
 {

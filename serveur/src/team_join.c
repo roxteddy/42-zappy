@@ -6,12 +6,13 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 20:02:16 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 20:04:13 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 21:17:57 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 #include <stdio.h>
+#include <string.h>
 
 void	team_join(t_data *data, char *cmd, int cs)
 {
@@ -28,9 +29,12 @@ void	team_join(t_data *data, char *cmd, int cs)
 			dprintf(cs, "%d\n", --(teams->slots));
 			player_init(data, teams, cs);
 			dprintf(cs, "%d %d\n", data->x, data->y);
+//
+			printf("client #%d joined team : %s\n", cs, teams->name);
 		}
 		else
 			dprintf(cs, "no slot available\n");
 	}
 	else
 		dprintf(cs, "no such team\n");
+}
