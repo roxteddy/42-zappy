@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 20:03:28 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 20:16:42 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define E			2
 # define S			3
 # define W			4
+
+# define CMD_NB		12
 
 # define MOVE_T		7
 # define SEE_T		7
@@ -157,7 +159,7 @@ typedef struct		s_data
 	fd_set			fd_read;
 	fd_set			fd_write;
 	struct timeval	timeout;
-	t_cmd			cmds[12];
+	t_cmd			cmds[CMD_NB];
 }					t_data;
 
 void	action_delfirst(t_alist **alist);
@@ -220,6 +222,8 @@ void	player_init(t_data *data, t_tlist *team, int cs);
 void	routine_action(t_data *data);
 void	routine_food(t_data *data);
 void	srv_accept(t_data *data, int sock);
+char	**strsplit(char const *s, char c);
+char	*strsub(char const *s, unsigned int start, size_t len);
 void	team_add(t_data *data, char *name);
 void	team_join(t_data *data, char *cmd, int cs);
 void	usage(char *str);
