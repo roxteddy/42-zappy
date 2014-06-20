@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 10:22:52 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 20:31:40 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 20:03:57 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <sys/socket.h>
-
-static void		join_team(t_data *data, char *cmd, int cs)
-{
-	t_tlist		*teams;
-
-	teams = data->teams;
-	while (teams && strcmp(teams->name, cmd))
-		teams = teams->next;
-	if (teams)
-	{
-		if (teams->slots)
-		{
-			data->fds[cs].type = FD_PLAYER;
-			dprintf(cs, "%d\n", --(teams->slots));
-			player_init(data, teams, cs);
-			dprintf(cs, "%d %d\n", data->x, data->y);
-		}
-		else
-			dprintf(cs, "no slot available\n");
-	}
-	else
-		dprintf(cs, "no such team\n");
-}
 
 static void		client_handl(t_data *data, char *cmd, int cs)
 {

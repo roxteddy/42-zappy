@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 19:58:44 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 20:03:28 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ void	routine_action(t_data *data);
 void	routine_food(t_data *data);
 void	srv_accept(t_data *data, int sock);
 void	team_add(t_data *data, char *name);
+void	team_join(t_data *data, char *cmd, int cs);
 void	usage(char *str);
 
 #endif
