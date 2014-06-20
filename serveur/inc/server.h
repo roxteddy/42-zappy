@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/18 20:29:54 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 18:31:40 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 # define S			3
 # define W			4
 
+# define MOVE_T		7
+# define SEE_T		7
+# define INV_T		1
+# define GET_T		7
+# define DROP_T		7
+# define EXPEL_T	7
+# define MSG_T		7
+# define SPELL_T	300
+# define FORK_T		42
 # define FOOD_T		7
 
 # include <sys/select.h>
@@ -74,7 +83,7 @@ typedef struct		s_player
 	char			*msg;
 	int				drop;
 	int				get;
-	t_alist			actions;
+	t_alist			*actions;
 }					t_player;
 
 typedef struct		s_plist
