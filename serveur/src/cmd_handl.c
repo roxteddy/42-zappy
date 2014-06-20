@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 10:22:52 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 21:21:44 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 21:25:25 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ static void		player_handl(t_data *data, char **cmd, int cs)
 	i = -1;
 	while (++i < CMD_NB)
 	{
-		if (!strcmp(cmd[1], data->cmds[i].cmd))
+		if (!strcmp(cmd[0], data->cmds[i].cmd))
 		{
 			action_add(data, &data->fds[cs].player.actions, data->cmds[i],
 					   cmd);
 			break ;
 		}
-		if (i == CMD_NB)
-			dprintf(cs, "command unknown\n");
 	}
+	if (i == CMD_NB)
+		dprintf(cs, "command unknown\n");
 }
 
 static void		client_handl(t_data *data, char *cmd, int cs)

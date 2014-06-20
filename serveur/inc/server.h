@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 21:06:37 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 22:14:52 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct		s_alist
 {
 	void			(*action)();
 	char			**cmd;
-	struct timeval	timer;
+	t_timeval		timer;
 	struct s_alist	*next;
 }					t_alist;
 
@@ -77,7 +77,7 @@ typedef struct		s_player
 	int				o;
 	int				level;
 	int				food;
-	struct timeval	food_t;
+	t_timeval		food_t;
 	int				linemate;
 	int				deraumere;
 	int				sibur;
@@ -168,22 +168,34 @@ typedef struct		s_data
 	t_cmd			cmds[CMD_NB];
 }					t_data;
 
-void		cmd_invent(t_data *data, int cs, char **cmd);
+void		create_cmds(t_data *data);
 void		action_add(t_data *data, t_alist **actions, t_cmd action, char **cmd);
 void		action_delfirst(t_alist **alist);
 void		check_fd(t_data *data);
 void		clean_fd(t_fd *fd);
 void		client_read(t_data *data, int cs);
 void		client_write(t_data *data, int cs);
-void		cmd_handl(t_data *data, char *cmd, int cs);
+void		cmd_bcast(t_data *data, int cs, char **cmd);
 void		cmd_bct(t_data *data, int cs, char **cmd);
+void		cmd_drop(t_data *data, int cs, char **cmd);
+void		cmd_fork(t_data *data, int cs, char **cmd);
+void		cmd_forward(t_data *data, int cs, char **cmd);
+void		cmd_handl(t_data *data, char *cmd, int cs);
+void		cmd_incant(t_data *data, int cs, char **cmd);
+void		cmd_invent(t_data *data, int cs, char **cmd);
+void		cmd_left(t_data *data, int cs, char **cmd);
+void		cmd_look(t_data *data, int cs, char **cmd);
+void		cmd_max(t_data *data, int cs, char **cmd);
 void		cmd_mct(t_data *data, int cs, char **cmd);
 void		cmd_msz(t_data *data, int cs, char **cmd);
 void		cmd_pin(t_data *data, int cs, char **cmd);
 void		cmd_plv(t_data *data, int cs, char **cmd);
 void		cmd_ppo(t_data *data, int cs, char **cmd);
+void		cmd_push(t_data *data, int cs, char **cmd);
+void		cmd_right(t_data *data, int cs, char **cmd);
 void		cmd_sgt(t_data *data, int cs, char **cmd);
 void		cmd_sst(t_data *data, int cs, char **cmd);
+void		cmd_take(t_data *data, int cs, char **cmd);
 void		cmd_tna(t_data *data, int cs, char **cmd);
 void		egg_del(t_egg **list, t_egg *egg);
 void		error(char *str);

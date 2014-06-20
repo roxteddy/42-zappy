@@ -6,29 +6,36 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:13:30 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 19:49:35 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 22:34:50 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "server.h"
 #include <sys/time.h>
 
 void		routine_action(t_data *data)
 {
-	int			i;
-	t_player	*player;
+	t_tlist		*team;
+	t_plist		*list;
+	t_timeval	now;
 
-	i = -1;
-	while (++i < data->max_fd)
+	gettimeofday(&now, NULL);
+	team = data->teams;
+	while (team)
 	{
-		if (data->fds[i].type == FD_CLIENT)
+		list = team->list;
+		while (list)
 		{
-			player = &data->fds[i].player;
-			if (player->actions && timediff(player->actions->timer,
-											gettimeofday()) >= 0)
-			{
-				player->actions->action(data, i, player->actions->cmd);
-				action_delfirst(&player->actions);
-			}
+			if (list->player->actions
+				&& time_diff(&list->player->actions->timer, &now) >= 0)
+            {
+                list->player->actions->action(data, list->player->cs,
+											  list->player->actions->cmd);
+                action_delfirst(&list->player->actions);
+            }
+			list = list->next;
 		}
+		team = team->next;
 	}
+	(void)now;
 }

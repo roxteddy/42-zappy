@@ -6,28 +6,15 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/18 19:51:46 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/20 20:24:55 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 22:02:05 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include "string.h"
+#include <string.h>
 
-//
-void	cmd_forward(t_data *data, int cs, char **cmd);
-void	cmd_right(t_data *data, int cs, char **cmd);
-void	cmd_left(t_data *data, int cs, char **cmd);
-void	cmd_look(t_data *data, int cs, char **cmd);
-void	cmd_take(t_data *data, int cs, char **cmd);
-void	cmd_drop(t_data *data, int cs, char **cmd);
-void	cmd_push(t_data *data, int cs, char **cmd);
-void	cmd_bcast(t_data *data, int cs, char **cmd);
-void	cmd_incant(t_data *data, int cs, char **cmd);
-void	cmd_fork(t_data *data, int cs, char **cmd);
-void	cmd_max(t_data *data, int cs, char **cmd);
-
-t_cmd	new_command(char *cmd, void (*fct)(t_data *data, int cs, char **cmd),
-					int coef)
+static t_cmd	new_command(char *cmd, void (*fct)(t_data *data, int cs,
+												   char **cmd), int coef)
 {
 	t_cmd	c;
 
@@ -37,7 +24,7 @@ t_cmd	new_command(char *cmd, void (*fct)(t_data *data, int cs, char **cmd),
 	return (c);
 }
 
-void	create_cmds(t_data *data)
+void			create_cmds(t_data *data)
 {
 	data->cmds[0] = new_command("avance", &cmd_forward, MOVE_T);
 	data->cmds[1] = new_command("droite", &cmd_right, MOVE_T);
@@ -50,5 +37,5 @@ void	create_cmds(t_data *data)
 	data->cmds[8] = new_command("broadcast", &cmd_bcast, BCAST_T);
 	data->cmds[9] = new_command("incantation", &cmd_incant, INCANT_T);
 	data->cmds[10] = new_command("fork", &cmd_fork, FORK_T);
-	data->cmds[11] = new_command("connect_nbr", &cmd_max);
+	data->cmds[11] = new_command("connect_nbr", &cmd_max, 0);
 }

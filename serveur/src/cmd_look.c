@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:49:13 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/20 20:17:24 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/20 22:05:32 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,23 @@
 static t_square		*see(t_data *data, int *seen, int level)
 {
 	t_square	*square;
-	int			x;
-	int			y;
-
+	int			x = 0;
+	int			y = 0;
+//
+	(void)seen;
+	(void)level;
 	square = get_square(data, x, y);
 	return (square);
 }
 
 void	cmd_look(t_data *data, int cs, char **cmd)
 {
-	t_square	**map;
 	t_square	*square;
 	char		buf[BUF_SIZE];
 	int			i;
 	int			level;
 
 	(void)cmd;
-	map = data->map;
 	level = data->fds[cs].player.level;
 	memset(buf, '\0', BUF_SIZE);
 	i = 0;
