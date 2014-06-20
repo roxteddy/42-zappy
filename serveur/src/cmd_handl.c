@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 10:22:52 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:25:49 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/18 20:31:40 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ static void		client_handl(t_data *data, char *cmd, int cs)
 
 void			cmd_handl(t_data *data, char *cmd, int cs)
 {
-	printf("%s\n", cmd);
-	send(cs, "cmd received\n", 13, 0);
+	printf("received cmd from client #%d : %s\n", cs, cmd);
 
 	if (data->fds[cs].type == FD_CLIENT)
 		client_handl(data, cmd, cs);
