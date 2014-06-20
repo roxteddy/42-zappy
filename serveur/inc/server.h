@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 20:17:29 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/20 20:19:47 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define E			2
 # define S			3
 # define W			4
+
+# define CMD_NB		12
 
 # define MOVE_T		7
 # define SEE_T		7
@@ -160,12 +162,13 @@ typedef struct		s_data
 	fd_set			fd_read;
 	fd_set			fd_write;
 	struct timeval	timeout;
-	t_cmd			cmds[12];
+	t_cmd			cmds[CMD_NB];
 }					t_data;
 
 char	*ft_itoa(int n);
 t_square	*get_square(t_data *data, int x, int y);
 void	cmd_invent(t_data *data, int cs, char **cmd);
+void	action_delfirst(t_alist **alist);
 void	check_fd(t_data *data);
 void	clean_fd(t_fd *fd);
 void	client_read(t_data *data, int cs);
@@ -182,6 +185,7 @@ void	cmd_sst(t_data *data, int cs, char **cmd);
 void	cmd_tna(t_data *data, int cs, char **cmd);
 void	egg_del(t_egg **list, t_egg *egg);
 void	error(char *str);
+void	free_split(char **tab);
 void	get_height(char *arg, t_data *data);
 void	get_maxclients(char *arg, t_data *data);
 void	get_port(char *arg, t_data *data);
@@ -221,9 +225,13 @@ void	init_fd(t_data *data);
 void	init_server(t_data *data);
 void	player_add(t_plist **plist, t_player *player);
 void	player_init(t_data *data, t_tlist *team, int cs);
+void	routine_action(t_data *data);
 void	routine_food(t_data *data);
 void	srv_accept(t_data *data, int sock);
+char	**strsplit(char const *s, char c);
+char	*strsub(char const *s, unsigned int start, size_t len);
 void	team_add(t_data *data, char *name);
+void	team_join(t_data *data, char *cmd, int cs);
 void	usage(char *str);
 
 #endif

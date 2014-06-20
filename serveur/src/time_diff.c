@@ -6,9 +6,12 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/16 19:48:32 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/18 19:33:49 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/20 19:38:13 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/*
+** return 1 if t2 > t1
+*/
 
 #include "server.h"
 #include <sys/time.h>
