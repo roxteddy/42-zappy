@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/18 19:51:46 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/18 20:12:05 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/20 20:17:27 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 #include "string.h"
 
 //
-void	cmd_forward(void);
-void	cmd_right(void);
-void	cmd_left(void);
-void	cmd_look(void);
-void	cmd_invent(void);
-void	cmd_take(void);
-void	cmd_drop(void);
-void	cmd_push(void);
-void	cmd_bcast(void);
-void	cmd_incant(void);
-void	cmd_fork(void);
-void	cmd_max(void);
+void	cmd_forward(t_data *data, int cs, char **cmd);
+void	cmd_right(t_data *data, int cs, char **cmd);
+void	cmd_left(t_data *data, int cs, char **cmd);
+void	cmd_look(t_data *data, int cs, char **cmd);
+void	cmd_take(t_data *data, int cs, char **cmd);
+void	cmd_drop(t_data *data, int cs, char **cmd);
+void	cmd_push(t_data *data, int cs, char **cmd);
+void	cmd_bcast(t_data *data, int cs, char **cmd);
+void	cmd_incant(t_data *data, int cs, char **cmd);
+void	cmd_fork(t_data *data, int cs, char **cmd);
+void	cmd_max(t_data *data, int cs, char **cmd);
 
-t_cmd	new_command(char *cmd, void (*fct)(void))
+t_cmd	new_command(char *cmd, void (*fct)(t_data *data, int cs, char **cmd))
 {
 	t_cmd	c;
 

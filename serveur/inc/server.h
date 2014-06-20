@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 18:31:40 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 20:17:29 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,13 @@ typedef struct      s_fd
 	t_player		player;
 }                   t_fd;
 
+// typedef needed in t_cmd struct
+typedef struct s_data	t_data;
+
 typedef struct		s_cmd
 {
 	char			*cmd;
-	void			(*fct)(void);
+	void			(*fct)(t_data *data, int cs, char **cmd);
 }					t_cmd;
 
 typedef struct		s_tlist
@@ -160,6 +163,9 @@ typedef struct		s_data
 	t_cmd			cmds[12];
 }					t_data;
 
+char	*ft_itoa(int n);
+t_square	*get_square(t_data *data, int x, int y);
+void	cmd_invent(t_data *data, int cs, char **cmd);
 void	check_fd(t_data *data);
 void	clean_fd(t_fd *fd);
 void	client_read(t_data *data, int cs);
