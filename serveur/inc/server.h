@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 22:14:52 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/21 22:18:46 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 # define INCANT_T	300
 # define FORK_T		42
 # define FOOD_T		7
+
+# define SQUARE(X)	(X) * (X)
 
 # include <sys/select.h>
 
