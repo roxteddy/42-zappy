@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:51:12 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 19:54:22 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 22:27:22 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -23,7 +23,7 @@ void	action_delfirst(t_alist **alist)
 	if (*alist)
 	{
 		tmp = *alist;
-		*alist = *alist->next;
+		*alist = (*alist)->next;
 		if (tmp->cmd)
 			free_split(tmp->cmd);
 		free(tmp);

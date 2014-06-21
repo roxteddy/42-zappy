@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   split_dup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 22:48:06 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/20 20:32:13 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/20 20:38:08 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
 #include <stdlib.h>
+#include <string.h>
 
-int		main(int ac, char **av)
+char	**split_dup(char **split)
 {
-	t_data	data;
+	int		i;
+	char	**dup;
 
-	(void)ac;
-	init_data(&data, av);
-	//
-	printf("DATA INIT OK\n");
-	init_server(&data);
-	//
-	printf("SERVER INIT OK\n");
-	while ("loop")
-	{
-		init_fd(&data);
-		data.sel = select(data.fd_nb + 1, &data.fd_read, &data.fd_write,
-				NULL, &data.timeout);
-		check_fd(&data);
-		routine_food(&data);
-		routine_action(&data);
-	}
-	return (0);
+	i = 0;
+	while (split[i])
+		i++;
+	dup = (char**)malloc(sizeof(char *) * (i + 1));
+	i = -1;
+	while (split[++i])
+		dup[i] = strdup(split[i]);
+	split[i] = NULL;
+	return (dup);
 }

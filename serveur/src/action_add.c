@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine_action.c                                   :+:      :+:    :+:   */
+/*   action_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/20 19:13:30 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 22:34:50 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/20 20:27:34 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/20 21:02:26 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
+#include <stdlib.h>
 #include <sys/time.h>
 
-void		routine_action(t_data *data)
+void	action_add(t_data *data, t_alist **actions, t_cmd action, char **cmd)
 {
-	t_tlist		*team;
-	t_plist		*list;
+	t_alist		*new;
+	t_alist		*tmp;
 	t_timeval	now;
 
+	new = (t_alist*)malloc(sizeof(t_alist));
+	new->action = action.fct;
+	new->cmd = split_dup(cmd);
 	gettimeofday(&now, NULL);
-	team = data->teams;
-	while (team)
+	new->timer = time_add(data, &now, action.coef);
+	new->next = NULL;
+	if (*actions == NULL)
+		*actions = new;
+	else
 	{
-		list = team->list;
-		while (list)
-		{
-			if (list->player->actions
-				&& time_diff(&list->player->actions->timer, &now) >= 0)
-            {
-                list->player->actions->action(data, list->player->cs,
-											  list->player->actions->cmd);
-                action_delfirst(&list->player->actions);
-            }
-			list = list->next;
-		}
-		team = team->next;
+		tmp = *actions;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
-	(void)now;
 }

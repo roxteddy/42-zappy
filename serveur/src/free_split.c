@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:56:27 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 19:58:27 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 22:56:42 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	free_split(char **tab)
 {
 	int		i;
 
-	i = -1;
-	while (tab[i])
-		free(tab[i]);
-	free(tab);
+	if (tab)
+	{
+		i = -1;
+		while (tab[++i])
+			free(tab[i]);
+		free(tab);
+	}
 }

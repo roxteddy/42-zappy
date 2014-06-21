@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 10:22:52 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 20:03:57 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 21:25:25 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,53 @@
 #include <string.h>
 #include <sys/socket.h>
 
+static void		player_handl(t_data *data, char **cmd, int cs)
+{
+	int		i;
+
+	i = -1;
+	while (++i < CMD_NB)
+	{
+		if (!strcmp(cmd[0], data->cmds[i].cmd))
+		{
+			action_add(data, &data->fds[cs].player.actions, data->cmds[i],
+					   cmd);
+			break ;
+		}
+	}
+	if (i == CMD_NB)
+		dprintf(cs, "command unknown\n");
+}
+
 static void		client_handl(t_data *data, char *cmd, int cs)
 {
 	if (!strcmp(cmd, "GRAPHIC"))
 	{
+//
 		printf("New GUI connected\n");
 		data->fds[cs].type = FD_GUI;
 		gui_init(data, cs);
 	}
 	else
 	{
+//
 		printf("New player connected\n");
-		join_team(data, cmd, cs);
+		team_join(data, cmd, cs);
 	}
 }
 
 void			cmd_handl(t_data *data, char *cmd, int cs)
 {
-	printf("received cmd from client #%d : %s\n", cs, cmd);
+	char	**cmd_split;
 
+	printf("received cmd from client #%d : %s\n", cs, cmd);
+	cmd_split = strsplit(cmd, ' ');
 	if (data->fds[cs].type == FD_CLIENT)
 		client_handl(data, cmd, cs);
-//	else if (data->fds[cs].type == FD_PLAYER)
-//		player_handl(data, cmd, cs);
+	else if (data->fds[cs].type == FD_PLAYER)
+		player_handl(data, cmd_split, cs);
 //	else if (data->fds[cs].type == FD_GUI)
-//		gui_handl(data, cmd, cs);
+//		gui_handl(data, cmd_split, cs);
+//
+	free_split(cmd_split);
 }

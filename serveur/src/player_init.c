@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 11:17:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 18:25:47 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/20 20:58:36 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/time.h>
 
 static void		player_place_egg(t_data *data, t_egg *egg, t_player *player)
 {
@@ -61,7 +62,7 @@ void			player_init(t_data *data, t_tlist *team, int cs)
 	player->cs = cs;
 	player->level = 1;
 	player->food = 10;
-	player->food_t = gettimeofday();
+	gettimeofday(&player->food_t, NULL);
 	player->linemate = 0;
 	player->deraumere = 0;
     player->sibur = 0;

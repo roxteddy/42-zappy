@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/20 19:44:21 by pciavald         ###   ########.fr        #
+#    Updated: 2014/06/20 22:57:15 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,7 +49,32 @@ FILES = main.c \
 		gui_pex.c \
 		gui_sgt.c \
 		gui_tna.c \
-		cmd_invent.c
+		cmd_invent.c \
+		action_add.c \
+		free_split.c \
+		ft_itoa.c \
+		team_join.c \
+		split_dup.c \
+		strsplit.c \
+		time_add.c \
+		strsub.c \
+		t_cmd.c \
+		cmd_bcast.c \
+		cmd_drop.c \
+		cmd_fork.c \
+		cmd_forward.c \
+		cmd_incant.c \
+		cmd_left.c \
+		cmd_look.c \
+		cmd_max.c \
+		cmd_push.c \
+		cmd_right.c \
+		cmd_take.c \
+		get_square.c \
+		routine_action.c \
+		routine_food.c \
+		action_delfirst.c \
+		time_diff.c
 CFLAGS = -Wall -Wextra -Werror -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)
@@ -72,6 +97,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 launch: all
-	./serveur -p 4242 -x 20 -y 20 -n "lol" -c 100 -t 1
+	./serveur -p 4242 -x 20 -y 20 -n lol -c 100 -t 50
 
 re: fclean all

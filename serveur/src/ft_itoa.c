@@ -6,11 +6,10 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/26 00:06:51 by pciavald          #+#    #+#             */
-/*   Updated: 2013/11/30 10:14:41 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/20 21:08:02 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
 #include <stdlib.h>
 
 char	*ft_itoa(int n)
