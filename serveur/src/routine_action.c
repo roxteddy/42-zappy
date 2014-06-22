@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:13:30 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 00:18:10 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 00:22:41 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void		routine_action(t_data *data)
 	t_plist		*list;
 	t_timeval	now;
 
-	printf("%d\n", -42 % 40);
 	gettimeofday(&now, NULL);
 	team = data->teams;
 	while (team)
