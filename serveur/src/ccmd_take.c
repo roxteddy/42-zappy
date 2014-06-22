@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_take.c                                         :+:      :+:    :+:   */
+/*   ccmd_take.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:33:58 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:09:10 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:21:15 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static void timer_init(t_data *data, t_timeval **timer, t_player *player)
 	gui_broadcast(data, gui_pgt, player);
 }
 
-void	cmd_take(t_data *data, int cs, char **cmd, t_timeval **t)
+void	ccmd_take(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
 	t_square	*square;

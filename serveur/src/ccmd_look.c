@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/22 22:45:53 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/22 22:58:16 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 23:20:42 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static void			send(int cs, char **strings, int len)
 	dprintf(cs, "%s\n", buf);
 }
 
-void				cmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
+void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_square		*square;
 	//char			*strings[SQUARE(data->fds[cs].player.level + 1)];
