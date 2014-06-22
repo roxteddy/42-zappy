@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/22 22:45:53 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/22 23:49:56 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 00:22:28 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,21 +96,21 @@ static void			send(int cs, char **strings, int len)
 	int				i;
 	char			buf[BUF_SIZE];
 
-	memset(buf, '\0', BUF_SIZE);
-	strcat(buf, "{");
+	dprintf(cs, "{");
 	i = 0;
 	while (i < len)
 	{
+		memset(buf, '\0', BUF_SIZE);
 		if (strings[i])
 		{
 			strcat(buf, strings[i]);
 			strcat(buf, ",");
-			free(strings[i]);
+			dprintf(cs, "%s", buf);
+			//free(strings[i]);
 		}
 		i++;
 	}
-	strcat(buf, "}");
-	dprintf(cs, "%s\n", buf);
+	dprintf(cs, "}");
 }
 
 void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
@@ -128,7 +128,6 @@ void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
 	xyo[0] = data->fds[cs].player.x;
 	xyo[1] = data->fds[cs].player.y;
 	xyo[2] = data->fds[cs].player.o;
-	printf("%i %i\n", data->fds[cs].player.x, data->fds[cs].player.y);
 	i = 0;
 	level_len[0] = 1;
 	level_len[1] = 1;
@@ -137,5 +136,6 @@ void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
 		strings[i] = concatenate(data, square);
 		i++;
 	}
+	printf("lol\n");
 	send(cs, strings, SQUARE(data->fds[cs].player.level + 1) - 1);
 }

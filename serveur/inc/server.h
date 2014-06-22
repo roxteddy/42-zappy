@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:19:42 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:54:17 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ void		get_time(char *arg, t_data *data);
 void		get_width(char *arg, t_data *data);
 void		gui_bct(void *param, int cs);
 void		gui_broadcast(t_data *data, void (*gui_msg)(void*, int), void *arg);
-void		gui_ebo(t_egg *egg, int cs);
+void		gui_ebo(void *param, int cs);
 void		gui_edi(t_egg *egg, int cs);
 void		gui_eht(t_egg *egg, int cs);
 void		gui_elist(t_data *data, int cs);
@@ -229,7 +229,7 @@ void		gui_pic(t_spell *t_spell, int cs);
 void		gui_pie(t_spell *spell, int cs);
 void		gui_plist(t_data *data, int cs);
 void		gui_pin(void *param, int cs);
-void		gui_pnw(t_player *player, int cs);
+void		gui_pnw(void* param, int cs);
 void		gui_plv(t_player *player, int cs);
 void		gui_ppo(void *param, int cs);
 void		gui_sbp(void *null, int cs);

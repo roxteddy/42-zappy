@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 11:17:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 20:58:36 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:55:12 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void		player_place_egg(t_data *data, t_egg *egg, t_player *player)
 	player->x = egg->x;
 	player->y = egg->y;
 	player->o = egg->o;
+	gui_broadcast(data, gui_ebo, egg);
+	gui_broadcast(data, gui_pnw, player);
 	egg_del(&data->eggs, egg);
-	//GUI MSG
 }
 
 static void		player_place_new(t_data *data, t_player *player)
@@ -31,7 +32,7 @@ static void		player_place_new(t_data *data, t_player *player)
 	player->x = rand() % data->x;
 	player->y = rand() % data->y;
 	player->o = rand() % 4 + 1;
-	//GUI MSG
+	gui_broadcast(data, gui_pnw, player);
 }
 
 static void		player_place(t_data *data, t_tlist *team, t_player *player)
