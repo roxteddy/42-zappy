@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:33:58 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:21:15 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 00:55:24 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,18 +96,21 @@ void	ccmd_take(t_data *data, int cs, char **cmd, t_timeval **t)
 	player = &data->fds[cs].player;
 	if (!(*t))
 		timer_init(data, t, player);
-	square = &data->map[player->x][player->y];
-	player->get = get_index(cmd);
-	p_item = get_pitem(player);
-	s_item = get_sitem(square, player->get);
-	if (player->get == -1 || *s_item == 0)
-		dprintf(cs, "ko\n");
 	else
 	{
-		*s_item -= 1;
-		*p_item += 1;
-		dprintf(cs, "ok\n");
-		gui_broadcast(data, gui_pin, player);
-		gui_broadcast(data, gui_bct, player);
+		square = &data->map[player->x][player->y];
+		player->get = get_index(cmd);
+		p_item = get_pitem(player);
+		s_item = get_sitem(square, player->get);
+		if (player->get == -1 || *s_item == 0)
+			dprintf(cs, "ko\n");
+		else
+		{
+			*s_item -= 1;
+			*p_item += 1;
+			dprintf(cs, "ok\n");
+			gui_broadcast(data, gui_pin, player);
+			gui_broadcast(data, gui_bct, player);
+		}
 	}
 }
