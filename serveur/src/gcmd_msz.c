@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_left.c                                         :+:      :+:    :+:   */
+/*   gcmd_msz.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/20 21:32:13 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 06:41:47 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 15:33:12 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/22 22:14:47 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
+#include <stdio.h>
 
-void	cmd_left(t_data *data, int cs, char **cmd)
+void	gcmd_msz(t_data *data, int cs, char **cmd)
 {
-	t_player	*player;
-
+	(void)data;
 	(void)cmd;
-	player = &data->fds[cs].player;
-	if (--(player->o) == 0)
-		player->o = 4;
-	dprintf(cs, "ok\n");
-	gui_broadcast(data, gui_ppo, player);
+	gui_msz(NULL, cs);
 }

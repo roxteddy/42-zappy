@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_pin.c                                          :+:      :+:    :+:   */
+/*   ccmd_max.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/14 16:22:17 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:19:26 by pciavald         ###   ########.fr       */
+/*   Created: 2014/06/20 21:58:08 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/22 22:13:59 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
-** "pin #n X Y q q q q q q q\n" "pin #n\n" Inventaire d’un joueur.
-*/
 
 #include "server.h"
-#include <stdlib.h>
 
-void	cmd_pin(t_data *data, int cs, char **cmd)
+void	ccmd_max(t_data *data, int cs, char **cmd)
 {
-	int		pid;
-
-	if (cmd[1] && cmd[1][0] == '#')
-		pid = atoi(cmd[1] + 1);
-	gui_pin(&data->fds[pid].player, cs);
+	(void)data;
+	(void)cs;
+	(void)cmd;
 }

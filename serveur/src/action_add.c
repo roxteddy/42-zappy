@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 20:27:34 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 21:40:09 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 22:03:29 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	action_add(t_data *data, t_alist **actions, t_cmd action, char **cmd)
 	t_alist		*tmp;
 	t_timeval	now;
 
+	(void)data;
 	new = (t_alist*)malloc(sizeof(t_alist));
 	new->action = action.fct;
 	new->cmd = split_dup(cmd);

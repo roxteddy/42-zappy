@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 21:40:02 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 22:06:53 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ typedef struct s_data	t_data;
 typedef struct		s_cmd
 {
 	char			*cmd;
-	void			(*fct)(t_data *data, int cs, char **cmd);
+	void			(*fct)(t_data *data, int cs, char **cmd, t_timeval *timer);
 	int				coef;
 }					t_cmd;
 
@@ -177,32 +177,32 @@ void		check_fd(t_data *data);
 void		clean_fd(t_fd *fd);
 void		client_read(t_data *data, int cs);
 void		client_write(t_data *data, int cs);
-void		cmd_bcast(t_data *data, int cs, char **cmd);
-void		cmd_bct(t_data *data, int cs, char **cmd);
-void		cmd_drop(t_data *data, int cs, char **cmd);
-void		cmd_fork(t_data *data, int cs, char **cmd);
-void		cmd_forward(t_data *data, int cs, char **cmd);
+void		ccmd_bcast(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_drop(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_fork(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_forward(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_incant(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_invent(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_left(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_look(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_max(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_push(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_right(t_data *data, int cs, char **cmd, t_timeval *timer);
+void		ccmd_take(t_data *data, int cs, char **cmd, t_timeval *timer);
 void		cmd_handl(t_data *data, char *cmd, int cs);
-void		cmd_incant(t_data *data, int cs, char **cmd);
-void		cmd_invent(t_data *data, int cs, char **cmd);
-void		cmd_left(t_data *data, int cs, char **cmd);
-void		cmd_look(t_data *data, int cs, char **cmd);
-void		cmd_max(t_data *data, int cs, char **cmd);
-void		cmd_mct(t_data *data, int cs, char **cmd);
-void		cmd_msz(t_data *data, int cs, char **cmd);
-void		cmd_pin(t_data *data, int cs, char **cmd);
-void		cmd_plv(t_data *data, int cs, char **cmd);
-void		cmd_ppo(t_data *data, int cs, char **cmd);
-void		cmd_push(t_data *data, int cs, char **cmd);
-void		cmd_right(t_data *data, int cs, char **cmd);
-void		cmd_sgt(t_data *data, int cs, char **cmd);
-void		cmd_sst(t_data *data, int cs, char **cmd);
-void		cmd_take(t_data *data, int cs, char **cmd);
-void		cmd_tna(t_data *data, int cs, char **cmd);
 void		egg_del(t_egg **list, t_egg *egg);
 void		error(char *str);
 void		free_split(char **tab);
 char		*ft_itoa(int n);
+void		gcmd_bct(t_data *data, int cs, char **cmd);
+void		gcmd_mct(t_data *data, int cs, char **cmd);
+void		gcmd_msz(t_data *data, int cs, char **cmd);
+void		gcmd_pin(t_data *data, int cs, char **cmd);
+void		gcmd_plv(t_data *data, int cs, char **cmd);
+void		gcmd_ppo(t_data *data, int cs, char **cmd);
+void		gcmd_sgt(t_data *data, int cs, char **cmd);
+void		gcmd_sst(t_data *data, int cs, char **cmd);
+void		gcmd_tna(t_data *data, int cs, char **cmd);
 void		get_height(char *arg, t_data *data);
 void		get_maxclients(char *arg, t_data *data);
 void		get_port(char *arg, t_data *data);
