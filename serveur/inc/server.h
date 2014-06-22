@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:16:43 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:19:42 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ typedef struct s_data	t_data;
 typedef struct		s_cmd
 {
 	char			*cmd;
-	void			(*fct)(t_data*, int, char**, t_timeval*);
+	void			(*fct)(t_data*, int, char**, t_timeval**);
 }					t_cmd;
 
 typedef struct		s_tlist
