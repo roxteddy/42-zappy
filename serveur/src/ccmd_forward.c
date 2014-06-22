@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:30:49 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 22:59:23 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 23:07:30 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 void	ccmd_forward(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
+	t_timeval	now;
 
 	if (!(*t))
 	{
+		gettimeofday(&now, NULL);
 		*t = (t_timeval*)malloc(sizeof(t_timeval));
+		**t = time_add(data, &now, MOVE_T);
 		return ;
 	}
 	(void)cmd;
