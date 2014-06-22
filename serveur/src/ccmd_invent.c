@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:09:37 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/22 22:20:25 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 22:59:50 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 #include <string.h>
 #include <stdio.h>
 
-void	ccmd_invent(t_data *data, int cs, char **cmd, t_timeval *timer)
+void	ccmd_invent(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	player;
 	char		buf[BUF_SIZE];
 
 	//need timer handl
-	(void)timer;
+	(void)t;
 	(void)cmd;
 	player = data->fds[cs].player;
 	memset(buf, '\0', BUF_SIZE);
