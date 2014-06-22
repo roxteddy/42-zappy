@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 07:42:44 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 21:40:02 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct		s_alist
 {
 	void			(*action)();
 	char			**cmd;
-	t_timeval		timer;
+	t_timeval		*timer;
 	struct s_alist	*next;
 }					t_alist;
 
