@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 01:42:17 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 01:49:22 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,8 @@ void		gui_msz(t_data *data, int cs);
 void		gui_pbc(t_player *player, int cs);
 void		gui_pdi(t_player *player, int cs);
 void		gui_pdr(void *param, int cs);
-void		gui_pex(t_player *player, int cs);
-void		gui_pfk(t_player *player, int cs);
+void		gui_pex(void *param, int cs);
+void		gui_pfk(void *param, int cs);
 void		gui_pgt(void *param, int cs);
 void		gui_pic(t_spell *t_spell, int cs);
 void		gui_pie(t_spell *spell, int cs);
