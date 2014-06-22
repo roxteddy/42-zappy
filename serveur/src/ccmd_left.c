@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_ppo.c                                          :+:      :+:    :+:   */
+/*   ccmd_left.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/14 16:03:07 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:09:20 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/20 21:32:13 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/22 22:23:00 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
-** "ppo #n X Y O\n" "ppo #n\n" Position d’un joueur.
-*/
 
 #include "server.h"
-#include <stdlib.h>
 
-void	cmd_ppo(t_data *data, int cs, char **cmd)
+void	ccmd_left(t_data *data, int cs, char **cmd, t_timeval *timer)
 {
-	int			pid;
+	t_player	*player;
 
-	if (cmd[1] && cmd[1][0] == '#')
-		pid = atoi(cmd[1] + 1);
-	gui_ppo(&data->fds[pid].player, cs);
+//need timer handl
+	(void)timer;
+	(void)cmd;
+	player = &data->fds[cs].player;
+	if (--(player->o) == 0)
+		player->o = 4;
+	dprintf(cs, "ok\n");
+	gui_broadcast(data, gui_ppo, player);
 }

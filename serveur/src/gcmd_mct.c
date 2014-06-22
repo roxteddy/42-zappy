@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_fork.c                                         :+:      :+:    :+:   */
+/*   gcmd_mct.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/20 21:37:40 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 21:38:22 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/14 15:13:07 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/22 22:14:23 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-void	cmd_fork(t_data *data, int cs, char **cmd)
+void	gcmd_mct(t_data *data, int cs, char **cmd)
 {
-	(void)data;
-	(void)cs;
 	(void)cmd;
+	gui_mct(data, cs);
 }

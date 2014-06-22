@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/22 21:34:29 by pciavald         ###   ########.fr        #
+#    Updated: 2014/06/22 22:08:15 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,26 +30,26 @@ FILES = main.c \
 		player_add.c \
 		egg_del.c \
 		gui_init.c \
-		cmd_bct.c \
-		cmd_mct.c \
-		cmd_tna.c \
-		cmd_msz.c \
-		cmd_sgt.c \
+		gcmd_bct.c \
+		gcmd_mct.c \
+		gcmd_tna.c \
+		gcmd_msz.c \
+		gcmd_sgt.c \
 		gui_pnw.c \
 		gui_plist.c \
 		gui_enw.c \
 		gui_elist.c \
 		gui_ppo.c \
-		cmd_ppo.c \
+		gcmd_ppo.c \
 		gui_plv.c \
-		cmd_plv.c \
+		gcmd_plv.c \
 		gui_bct.c \
 		gui_msz.c \
 		gui_mct.c \
 		gui_pex.c \
 		gui_sgt.c \
 		gui_tna.c \
-		cmd_invent.c \
+		ccmd_invent.c \
 		action_add.c \
 		free_split.c \
 		ft_itoa.c \
@@ -59,17 +59,17 @@ FILES = main.c \
 		time_add.c \
 		strsub.c \
 		t_cmd.c \
-		cmd_bcast.c \
-		cmd_drop.c \
-		cmd_fork.c \
-		cmd_forward.c \
-		cmd_incant.c \
-		cmd_left.c \
-		cmd_look.c \
-		cmd_max.c \
-		cmd_push.c \
-		cmd_right.c \
-		cmd_take.c \
+		ccmd_bcast.c \
+		ccmd_drop.c \
+		ccmd_fork.c \
+		ccmd_forward.c \
+		ccmd_incant.c \
+		ccmd_left.c \
+		ccmd_look.c \
+		ccmd_max.c \
+		ccmd_push.c \
+		ccmd_right.c \
+		ccmd_take.c \
 		get_square.c \
 		routine_action.c \
 		routine_food.c \
@@ -87,7 +87,7 @@ CC = gcc
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) ./inc/server.h
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 obj/%.o: src/%.c

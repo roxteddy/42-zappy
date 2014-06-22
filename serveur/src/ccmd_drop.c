@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_drop.c                                         :+:      :+:    :+:   */
+/*   ccmd_drop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:35:03 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 07:41:17 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 22:21:17 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,15 @@ static int	*get_sitem(t_square *square, int i)
 		return (NULL);
 }
 
-void	cmd_drop(t_data *data, int cs, char **cmd)
+void	ccmd_drop(t_data *data, int cs, char **cmd, t_timeval *timer)
 {
     t_player    *player;
     t_square    *square;
     int         *p_item;
     int         *s_item;
 
+// need timer handl
+	(void)timer;
 	player = &data->fds[cs].player;
 	square = &data->map[player->x][player->y];
 	player->drop = get_index(cmd);

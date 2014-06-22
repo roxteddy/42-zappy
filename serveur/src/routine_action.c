@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:13:30 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 22:34:50 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 22:03:45 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,16 @@ void		routine_action(t_data *data)
 		list = team->list;
 		while (list)
 		{
-			if (list->player->actions
-				&& time_diff(&list->player->actions->timer, &now) >= 0)
+			if (list->player->actions && !list->player->actions->timer)
+				list->player->actions->action(data, list->player->cs,
+											  list->player->actions->cmd,
+											  list->player->actions->timer);
+			else if (list->player->actions
+				&& time_diff(list->player->actions->timer, &now) >= 0)
             {
                 list->player->actions->action(data, list->player->cs,
-											  list->player->actions->cmd);
+											  list->player->actions->cmd,
+											  list->player->actions->timer);
                 action_delfirst(&list->player->actions);
             }
 			list = list->next;

@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_forward.c                                      :+:      :+:    :+:   */
+/*   ccmd_forward.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:30:49 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 06:23:04 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 22:22:07 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-void	cmd_forward(t_data *data, int cs, char **cmd)
+void	ccmd_forward(t_data *data, int cs, char **cmd, t_timeval *timer)
 {
 	t_player	*player;
 
+//need timer handl
+	(void)timer;
 	(void)cmd;
 	player = &data->fds[cs].player;
 	if (player->o == N)
