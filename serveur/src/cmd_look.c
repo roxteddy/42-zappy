@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:49:13 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/22 21:38:05 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 22:15:37 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,9 @@ static t_square		*see(t_data *data, int cs, int seen, int *xyo, int *lvl_len)
 	t_square		*square;
 
 	square = get_square(data, xyo[0], xyo[1]);
-	n = lvl_len[0];
-	first = (n * (n + 1) * (2 * n + 1)) / 6;
+	first = SQUARE(lvl_len[0]);
 	n = data->fds[cs].player.level;
-	(void)cs;
 	last = (n + 1) * (n + 1) - 1;
-	printf("seen %i, first %i, last %i\nlevel %i player level %i len %i\n", seen, first, last, lvl_len[0], data->fds[cs].player.level, lvl_len[1]);
 	printf("square pos %i %i\n", square->x, square->y);
 	if (seen == last)
 		return (NULL);
