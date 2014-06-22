@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:30:49 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:08:28 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 00:13:56 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ccmd_forward(t_data *data, int cs, char **cmd, t_timeval **t)
 	t_player	*player;
 	t_timeval	now;
 
-	if (!(*t))
+	if (*t == NULL)
 	{
 		gettimeofday(&now, NULL);
 		*t = (t_timeval*)malloc(sizeof(t_timeval));
