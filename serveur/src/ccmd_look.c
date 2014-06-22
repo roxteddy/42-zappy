@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/22 22:45:53 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/22 23:35:02 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 23:47:38 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ static void			send(int cs, char **strings, int len)
 
 void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
 {
+	t_player		*player;
 	t_square		*square;
 	//char			*strings[SQUARE(data->fds[cs].player.level + 1)];
 	char			*strings[SQUARE(3 + 1)];
@@ -122,13 +123,16 @@ void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
 	int				i;
 	int				level_len[2];
 
-	data->fds[cs].player.level = 3;
+	player = &data->fds[cs].player;
+	player->level = 3;
 	(void)cmd;
 	(void)t; // if null init/quit else do (ccmd drop)
-	xyo[0] = data->fds[cs].player.x;
-	xyo[1] = data->fds[cs].player.y;
-	xyo[2] = data->fds[cs].player.o;
-	printf("%i %i\n", data->fds[cs].player.x, data->fds[cs].player.y);
+	xyo[0] = player->x;
+	xyo[1] = player->y;
+	xyo[2] = player->o;
+//DEBUG
+	printf("player ptr: %p\n", player);
+	printf("player #%i - pos : %i %i\n", cs, player->x, player->y);
 	i = 0;
 	level_len[0] = 1;
 	level_len[1] = 1;

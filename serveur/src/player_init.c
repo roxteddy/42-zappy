@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 11:17:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 20:58:36 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:47:26 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void		player_place_new(t_data *data, t_player *player)
 	player->x = rand() % data->x;
 	player->y = rand() % data->y;
 	player->o = rand() % 4 + 1;
+	printf("player ptr: %p\n", player);
 	//GUI MSG
 }
 
