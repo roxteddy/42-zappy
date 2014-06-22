@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:49:13 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/21 22:22:47 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 06:28:05 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,29 @@
 #include <string.h>
 #include <stdlib.h>
 
-static t_square		*look_east(int first, int seen, int *xy);
-static t_square		*look_south(int first, int seen, int *xy);
-static t_square		*look_west(int first, int seen, int *xy);
+
+//definition temporaire des fonctions
+static t_square		*look_east(int first, int seen, int *xy)
+{
+	(void)first;
+	(void)seen;
+	(void)xy;
+	return ((t_square*)1);
+}
+static t_square		*look_south(int first, int seen, int *xy)
+{
+	(void)first;
+	(void)seen;
+	(void)xy;
+	return ((t_square*)1);
+}
+static t_square		*look_west(int first, int seen, int *xy)
+{
+	(void)first;
+	(void)seen;
+	(void)xy;
+	return ((t_square*)1);
+}
 
 static void			look_north(int first, int seen, int *len, int *xy)
 {
@@ -64,7 +84,7 @@ static void			find_players(t_data *data, char *buf, t_square *square)
 static char			*concatenate(t_data *data, t_square *square)
 {
 	char			buf[BUF_SIZE];
-	char			*str;
+	char			*str = "";
 
 	(void)square;
 		/*
@@ -79,6 +99,7 @@ static char			*concatenate(t_data *data, t_square *square)
 	memset(buf, '\0', BUF_SIZE);
 	strcat(buf, "{");
 	find_players(data, buf, square);
+//str was undefined
 	return (str);
 }
 

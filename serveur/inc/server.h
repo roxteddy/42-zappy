@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/21 22:18:46 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 06:25:01 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,6 +211,7 @@ void		get_teams(char **argv, int *i, t_data *data);
 void		get_time(char *arg, t_data *data);
 void		get_width(char *arg, t_data *data);
 void		gui_bct(t_square *square, int cs);
+void		gui_broadcast(t_data *data, void (*gui_msg)(void*, int), void *arg);
 void		gui_ebo(t_egg *egg, int cs);
 void		gui_edi(t_egg *egg, int cs);
 void		gui_eht(t_egg *egg, int cs);
@@ -231,7 +232,7 @@ void		gui_plist(t_data *data, int cs);
 void		gui_pin(t_player *player, int cs);
 void		gui_pnw(t_player *player, int cs);
 void		gui_plv(t_player *player, int cs);
-void		gui_ppo(t_player *player, int cs);
+void		gui_ppo(void *param, int cs);
 void		gui_sbp(void *null, int cs);
 void		gui_seg(t_tlist *team, int cs);
 void		gui_sgt(t_data *data, int cs);
