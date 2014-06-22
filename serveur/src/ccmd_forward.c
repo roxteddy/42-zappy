@@ -6,18 +6,21 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:30:49 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 22:22:07 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:04:10 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-void	ccmd_forward(t_data *data, int cs, char **cmd, t_timeval *timer)
+void	ccmd_forward(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
 
-//need timer handl
-	(void)timer;
+	if (!(*t))
+	{
+		*t = (t_timeval*)malloc(sizeof(t_timeval));
+		return ;
+	}
 	(void)cmd;
 	player = &data->fds[cs].player;
 	if (player->o == N)
