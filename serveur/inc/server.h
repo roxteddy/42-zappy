@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:54:17 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 00:20:05 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,6 +241,7 @@ void		gui_tna(t_data *data, int cs);
 void		init_data(t_data *data, char **av);
 void		init_fd(t_data *data);
 void		init_server(t_data *data);
+int			mod(int nb, int mod);
 void		player_add(t_plist **plist, t_player *player);
 void		player_init(t_data *data, t_tlist *team, int cs);
 void		routine_action(t_data *data);
