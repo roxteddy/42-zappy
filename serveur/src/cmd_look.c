@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 19:49:13 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/21 22:22:47 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 21:14:10 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,20 @@
 #include <string.h>
 #include <stdlib.h>
 
-static t_square		*look_east(int first, int seen, int *xy);
-static t_square		*look_south(int first, int seen, int *xy);
-static t_square		*look_west(int first, int seen, int *xy);
-
-static void			look_north(int first, int seen, int *len, int *xy)
+static void			look_north(int first, int seen, int *lvl_len, int *xy)
 {
 	if (seen == first)
 	{
-		xy[0] -= *len;
+		xy[0] -= lvl_len[1];
 		xy[1] += 1;
-		*len += 2;
+		lvl_len[0] += 1;
+		lvl_len[1] += 2;
 		return ;
 	}
 	xy[0]++;
 }
 
-static t_square		*see(t_data *data, int cs, int seen, int *xyo, int *len)
+static t_square		*see(t_data *data, int cs, int seen, int *xyo, int *lvl_len)
 {
 	int				n;
 	int				first;
@@ -38,19 +35,23 @@ static t_square		*see(t_data *data, int cs, int seen, int *xyo, int *len)
 	t_square		*square;
 
 	square = get_square(data, xyo[0], xyo[1]);
-	n = data->fds[cs].player.level + 1;
+	n = lvl_len[0];
 	first = (n * (n + 1) * (2 * n + 1)) / 6;
-	last = (n - 1) * (n - 1) - 1;
+	//n = data->fds[cs].player.level;
+	(void)cs;
+	last = (n + 1) * (n + 1) - 1;
+	printf("seen %i, first %i, last %i\nlevel %i player level %i len %i\n", seen, first, last, lvl_len[0], data->fds[cs].player.level, lvl_len[1]);
+	printf("square pos %i %i\n", square->x, square->y);
 	if (seen == last)
 		return (NULL);
 	if (xyo[2] == N)
-		look_north(first, seen, len, xyo);
+		look_north(first, seen, lvl_len, xyo);
 	else if (xyo[2] == E)
-		look_east(first, seen, xyo);
+		look_north(first, seen, lvl_len, xyo);
 	else if (xyo[2] == S)
-		look_south(first, seen, xyo);
+		look_north(first, seen, lvl_len, xyo);
 	else if (xyo[2] == W)
-		look_west(first, seen, xyo);
+		look_north(first, seen, lvl_len, xyo);
 	return (square);
 }
 
@@ -61,46 +62,67 @@ static void			find_players(t_data *data, char *buf, t_square *square)
 	(void)square;
 }
 
+static void			add_elem(char *buf, int num, char *title)
+{
+	int				i;
+
+	i = 0;
+	while (i < num)
+	{
+		strcat(buf, " ");
+		strcat(buf, title);
+		i++;
+	}
+}
+
 static char			*concatenate(t_data *data, t_square *square)
 {
 	char			buf[BUF_SIZE];
 	char			*str;
 
-	(void)square;
-		/*
-		   square->food,
-		   square->linemate,
-		   square->deraumere,
-		   square->sibur,
-		   square->mendiane,
-		   square->phiras,
-		   square->thystame);
-		   */
 	memset(buf, '\0', BUF_SIZE);
-	strcat(buf, "{");
 	find_players(data, buf, square);
+	add_elem(buf, square->food, "food");
+	add_elem(buf, square->linemate, "linemate");
+	add_elem(buf, square->deraumere, "deraumere");
+	add_elem(buf, square->sibur, "sibur");
+	add_elem(buf, square->mendiane, "mendiane");
+	add_elem(buf, square->phiras, "phiras");
+	add_elem(buf, square->thystame, "thystame");
+	buf[BUF_SIZE - 1] = '\0';
+	str = strdup(buf);
 	return (str);
 }
 
-static void			send(char **strings, int len)
+static void			send(int cs, char **strings, int len)
 {
 	int				i;
+	char			buf[BUF_SIZE];
 
+	memset(buf, '\0', BUF_SIZE);
+	strcat(buf, "{");
 	i = 0;
 	while (i < len)
 	{
-		(void)strings;
+		if (strings[i])
+		{
+			strcat(buf, strings[i]);
+			strcat(buf, ",");
+			free(strings[i]);
+		}
 		i++;
 	}
+	strcat(buf, "}");
+	dprintf(cs, "%s\n", buf);
 }
 
 void				cmd_look(t_data *data, int cs, char **cmd)
 {
 	t_square		*square;
-	char			*strings[SQUARE(data->fds[cs].player.level)];
+	char			*strings[SQUARE(data->fds[cs].player.level + 1)];
 	int				*xyo;
 	int				i;
-	int				len;
+	int				level_len[2];
 
 	(void)cmd;
 	xyo = (int *)malloc(sizeof(int) * 3);
@@ -108,12 +130,14 @@ void				cmd_look(t_data *data, int cs, char **cmd)
 	xyo[1] = data->fds[cs].player.y;
 	xyo[2] = data->fds[cs].player.o;
 	i = 0;
-	len = 1;
-	while ((square = see(data, cs, i, xyo, &len)) != NULL)
+	level_len[0] = 1;
+	level_len[1] = 1;
+	while ((square = see(data, cs, i, xyo, level_len)) != NULL)
 	{
 		strings[i] = concatenate(data, square);
 		i++;
 	}
-	free(xyo);
-	send(strings, SQUARE(data->fds[cs].player.level));
+	if (xyo)
+		free(xyo);
+	send(cs, strings, SQUARE(data->fds[cs].player.level + 1) - 1);
 }

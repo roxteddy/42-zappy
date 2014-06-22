@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/20 22:57:15 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/22 19:59:14 by pciavald         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -75,7 +75,7 @@ FILES = main.c \
 		routine_food.c \
 		action_delfirst.c \
 		time_diff.c
-CFLAGS = -Wall -Wextra -Werror -I ./inc
+CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)
 NAME = serveur
@@ -98,5 +98,8 @@ fclean: clean
 
 launch: all
 	./serveur -p 4242 -x 20 -y 20 -n lol -c 100 -t 50
+
+debug: all
+	gdb -q --args serveur -p 4242 -x 20 -y 20 -n lol -c 100 -t 50
 
 re: fclean all
