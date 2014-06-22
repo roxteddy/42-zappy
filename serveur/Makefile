@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/22 19:59:14 by pciavald         ###   ########.fr        #
+#    Updated: 2014/06/22 21:34:29 by pciavald         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -74,7 +74,11 @@ FILES = main.c \
 		routine_action.c \
 		routine_food.c \
 		action_delfirst.c \
-		time_diff.c
+		time_diff.c \
+		gui_broadcast.c \
+		gui_pgt.c \
+		gui_pin.c \
+		gui_pdr.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)

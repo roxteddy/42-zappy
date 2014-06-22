@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/21 22:18:46 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 07:42:44 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,8 @@ t_square	*get_square(t_data *data, int x, int y);
 void		get_teams(char **argv, int *i, t_data *data);
 void		get_time(char *arg, t_data *data);
 void		get_width(char *arg, t_data *data);
-void		gui_bct(t_square *square, int cs);
+void		gui_bct(void *param, int cs);
+void		gui_broadcast(t_data *data, void (*gui_msg)(void*, int), void *arg);
 void		gui_ebo(t_egg *egg, int cs);
 void		gui_edi(t_egg *egg, int cs);
 void		gui_eht(t_egg *egg, int cs);
@@ -221,17 +222,17 @@ void		gui_mct(t_data *data, int cs);
 void		gui_msz(t_data *data, int cs);
 void		gui_pbc(t_player *player, int cs);
 void		gui_pdi(t_player *player, int cs);
-void		gui_pdr(t_player *player, int cs);
+void		gui_pdr(void *param, int cs);
 void		gui_pex(t_player *player, int cs);
 void		gui_pfk(t_player *player, int cs);
-void		gui_pgt(t_player *player, int cs);
+void		gui_pgt(void *param, int cs);
 void		gui_pic(t_spell *t_spell, int cs);
 void		gui_pie(t_spell *spell, int cs);
 void		gui_plist(t_data *data, int cs);
-void		gui_pin(t_player *player, int cs);
+void		gui_pin(void *param, int cs);
 void		gui_pnw(t_player *player, int cs);
 void		gui_plv(t_player *player, int cs);
-void		gui_ppo(t_player *player, int cs);
+void		gui_ppo(void *param, int cs);
 void		gui_sbp(void *null, int cs);
 void		gui_seg(t_tlist *team, int cs);
 void		gui_sgt(t_data *data, int cs);
