@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 17:27:45 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 17:29:21 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 07:28:23 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -16,7 +16,10 @@
 #include "server.h"
 #include <stdio.h>
 
-void	gui_pgt(t_player *player, int cs)
+void	gui_pgt(void *param, int cs)
 {
+	t_player	*player;
+
+	player = (t_player*)param;
 	dprintf(cs, "pgt #%d %d\n", player->cs, player->get);
 }
