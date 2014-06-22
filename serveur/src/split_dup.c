@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 20:32:13 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 20:38:08 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 00:41:39 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ char	**split_dup(char **split)
 	i = -1;
 	while (split[++i])
 		dup[i] = strdup(split[i]);
-	split[i] = NULL;
+	dup[i] = NULL;
 	return (dup);
 }
