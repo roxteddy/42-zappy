@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/22 22:45:53 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/23 00:22:28 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 00:24:25 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,11 @@ static void			send(int cs, char **strings, int len)
 void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_square		*square;
-	//char			*strings[SQUARE(data->fds[cs].player.level + 1)];
-	char			*strings[SQUARE(3 + 1)];
+	char			*strings[SQUARE(data->fds[cs].player.level + 1)];
 	int				xyo[3];
 	int				i;
 	int				level_len[2];
 
-	data->fds[cs].player.level = 3;
 	(void)cmd;
 	(void)t; // if null init/quit else do (ccmd drop)
 	xyo[0] = data->fds[cs].player.x;
