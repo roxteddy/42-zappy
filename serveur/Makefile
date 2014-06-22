@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/23 00:20:21 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/23 00:54:12 by pciavald         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -66,6 +66,8 @@ FILES = main.c \
 		ccmd_incant.c \
 		ccmd_left.c \
 		ccmd_look.c \
+		ccmd_look_see.c \
+		ccmd_look_concat.c \
 		ccmd_max.c \
 		ccmd_push.c \
 		ccmd_right.c \
