@@ -6,12 +6,14 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:33:58 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 22:58:55 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:09:10 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
+#include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
 
 static int	get_index(char **cmd)
 {
@@ -74,7 +76,7 @@ static int	*get_sitem(t_square *square, int i)
 		return (NULL);
 }
 
-static void timer_init(t_data *data, t_timeval *timer, t_player *player)
+static void timer_init(t_data *data, t_timeval **timer, t_player *player)
 {
 	t_timeval	now;
 
