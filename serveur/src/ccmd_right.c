@@ -6,11 +6,13 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:31:21 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:22:47 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:31:24 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
+#include <stdlib.h>
+#include <sys/time.h>
 
 void	ccmd_right(t_data *data, int cs, char **cmd, t_timeval **t)
 {
