@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:31:21 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:20:54 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 23:22:47 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 void	ccmd_right(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
+	t_timeval	now;
 
-//need timer handl
-	(void)t;
+	if (!(*t))
+	{
+		gettimeofday(&now, NULL);
+		*t = (t_timeval*)malloc(sizeof(t_timeval));
+		**t = time_add(data, &now, MOVE_T);
+		return ;
+	}
 	(void)cmd;
 	player = &data->fds[cs].player;
 	player->o = (player->o % 4) + 1;
