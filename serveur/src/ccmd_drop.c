@@ -6,12 +6,14 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:35:03 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 22:21:17 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 22:58:45 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
+#include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
 
 static int	get_index(char **cmd)
 {
@@ -74,29 +76,41 @@ static int	*get_sitem(t_square *square, int i)
 		return (NULL);
 }
 
-void	ccmd_drop(t_data *data, int cs, char **cmd, t_timeval *timer)
+static void	timer_init(t_data *data, t_timeval **timer, t_player *player)
+{
+	t_timeval	now;
+
+	gettimeofday(&now, NULL);
+	*timer = (t_timeval*)malloc(sizeof(t_timeval));
+	**timer = time_add(data, &now, DROP_T);
+	gui_broadcast(data, gui_pdr, player);
+}
+
+void		ccmd_drop(t_data *data, int cs, char **cmd, t_timeval **t)
 {
     t_player    *player;
     t_square    *square;
     int         *p_item;
     int         *s_item;
 
-// need timer handl
-	(void)timer;
 	player = &data->fds[cs].player;
-	square = &data->map[player->x][player->y];
-	player->drop = get_index(cmd);
-	p_item = get_pitem(player);
-	s_item = get_sitem(square, player->drop);
-	if (player->drop == -1 || *p_item == 0)
-		dprintf(cs, "ko\n");
+	if (!(*t))
+		timer_init(data, t, player);
 	else
 	{
-		*p_item -= 1;
-		*s_item += 1;
-		dprintf(cs, "ok\n");
-		gui_broadcast(data, gui_pdr, player);
-		gui_broadcast(data, gui_pin, player);
-		gui_broadcast(data, gui_bct, player);
+		square = &data->map[player->x][player->y];
+		player->drop = get_index(cmd);
+		p_item = get_pitem(player);
+		s_item = get_sitem(square, player->drop);
+		if (player->drop == -1 || *p_item == 0)
+			dprintf(cs, "ko\n");
+		else
+		{
+			*p_item -= 1;
+			*s_item += 1;
+			dprintf(cs, "ok\n");
+			gui_broadcast(data, gui_pin, player);
+			gui_broadcast(data, gui_bct, player);
+		}
 	}
 }
