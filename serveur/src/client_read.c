@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 13:34:32 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 21:15:09 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 00:48:36 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ static void	bufread_handl(t_data *data, char *str, int cs)
 			len++;
 		if (str[i + len])
 		{
-			cmd = strsub(str, i, len);
-			cmd_handl(data, cmd, cs);
-			free(cmd);
+			if (len)
+			{
+				cmd = strsub(str, i, len);
+				cmd_handl(data, cmd, cs);
+				free(cmd);
+			}
 			i += len + 1;
 			len = 0;
 		}

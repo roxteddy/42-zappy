@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 10:22:52 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 00:04:59 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 00:45:23 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ void			cmd_handl(t_data *data, char *cmd, int cs)
 {
 	char	**cmd_split;
 
-	printf("received cmd from client #%d : %s\n", cs, cmd);
-	cmd_split = strsplit(cmd, ' ');
-	if (data->fds[cs].type == FD_CLIENT)
-		client_handl(data, cmd, cs);
-	else if (data->fds[cs].type == FD_PLAYER)
-		player_handl(data, cmd_split, cs);
+	if (cmd)
+	{
+		printf("received cmd from client #%d : %s\n", cs, cmd);
+		cmd_split = strsplit(cmd, ' ');
+		if (data->fds[cs].type == FD_CLIENT)
+			client_handl(data, cmd, cs);
+		else if (data->fds[cs].type == FD_PLAYER)
+			player_handl(data, cmd_split, cs);
 //	else if (data->fds[cs].type == FD_GUI)
 //		gui_handl(data, cmd_split, cs);
 //
-	free_split(cmd_split);
+		free_split(cmd_split);
+	}
 }
