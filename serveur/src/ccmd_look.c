@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/22 22:45:53 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/22 22:46:23 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/22 22:49:57 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void				cmd_look(t_data *data, int cs, char **cmd, t_timeval *timer)
 
 	data->fds[cs].player.level = 3;
 	(void)cmd;
+	(void)timer; // if null init/quit else do (ccmd drop)
 	xyo = (int *)malloc(sizeof(int) * 3);
 	xyo[0] = data->fds[cs].player.x;
 	xyo[1] = data->fds[cs].player.y;
