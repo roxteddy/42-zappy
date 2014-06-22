@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd_look.c                                         :+:      :+:    :+:   */
+/*   ccmd_look.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/20 19:49:13 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/22 22:15:37 by pciavald         ###   ########.fr       */
+/*   Created: 2014/06/22 22:45:53 by pciavald          #+#    #+#             */
+/*   Updated: 2014/06/22 22:46:23 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static t_square		*see(t_data *data, int cs, int seen, int *xyo, int *lvl_len)
 	t_square		*square;
 
 	square = get_square(data, xyo[0], xyo[1]);
-	first = SQUARE(lvl_len[0]);
+	first = SQUARE(lvl_len[0]) - 1;
 	n = data->fds[cs].player.level;
 	last = (n + 1) * (n + 1) - 1;
 	printf("square pos %i %i\n", square->x, square->y);
@@ -113,14 +113,16 @@ static void			send(int cs, char **strings, int len)
 	dprintf(cs, "%s\n", buf);
 }
 
-void				cmd_look(t_data *data, int cs, char **cmd)
+void				cmd_look(t_data *data, int cs, char **cmd, t_timeval *timer)
 {
 	t_square		*square;
-	char			*strings[SQUARE(data->fds[cs].player.level + 1)];
+	//char			*strings[SQUARE(data->fds[cs].player.level + 1)];
+	char			*strings[SQUARE(3 + 1)];
 	int				*xyo;
 	int				i;
 	int				level_len[2];
 
+	data->fds[cs].player.level = 3;
 	(void)cmd;
 	xyo = (int *)malloc(sizeof(int) * 3);
 	xyo[0] = data->fds[cs].player.x;

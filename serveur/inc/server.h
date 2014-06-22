@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 07:42:44 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/22 22:39:56 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define FD_PLAYER	3
 # define FD_GUI		4
 
-# define BUF_SIZE	1024
+# define BUF_SIZE	2048
 # define TIMEOUT_S	0
 # define TIMEOUT_US	0
 
