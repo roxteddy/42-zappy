@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   split_join.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 08:23:47 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/23 07:17:36 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/23 08:33:17 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
 #include <stdlib.h>
+#include <string.h>
 
-int		main(int ac, char **av)
+char	*split_join(char **split)
 {
-	t_data	data;
+	char	*str;
+	int		len;
+	int		i;
 
-	(void)ac;
-	init_data(&data, av);
-	//
-	printf("DATA INIT OK\n");
-	init_server(&data);
-	//
-	printf("SERVER INIT OK\n");
-	while ("loop")
+	if (!split)
+		return (strdup(""));
+	len = 0;
+	i = -1;
+	while (split[++i])
+		len += strlen(split[i]) + 1;
+	str = (char*)malloc(sizeof(char) * len);
+	i = 0;
+	strcat(str, split[i]);
+	while(split[++i])
 	{
-		init_fd(&data);
-		data.sel = select(data.fd_nb + 1, &data.fd_read, &data.fd_write,
-				NULL, &data.timeout);
-		check_fd(&data);
-		routine_food(&data);
-		routine_egg(&data);
-		routine_spell(&data);
-		routine_action(&data);
+		strcat(str, " ");
+		strcat(str, split[i]);
 	}
-	return (0);
+	return (str);
 }
