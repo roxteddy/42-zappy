@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:35:20 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 05:59:52 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct		s_egg
 	int				food;
 	t_timeval		food_t;
 	t_timeval		birth;
+	int				ready;
 	int				x;
 	int				y;
 	int				o;
@@ -271,6 +272,7 @@ void		player_add(t_plist **plist, t_player *player);
 void		player_del(t_plist **list, t_player *player);
 void		player_init(t_data *data, t_tlist *team, int cs);
 void		routine_action(t_data *data);
+void		routine_egg(t_data *data);
 void		routine_food(t_data *data);
 void		routine_spell(t_data *data);
 void		spell_del(t_spell **list, t_spell *spell);

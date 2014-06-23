@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:23:27 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 05:59:12 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		main(int ac, char **av)
 				NULL, &data.timeout);
 		check_fd(&data);
 		routine_food(&data);
+		routine_egg(&data);
 		routine_spell(&data);
 		routine_action(&data);
 	}

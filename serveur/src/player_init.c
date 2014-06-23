@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 11:17:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 03:11:09 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 05:49:41 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ static void		player_place(t_data *data, t_tlist *team, t_player *player)
 	current = data->eggs;
 	while (current)
 	{
-		if (!strcmp(current->team, team->name) && (!egg || current->food < egg->food))
+		if (current->ready && !strcmp(current->team, team->name)
+			&& (!egg || current->food < egg->food))
 			egg = current;
 		current = current->next;
 	}
