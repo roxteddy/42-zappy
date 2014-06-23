@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:09:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/20 21:28:11 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 02:01:22 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void			init_data(t_data *data, char **av)
 	data->y = -1;
 	data->teams = NULL;
 	data->eggs = NULL;
+	data->egg_nb = 0;
 	data->max_clients = -1;
 	data->time = -1;
 	data->map = NULL;
