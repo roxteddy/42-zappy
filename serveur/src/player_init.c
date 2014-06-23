@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 11:17:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:55:12 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 03:11:09 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void			player_init(t_data *data, t_tlist *team, int cs)
 	player->drop = -1;
 	player->get = -1;
 	player->actions = NULL;
+	player->spell = NULL;
 	player_place(data, team, player);
 	player_add(&team->list, player);
 }

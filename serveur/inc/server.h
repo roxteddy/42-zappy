@@ -93,6 +93,7 @@ typedef struct		s_player
 	int				drop;
 	int				get;
 	t_alist			*actions;
+	t_spell			*spell;
 }					t_player;
 
 typedef struct		s_fov
@@ -161,7 +162,6 @@ typedef struct		s_spell
 	int				level;
 	t_player		*owner;
 	t_plist			*plist;
-	int				success;
 }					t_spell;
 
 typedef struct		s_data
