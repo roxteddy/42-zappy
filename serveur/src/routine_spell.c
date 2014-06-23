@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 04:22:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:35:38 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 05:41:37 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,18 +121,19 @@ void	do_spell(t_data *data, t_spell *spell)
 {
 	t_plist	*plist;
 
-//if square check ok
+//check success
 	spell->success = 1;
 	gui_broadcast(data, gui_pie, spell);
 	plist = spell->plist;
 	while (plist)
 	{
 		dprintf(plist->player->cs, "niveau actuel : %d\n",
-				++plist->player->level);
+				plist->player->level + spell->success);
 		gui_broadcast(data, gui_plv, plist->player);
 		plist = plist->next;
-		disperse(data, spell);
 	}
+	if (spell->success)
+		disperse(data, spell);
 }
 
 void	routine_spell(t_data *data)

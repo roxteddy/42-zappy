@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 05:28:03 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:36:35 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 05:39:29 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	spell_del(t_spell **list, t_spell *spell)
 	{
 		tmp = spell->plist;
 		spell->plist = spell->plist->next;
+		tmp->player->spell = NULL;
 		free(tmp);
 	}
 	free(spell);
