@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 02:41:24 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 02:06:02 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ void		ccmd_invent(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_left(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t);
 t_square	*see(t_data *data, t_fov *fov);
-char		*concatenate(t_data *data, t_square *square);
+char		*concatenate(t_data *data, int cs, t_square *square);
 void		ccmd_max(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_push(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_right(t_data *data, int cs, char **cmd, t_timeval **t);

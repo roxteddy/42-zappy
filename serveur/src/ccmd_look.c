@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/22 22:45:53 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/23 01:45:01 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 02:20:48 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-static void			send(int cs, char **strings, int len)
+static void		send(int cs, char **strings, int len)
 {
-	int				i;
+	int			i;
 
 	dprintf(cs, "{");
 	i = 0;
@@ -30,23 +30,32 @@ static void			send(int cs, char **strings, int len)
 		}
 		i++;
 	}
-	dprintf(cs, "}\n");
+	dprintf(cs, "\b}\n");
 }
 
-static void			timer_init(t_data *data, t_timeval **timer)
+static void		timer_init(t_data *data, t_timeval **timer)
 {
-	t_timeval		now;
+	t_timeval	now;
 
 	gettimeofday(&now, NULL);
 	*timer = (t_timeval*)malloc(sizeof(t_timeval));
 	**timer = time_add(data, &now, DROP_T);
 }
 
-void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
+static void		set_strings(char **strings, int len)
 {
-	t_square		*square;
-	char			*strings[SQUARE(data->fds[cs].player.level + 1)];
-	t_fov			fov;
+	int			i;
+
+	i = 0;
+	while (i < len)
+		strings[i++] = NULL;
+}
+
+void			ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
+{
+	t_square	*square;
+	char		*strings[SQUARE(data->fds[cs].player.level + 1)];
+	t_fov		fov;
 
 	(void)cmd;
 	if (*t == NULL)
@@ -62,8 +71,9 @@ void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
 		fov.last = SQUARE(fov.player->level + 1) - 1;
 		fov.level = 1;
 		fov.len = 1;
+		set_strings(strings, SQUARE(fov.player->level + 1));
 		while ((square = see(data, &fov)) != NULL)
-			strings[fov.seen++] = concatenate(data, square);
+			strings[fov.seen++] = concatenate(data, cs, square);
 		send(cs, strings, SQUARE(data->fds[cs].player.level + 1));
 	}
 }
