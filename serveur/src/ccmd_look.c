@@ -6,7 +6,7 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/22 22:45:53 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/23 00:53:34 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 01:45:01 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,19 @@
 static void			send(int cs, char **strings, int len)
 {
 	int				i;
-	char			buf[BUF_SIZE];
 
 	dprintf(cs, "{");
 	i = 0;
 	while (i < len)
 	{
-		memset(buf, '\0', BUF_SIZE);
 		if (strings[i])
 		{
-			strcat(buf, strings[i]);
-			strcat(buf, ",");
-			dprintf(cs, "%s", buf);
-			//free(strings[i]);
+			dprintf(cs, "%s,", strings[i]);
+			free(strings[i]);
 		}
 		i++;
 	}
-	dprintf(cs, "}");
+	dprintf(cs, "}\n");
 }
 
 static void			timer_init(t_data *data, t_timeval **timer)
@@ -46,40 +42,28 @@ static void			timer_init(t_data *data, t_timeval **timer)
 	**timer = time_add(data, &now, DROP_T);
 }
 
-void	orient(int o)
-{
-	if (o == N)
-		printf("N\n");
-	if (o == S)
-		printf("S\n");
-	if (o == E)
-		printf("E\n");
-	if (o == W)
-		printf("W\n");
-}
-
 void				ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_square		*square;
 	char			*strings[SQUARE(data->fds[cs].player.level + 1)];
-	int				xyo[3];
-	int				i;
-	int				level_len[2];
+	t_fov			fov;
 
 	(void)cmd;
 	if (*t == NULL)
 		timer_init(data, t);
 	else
 	{
-		xyo[0] = data->fds[cs].player.x;
-		xyo[1] = data->fds[cs].player.y;
-		xyo[2] = data->fds[cs].player.o;
-		orient(xyo[2]);
-		i = 0;
-		level_len[0] = 1;
-		level_len[1] = 1;
-		while ((square = see(data, cs, i, xyo, level_len)) != NULL)
-			strings[i++] = concatenate(data, square);
-		send(cs, strings, SQUARE(data->fds[cs].player.level + 1) - 1);
+		fov.player = &(data->fds[cs].player);
+		fov.cs = cs;
+		fov.x = fov.player->x;
+		fov.y = fov.player->y;
+		fov.o = fov.player->o;
+		fov.seen = 0;
+		fov.last = SQUARE(fov.player->level + 1) - 1;
+		fov.level = 1;
+		fov.len = 1;
+		while ((square = see(data, &fov)) != NULL)
+			strings[fov.seen++] = concatenate(data, square);
+		send(cs, strings, SQUARE(data->fds[cs].player.level + 1));
 	}
 }

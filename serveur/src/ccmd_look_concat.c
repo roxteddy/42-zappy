@@ -6,19 +6,12 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 00:51:15 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/23 00:56:31 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 01:46:59 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 #include <string.h>
-
-static void		find_players(t_data *data, char *buf, t_square *square)
-{
-	(void)data;
-	(void)buf;
-	(void)square;
-}
 
 static void		add_elem(char *buf, int num, char *title)
 {
@@ -31,6 +24,13 @@ static void		add_elem(char *buf, int num, char *title)
 		strcat(buf, title);
 		i++;
 	}
+}
+
+static void		find_players(t_data *data, char *buf, t_square *square)
+{
+	(void)data;
+	(void)buf;
+	(void)square;
 }
 
 char			*concatenate(t_data *data, t_square *square)

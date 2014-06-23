@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 02:02:42 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 01:49:22 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,19 @@ typedef struct		s_player
 	int				get;
 	t_alist			*actions;
 }					t_player;
+
+typedef struct		s_fov
+{
+	int				cs;
+	int				x;
+	int				y;
+	int				o;
+	int				seen;
+	int				last;
+	int				level;
+	int				len;
+	t_player		*player;
+}					t_fov;
 
 typedef struct		s_plist
 {
@@ -187,7 +200,7 @@ void		ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_invent(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_left(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_look(t_data *data, int cs, char **cmd, t_timeval **t);
-t_square	*see(t_data *data, int cs, int seen, int *xyo, int *lvl_len);
+t_square	*see(t_data *data, t_fov *fov);
 char		*concatenate(t_data *data, t_square *square);
 void		ccmd_max(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_push(t_data *data, int cs, char **cmd, t_timeval **t);
