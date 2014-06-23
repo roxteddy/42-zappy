@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 11:17:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:49:41 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:16:33 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void		player_place(t_data *data, t_tlist *team, t_player *player)
 	while (current)
 	{
 		if (current->ready && !strcmp(current->team, team->name)
-			&& (!egg || current->food < egg->food))
+				&& (!egg || current->food < egg->food))
 			egg = current;
 		current = current->next;
 	}
@@ -67,10 +67,10 @@ void			player_init(t_data *data, t_tlist *team, int cs)
 	gettimeofday(&player->food_t, NULL);
 	player->linemate = 0;
 	player->deraumere = 0;
-    player->sibur = 0;
-    player->mendiane = 0;
-    player->phiras = 0;
-    player->thystame = 0;
+	player->sibur = 0;
+	player->mendiane = 0;
+	player->phiras = 0;
+	player->thystame = 0;
 	player->msg = NULL;
 	player->drop = -1;
 	player->get = -1;

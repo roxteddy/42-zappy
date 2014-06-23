@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 07:17:36 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 08:33:17 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:29:27 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*split_join(char **split)
 	str = (char*)malloc(sizeof(char) * len);
 	i = 0;
 	strcat(str, split[i]);
-	while(split[++i])
+	while (split[++i])
 	{
 		strcat(str, " ");
 		strcat(str, split[i]);

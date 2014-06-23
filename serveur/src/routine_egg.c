@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 05:49:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 09:05:55 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:21:43 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string.h>
 #include <sys/time.h>
 
-static void check_egg_food(t_data *data, t_egg *egg, t_timeval *now)
+static void		check_egg_food(t_data *data, t_egg *egg, t_timeval *now)
 {
 	t_tlist		*team;
 	t_timeval	step;
@@ -42,7 +42,7 @@ static void check_egg_food(t_data *data, t_egg *egg, t_timeval *now)
 	}
 }
 
-static void	check_egg_birth(t_data *data, t_egg *egg, t_timeval *now)
+static void		check_egg_birth(t_data *data, t_egg *egg, t_timeval *now)
 {
 	t_tlist	*team;
 
@@ -57,14 +57,14 @@ static void	check_egg_birth(t_data *data, t_egg *egg, t_timeval *now)
 	}
 }
 
-void	routine_egg(t_data *data)
+void			routine_egg(t_data *data)
 {
 	t_egg		*egg;
 	t_egg		*tmp;
 	t_timeval	now;
 
-//
-//	printf("starting egg routine\n");
+	//
+	//	printf("starting egg routine\n");
 	gettimeofday(&now, NULL);
 	egg = data->eggs;
 	while (egg)
@@ -76,6 +76,6 @@ void	routine_egg(t_data *data)
 		else
 			check_egg_birth(data, tmp, &now);
 	}
-//
-//	printf("ending egg routine\n");
+	//
+	//	printf("ending egg routine\n");
 }

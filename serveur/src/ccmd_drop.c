@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:35:03 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 22:58:45 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 10:44:38 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static int	*get_sitem(t_square *square, int i)
 	if (i == 2)
 		return (&square->deraumere);
 	if (i == 3)
-	   return (&square->sibur);
+		return (&square->sibur);
 	if (i == 4)
 		return (&square->mendiane);
 	if (i == 5)
@@ -88,10 +88,10 @@ static void	timer_init(t_data *data, t_timeval **timer, t_player *player)
 
 void		ccmd_drop(t_data *data, int cs, char **cmd, t_timeval **t)
 {
-    t_player    *player;
-    t_square    *square;
-    int         *p_item;
-    int         *s_item;
+	t_player	*player;
+	t_square	*square;
+	int			*p_item;
+	int			*s_item;
 
 	player = &data->fds[cs].player;
 	if (!(*t))

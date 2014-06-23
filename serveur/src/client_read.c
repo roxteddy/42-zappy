@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/13 13:34:32 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 00:48:36 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:03:53 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	bufread_handl(t_data *data, char *str, int cs)
 	}
 }
 
-void	client_read(t_data *data, int cs)
+void		client_read(t_data *data, int cs)
 {
 	int		blen;
 
@@ -59,6 +59,6 @@ void	client_read(t_data *data, int cs)
 		printf("client %d has disconnected\n", cs);
 	}
 	else if (data->fds[cs].buf_read[strlen(data->fds[cs].buf_read) - 1]
-			 == '\n')
+			== '\n')
 		bufread_handl(data, data->fds[cs].buf_read, cs);
 }
