@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:37:09 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 04:31:44 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 05:36:15 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 		spell->owner = player;
 		spell->plist = get_players(data, player, spell);
 		spell->timer = time_add(data, &now, INCANT_T);
+		spell->success = 0;
 		spell->next = data->spells;
 		data->spells = spell;
 		gui_broadcast(data, gui_pic, spell);

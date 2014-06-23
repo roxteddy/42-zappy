@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 17:20:20 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/16 19:13:13 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 05:26:05 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -16,7 +16,10 @@
 
 #include "server.h"
 
-void	gui_pie(t_spell *spell, int cs)
+void	gui_pie(void *param, int cs)
 {
+	t_spell	*spell;
+
+	spell = (t_spell*)param;
 	dprintf(cs, "pie %d %d %d\n", spell->x, spell->y, spell->success);
 }

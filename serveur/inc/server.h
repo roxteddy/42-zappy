@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 04:31:59 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 05:35:20 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ typedef struct		s_spell
 	t_player		*owner;
 	t_plist			*plist;
 	t_timeval		timer;
+	int				success;
 	struct s_spell	*next;
 }					t_spell;
 
@@ -250,11 +251,11 @@ void		gui_pex(void *param, int cs);
 void		gui_pfk(void *param, int cs);
 void		gui_pgt(void *param, int cs);
 void		gui_pic(void *param, int cs);
-void		gui_pie(t_spell *spell, int cs);
+void		gui_pie(void *param, int cs);
 void		gui_plist(t_data *data, int cs);
 void		gui_pin(void *param, int cs);
 void		gui_pnw(void* param, int cs);
-void		gui_plv(t_player *player, int cs);
+void		gui_plv(void *param, int cs);
 void		gui_ppo(void *param, int cs);
 void		gui_sbp(void *null, int cs);
 void		gui_seg(t_tlist *team, int cs);
@@ -271,6 +272,8 @@ void		player_del(t_plist **list, t_player *player);
 void		player_init(t_data *data, t_tlist *team, int cs);
 void		routine_action(t_data *data);
 void		routine_food(t_data *data);
+void		routine_spell(t_data *data);
+void		spell_del(t_spell **list, t_spell *spell);
 char		**split_dup(char **split);
 void		srv_accept(t_data *data, int sock);
 char		**strsplit(char const *s, char c);

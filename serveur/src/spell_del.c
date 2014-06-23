@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui_plv.c                                          :+:      :+:    :+:   */
+/*   spell_del.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/14 16:19:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:34:16 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/23 05:28:03 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/23 05:36:35 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-void	gui_plv(void *param, int cs)
+void	spell_del(t_spell **list, t_spell *spell)
 {
-	t_player	*player;
+	t_spell	*current;
+	t_plist	*tmp;
 
-	player = (t_player*)param;
-	dprintf(cs, "plv #%d %d\n", player->cs, player->level);
+	if (*list == spell)
+		*list = spell->next;
+	else
+	{
+		current = *list;
+		while (current->next && current->next != spell)
+			current = current->next;
+		current->next = current->next->next;
+	}
+	while(spell->plist)
+	{
+		tmp = spell->plist;
+		spell->plist = spell->plist->next;
+		free(tmp);
+	}
+	free(spell);
 }
