@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 15:51:01 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 17:33:04 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 02:02:07 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -16,7 +16,10 @@
 #include "server.h"
 #include <stdio.h>
 
-void	gui_enw(t_egg *egg, int cs)
+void	gui_enw(void *param, int cs)
 {
+	t_egg	*egg;
+
+	egg = (t_egg*)param;
 	dprintf(cs, "enw #%d #%d %d %d\n", egg->id, egg->owner, egg->x, egg->y);
 }

@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 01:41:08 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 02:02:42 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define INCANT_T	300
 # define FORK_T		42
 # define FOOD_T		7
+# define BIRTH_T	600
 
 # define SQUARE(X)	(X) * (X)
 
@@ -56,6 +57,7 @@ typedef struct		s_egg
 	int				owner;
 	char			*team;
 	int				food;
+	t_timeval		birth;
 	int				x;
 	int				y;
 	int				o;
@@ -156,6 +158,7 @@ typedef struct		s_data
 	int				y;
 	t_tlist			*teams;
 	t_egg			*eggs;
+	int				egg_nb;
 	int				max_clients;
 	int				time;
 	t_square		**map;
@@ -217,7 +220,7 @@ void		gui_ebo(void *param, int cs);
 void		gui_edi(t_egg *egg, int cs);
 void		gui_eht(t_egg *egg, int cs);
 void		gui_elist(t_data *data, int cs);
-void		gui_enw(t_egg *egg, int cs);
+void		gui_enw(void *param, int cs);
 void		gui_init(t_data *data, int cs);
 void		gui_mct(t_data *data, int cs);
 void		gui_msz(t_data *data, int cs);
