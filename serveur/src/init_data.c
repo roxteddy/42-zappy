@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:09:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 02:01:22 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 03:46:14 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,5 @@ void			init_data(t_data *data, char **av)
 	data->timeout.tv_sec = TIMEOUT_S;
 	data->timeout.tv_usec = TIMEOUT_US;
 	create_cmds(data);
+	init_spell_tab(data);
 }

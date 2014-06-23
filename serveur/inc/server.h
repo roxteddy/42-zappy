@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 03:10:42 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 03:44:57 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ typedef struct		s_spell
 
 typedef struct		s_data
 {
+	int				spell_tab[7][7];
 	char			*name;
 	int				port;
 	int				x;
@@ -186,6 +187,7 @@ typedef struct		s_data
 	t_cmd			cmds[CMD_NB];
 }					t_data;
 
+void		init_spell_tab(t_data *data);
 void		create_cmds(t_data *data);
 void		action_add(t_data *data, t_alist **actions, t_cmd action, char **cmd);
 void		action_delfirst(t_alist **alist);
