@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/23 06:00:31 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/23 06:48:06 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -92,7 +92,8 @@ FILES = main.c \
 		routine_spell.c \
 		gui_pie.c \
 		spell_del.c \
-		routine_egg.c
+		routine_egg.c \
+		gui_eht.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)

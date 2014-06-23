@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 05:49:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 06:01:12 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 06:46:48 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ static void	check_egg_birth(t_data *data, t_egg *egg, t_timeval *now)
 		while (team && strcmp(team->name, egg->team))
 			team = team->next;
 		team->slots++;
+		gui_broadcast(data, gui_eht, egg);
 	}
 }
 

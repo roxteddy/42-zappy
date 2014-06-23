@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:59:52 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 06:46:59 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,7 @@ void		gui_bct(void *param, int cs);
 void		gui_broadcast(t_data *data, void (*gui_msg)(void*, int), void *arg);
 void		gui_ebo(void *param, int cs);
 void		gui_edi(void *param, int cs);
-void		gui_eht(t_egg *egg, int cs);
+void		gui_eht(void *param, int cs);
 void		gui_elist(t_data *data, int cs);
 void		gui_enw(void *param, int cs);
 void		gui_init(t_data *data, int cs);
