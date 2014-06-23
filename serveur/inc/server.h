@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 03:44:57 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 04:17:43 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct		s_player
 	int				drop;
 	int				get;
 	t_alist			*actions;
-	t_spell			*spell;
+	struct s_spell	*spell;
 }					t_player;
 
 typedef struct		s_fov
@@ -162,11 +162,11 @@ typedef struct		s_spell
 	int				level;
 	t_player		*owner;
 	t_plist			*plist;
+	struct s_spell	*next;
 }					t_spell;
 
 typedef struct		s_data
 {
-	int				spell_tab[7][7];
 	char			*name;
 	int				port;
 	int				x;
@@ -174,6 +174,8 @@ typedef struct		s_data
 	t_tlist			*teams;
 	t_egg			*eggs;
 	int				egg_nb;
+	t_spell			*spells;
+	int				spell_tab[7][7];
 	int				max_clients;
 	int				time;
 	t_square		**map;
