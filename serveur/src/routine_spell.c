@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 04:22:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:41:37 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 09:05:24 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ void	routine_spell(t_data *data)
 	t_spell		*spell;
 	t_timeval	now;
 
+//
+//	printf("starting spell routine\n");
 	gettimeofday(&now, NULL);
 	spell = data->spells;
 	while (spell)
@@ -154,4 +156,6 @@ void	routine_spell(t_data *data)
 		}
 		spell = spell->next;
 	}
+//
+//	printf("ending spell routine\n");
 }

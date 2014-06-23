@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/18 19:09:21 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 06:00:18 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 09:19:51 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	check_player(t_data *data, t_player *player, t_timeval *now)
 			team = team->next;
 		player_del(&team->list, player);
 		close(player->cs);
+		clean_fd(data->fds + player->cs);
 	}
 }
 
@@ -44,6 +45,8 @@ void		routine_food(t_data *data)
 	t_plist		*plist;
 	t_timeval	now;
 
+//
+//	printf("starting food routine\n");
 	gettimeofday(&now, NULL);
 	team = data->teams;
 	while (team)
@@ -56,4 +59,6 @@ void		routine_food(t_data *data)
 		}
 		team = team->next;
 	}
+//
+//	printf("ending food routine\n");
 }

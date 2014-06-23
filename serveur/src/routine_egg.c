@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 05:49:51 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 06:46:48 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 09:05:55 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ void	routine_egg(t_data *data)
 	t_egg		*tmp;
 	t_timeval	now;
 
+//
+//	printf("starting egg routine\n");
 	gettimeofday(&now, NULL);
 	egg = data->eggs;
 	while (egg)
@@ -74,4 +76,6 @@ void	routine_egg(t_data *data)
 		else
 			check_egg_birth(data, tmp, &now);
 	}
+//
+//	printf("ending egg routine\n");
 }

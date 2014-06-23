@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 08:23:34 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 09:02:15 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,7 +178,7 @@ typedef struct		s_data
 	t_egg			*eggs;
 	int				egg_nb;
 	t_spell			*spells;
-	int				spell_tab[7][7];
+	int				**spell_tab;
 	int				max_clients;
 	int				time;
 	t_square		**map;

@@ -6,11 +6,12 @@
 /*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 03:34:37 by pciavald          #+#    #+#             */
-/*   Updated: 2014/06/23 03:45:08 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 09:04:47 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
+#include <stdlib.h>
 
 static void		row0(int **tab)
 {
@@ -75,10 +76,15 @@ static void		row2(int **tab)
 
 void			init_spell_tab(t_data *data)
 {
-	int			**tab;
+	int		i;
 
-	tab = (int **)(data->spell_tab);
-	row0(tab);
-	row1(tab);
-	row2(tab);
+	data->spell_tab = (int**)malloc(sizeof(int*) * 7);
+	i = -1;
+	while (i++ < 7)
+	{
+		data->spell_tab[i] = (int*)malloc(sizeof(int) * 7);
+	}
+	row0(data->spell_tab);
+	row1(data->spell_tab);
+	row2(data->spell_tab);
 }

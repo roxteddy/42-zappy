@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:36:27 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 08:18:52 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 09:31:40 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ void	ccmd_bcast(t_data *data, int cs, char **cmd, t_timeval **t)
 			plist = team->list;
 			while (plist)
 			{
-				bcast(data, player, plist->player);
+				if (plist->player != player)
+					bcast(data, player, plist->player);
 				plist = plist->next;
 			}
 			team = team->next;
