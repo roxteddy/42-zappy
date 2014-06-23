@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/23 02:03:22 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/23 02:42:31 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -83,7 +83,10 @@ FILES = main.c \
 		gui_pdr.c \
 		gui_ebo.c \
 		mod.c \
-		gui_pfk.c
+		gui_pfk.c \
+		gui_edi.c \
+		gui_pdi.c \
+		player_del.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)

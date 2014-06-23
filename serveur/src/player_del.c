@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui_edi.c                                          :+:      :+:    :+:   */
+/*   player_del.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/14 17:36:19 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 02:42:10 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/23 02:31:40 by mfebvay           #+#    #+#             */
+/*   Updated: 2014/06/23 02:42:45 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
-** "edi #e\n" - L’œuf éclos est mort de faim.
-*/
 
 #include "server.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-void	gui_edi(void *param, int cs)
+void	player_del(t_plist **list, t_player *player)
 {
-	t_egg	*egg;
+	t_plist	*current;
+	t_plist	*tmp;
 
-	egg = (t_egg*)param;
-	dprintf(cs, "edi #%d\n", egg->id);
+	current = *list;
+	if (current->player == player)
+	{
+		*list = current->next;
+		free(current);
+	}
+	else
+	{
+		while (current->next && current->next->player != player)
+			current = current->next;
+		tmp = current->next;
+		current->next = current->next->next;
+		free(tmp);
+	}
+
 }

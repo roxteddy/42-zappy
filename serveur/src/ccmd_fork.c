@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:37:40 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 02:03:02 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 02:19:20 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ccmd_fork(t_data *data, int cs, char **cmd, t_timeval **t)
     t_player    *player;
 	t_egg		*egg;
 	t_timeval	now;
+	t_tlist		*team;
 
 	gettimeofday(&now, NULL);
 	(void)cmd;
@@ -43,12 +44,23 @@ void	ccmd_fork(t_data *data, int cs, char **cmd, t_timeval **t)
 		egg->owner = cs;
 		egg->team = strdup(player->team);
 		egg->food = 10;
+		egg->food_t = now;
 		egg->birth = time_add(data, &now, BIRTH_T);
 		egg->x = player->x;
 		egg->y = player->y;
 		egg->o = player->o;
 		egg->next = data->eggs;
 		data->eggs = egg;
+		team = data->teams;
+		while (team)
+		{
+			if (!strcmp(team->name, player->team))
+			{
+				team->slots++;
+				break ;
+			}
+			team = team->next;
+		}
 		gui_broadcast(data, gui_enw, egg);
 		dprintf(cs, "ok\n");
 	}

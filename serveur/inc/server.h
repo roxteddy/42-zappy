@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 01:49:22 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/23 02:41:24 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct		s_egg
 	int				owner;
 	char			*team;
 	int				food;
+	t_timeval		food_t;
 	t_timeval		birth;
 	int				x;
 	int				y;
@@ -230,7 +231,7 @@ void		get_width(char *arg, t_data *data);
 void		gui_bct(void *param, int cs);
 void		gui_broadcast(t_data *data, void (*gui_msg)(void*, int), void *arg);
 void		gui_ebo(void *param, int cs);
-void		gui_edi(t_egg *egg, int cs);
+void		gui_edi(void *param, int cs);
 void		gui_eht(t_egg *egg, int cs);
 void		gui_elist(t_data *data, int cs);
 void		gui_enw(void *param, int cs);
@@ -238,7 +239,7 @@ void		gui_init(t_data *data, int cs);
 void		gui_mct(t_data *data, int cs);
 void		gui_msz(t_data *data, int cs);
 void		gui_pbc(t_player *player, int cs);
-void		gui_pdi(t_player *player, int cs);
+void		gui_pdi(void *param, int cs);
 void		gui_pdr(void *param, int cs);
 void		gui_pex(void *param, int cs);
 void		gui_pfk(void *param, int cs);
@@ -261,6 +262,7 @@ void		init_fd(t_data *data);
 void		init_server(t_data *data);
 int			mod(int nb, int mod);
 void		player_add(t_plist **plist, t_player *player);
+void		player_del(t_plist **list, t_player *player);
 void		player_init(t_data *data, t_tlist *team, int cs);
 void		routine_action(t_data *data);
 void		routine_food(t_data *data);

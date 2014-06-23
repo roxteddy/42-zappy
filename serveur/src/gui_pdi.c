@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 17:30:07 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 17:32:11 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 02:41:10 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*
@@ -16,7 +16,10 @@
 #include "server.h"
 #include <stdio.h>
 
-void	gui_pdi(t_player *player, int cs)
+void	gui_pdi(void *param, int cs)
 {
+	t_player	*player;
+
+	player = (t_player*)param;
 	dprintf(cs, "pdi #%d\n", player->cs);
 }
