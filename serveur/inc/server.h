@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 04:17:43 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 04:31:59 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ typedef struct		s_spell
 	int				level;
 	t_player		*owner;
 	t_plist			*plist;
+	t_timeval		timer;
 	struct s_spell	*next;
 }					t_spell;
 
@@ -248,7 +249,7 @@ void		gui_pdr(void *param, int cs);
 void		gui_pex(void *param, int cs);
 void		gui_pfk(void *param, int cs);
 void		gui_pgt(void *param, int cs);
-void		gui_pic(t_spell *t_spell, int cs);
+void		gui_pic(void *param, int cs);
 void		gui_pie(t_spell *spell, int cs);
 void		gui_plist(t_data *data, int cs);
 void		gui_pin(void *param, int cs);

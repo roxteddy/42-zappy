@@ -6,12 +6,13 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:37:09 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 04:20:07 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 04:31:44 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 #include <stdlib.h>
+#include <sys/time.h>
 
 t_plist			*get_players(t_data *data, t_player *player, t_spell *spell)
 {
@@ -93,9 +94,11 @@ void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
 	t_spell		*spell;
+	t_timeval	now;
 
 	(void)cmd;
 	(void)t;
+	gettimeofday(&now, NULL);
 	player = &(data->fds[cs].player);
 	if (check_square(data, player))
 		dprintf(cs, "ko\n");
@@ -106,7 +109,9 @@ void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 		spell->y = player->y;
 		spell->owner = player;
 		spell->plist = get_players(data, player, spell);
+		spell->timer = time_add(data, &now, INCANT_T);
 		spell->next = data->spells;
 		data->spells = spell;
+		gui_broadcast(data, gui_pic, spell);
 	}
 }
