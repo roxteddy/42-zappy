@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/23 02:42:31 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/23 03:45:44 by pciavald         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -86,7 +86,8 @@ FILES = main.c \
 		gui_pfk.c \
 		gui_edi.c \
 		gui_pdi.c \
-		player_del.c
+		player_del.c \
+		init_spell_tab.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)
