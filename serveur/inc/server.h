@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 11:28:08 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/26 09:17:18 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@
 # define FORK_T		42
 # define FOOD_T		126
 # define BIRTH_T	600
+
+# define START      0
+# define END        1
 
 # define SQUARE(X)	(X) * (X)
 
@@ -273,7 +276,6 @@ void		init_data(t_data *data, char **av);
 void		init_fd(t_data *data);
 void		init_server(t_data *data);
 int			mod(int nb, int mod);
-int			pathfinder(t_data *data, t_square *origin, t_square *target);
 void		player_add(t_plist **plist, t_player *player);
 void		player_del(t_plist **list, t_player *player);
 void		player_init(t_data *data, t_tlist *team, int cs);
@@ -284,7 +286,7 @@ void		routine_spell(t_data *data);
 void		spell_del(t_spell **list, t_spell *spell);
 char		*split_join(char **split);
 char		**split_dup(char **split);
-int			spell_check(t_data *data, t_player *player);
+int			spell_check(t_data *data, t_player *player, int status);
 void		srv_accept(t_data *data, int sock);
 char		**strsplit(char const *s, char c);
 char		*strsub(char const *s, unsigned int start, size_t len);

@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:37:09 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/26 03:59:18 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 07:07:03 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_plist			*get_players(t_data *data, t_player *player, t_spell *spell)
 		while (list)
 		{
 			if (list->player->x == player->x && list->player->y == player->y
-					&& list->player->level == player->level)
+					&& list->player->level == player->level && !player->spell)
 			{
 				player_add(&plist, list->player);
 				list->player->spell = spell;
@@ -40,29 +40,6 @@ t_plist			*get_players(t_data *data, t_player *player, t_spell *spell)
 	return (plist);
 }
 
-int				get_player_nb(t_data *data, t_player *player)
-{
-	int			nb;
-	t_tlist		*team;
-	t_plist		*list;
-
-	nb = 0;
-	team = data->teams;
-	while (team)
-	{
-		list = team->list;
-		while (list)
-		{
-			if (list->player->x == player->x && list->player->y == player->y
-					&& list->player->level == player->level)
-				nb++;
-			list = list->next;
-		}
-		team = team->next;
-	}
-	return (nb);
-}
-
 void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
@@ -73,7 +50,7 @@ void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 	(void)t;
 	gettimeofday(&now, NULL);
 	player = &(data->fds[cs].player);
-	if (spell_check(data, player))
+	if (spell_check(data, player, START))
 	{
 		spell = (t_spell*)malloc(sizeof(t_spell));
 		spell->x = player->x;

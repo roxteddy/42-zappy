@@ -6,13 +6,13 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/26 03:48:38 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/26 04:01:07 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 07:06:12 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-static int		get_player_nb(t_data *data, t_player *player)
+static int		get_player_nb(t_data *data, t_player *player, int status)
 {
     int         nb;
     t_tlist     *team;
@@ -26,7 +26,9 @@ static int		get_player_nb(t_data *data, t_player *player)
         while (list)
         {
             if (list->player->x == player->x && list->player->y == player->y
-				&& list->player->level == player->level)
+				&& list->player->level == player->level
+				&& ((status == START && !list->player->spell)
+					|| (status == END && list->player->spell)))
                 nb++;
             list = list->next;
         }
@@ -35,13 +37,13 @@ static int		get_player_nb(t_data *data, t_player *player)
     return (nb);
 }
 
-int			spell_check(t_data *data, t_player *player)
+int			spell_check(t_data *data, t_player *player, int status)
 {
 	int			player_nb;
     t_square	*square;
 
 	square = get_square(data, player->x, player->y);
-	player_nb = get_player_nb(data, player);
+	player_nb = get_player_nb(data, player, status);
 	if (player_nb >= data->spell_tab[player->level - 1][0]
 		&& square->linemate >= data->spell_tab[player->level - 1][1]
 		&& square->deraumere >= data->spell_tab[player->level - 1][2]

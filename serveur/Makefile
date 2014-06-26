@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/26 03:59:38 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/26 09:17:57 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -96,7 +96,6 @@ FILES = main.c \
 		routine_egg.c \
 		gui_eht.c \
 		gui_pbc.c \
-		pathfinder.c \
 		split_join.c \
 		routine_spell_disperse1.c \
 		routine_spell_disperse2.c \
