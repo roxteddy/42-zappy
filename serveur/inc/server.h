@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/26 11:44:37 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 12:06:44 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define W			4
 
 # define CMD_NB		12
+# define GCMD_NB	9
 
 # define MOVE_T		7
 # define LOOK_T		7
@@ -132,6 +133,12 @@ typedef struct      s_fd
 // typedef needed in t_cmd struct
 typedef struct s_data	t_data;
 
+typedef struct		s_gcmd
+{
+	char			*cmd;
+	void			(*fct)(t_data*, int, char**);
+}					t_gcmd;
+
 typedef struct		s_cmd
 {
 	char			*cmd;
@@ -193,6 +200,7 @@ typedef struct		s_data
 	fd_set			fd_write;
 	struct timeval	timeout;
 	t_cmd			cmds[CMD_NB];
+	t_gcmd			gcmds[GCMD_NB];
 }					t_data;
 
 void		disperse(t_data *data, t_spell *spell);
@@ -201,7 +209,6 @@ void		disperse_deraumere(t_data *data, t_spell *spell);
 void		disperse_sibur(t_data *data, t_spell *spell);
 void		check_opt(t_data *data);
 void		init_spell_tab(t_data *data);
-void		create_cmds(t_data *data);
 void		action_add(t_data *data, t_alist **actions, t_cmd action, char **cmd);
 void		action_delfirst(t_alist **alist);
 void		check_fd(t_data *data);
@@ -223,6 +230,8 @@ void		ccmd_push(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_right(t_data *data, int cs, char **cmd, t_timeval **t);
 void		ccmd_take(t_data *data, int cs, char **cmd, t_timeval **t);
 void		cmd_handl(t_data *data, char *cmd, int cs);
+void		create_cmds(t_data *data);
+void		create_gcmds(t_data *data);
 void		egg_del(t_egg **list, t_egg *egg);
 void		error(char *str);
 void		free_split(char **tab);

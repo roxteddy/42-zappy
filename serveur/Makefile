@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/26 11:45:34 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/26 12:10:45 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -36,6 +36,9 @@ FILES = main.c \
 		gcmd_tna.c \
 		gcmd_msz.c \
 		gcmd_sgt.c \
+		gcmd_pin.c \
+		gcmd_sst.c \
+		gcmd_plv.c \
 		gui_pnw.c \
 		gui_plist.c \
 		gui_enw.c \
@@ -43,7 +46,6 @@ FILES = main.c \
 		gui_ppo.c \
 		gcmd_ppo.c \
 		gui_plv.c \
-		gcmd_plv.c \
 		gui_bct.c \
 		gui_msz.c \
 		gui_mct.c \
@@ -101,7 +103,9 @@ FILES = main.c \
 		routine_spell_disperse2.c \
 		spell_check.c \
 		gui_sbp.c \
-		get_player.c
+		get_player.c \
+		gui_suc.c \
+		t_gcmd.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)
