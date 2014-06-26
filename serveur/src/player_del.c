@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 02:31:40 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 02:42:45 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:16:23 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,4 @@ void	player_del(t_plist **list, t_player *player)
 		current->next = current->next->next;
 		free(tmp);
 	}
-
 }

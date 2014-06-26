@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gui_ppo.c                                          :+:      :+:    :+:   */
+/*   opt2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/14 16:11:16 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 11:07:08 by pciavald         ###   ########.fr       */
+/*   Created: 2014/06/23 11:15:03 by pciavald          #+#    #+#             */
+/*   Updated: 2014/06/23 11:15:35 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
-#include <stdio.h>
+#include <stdlib.h>
 
-void	gui_ppo(void *param, int cs)
+void	get_width(char *arg, t_data *data)
 {
-	t_player	*player;
+	if (arg)
+		data->x = atoi(arg);
+	else
+		usage(data->name);
+}
 
-	player = (t_player*)param;
-	dprintf(cs, "ppo #%d %d %d %d\n", player->cs, player->x, player->y,
-			player->o);
+void	get_height(char *arg, t_data *data)
+{
+	if (arg)
+		data->y = atoi(arg);
+	else
+		usage(data->name);
 }

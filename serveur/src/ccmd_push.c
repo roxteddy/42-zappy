@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:35:35 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 01:26:31 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 10:56:48 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	timer_init(t_data *data, t_timeval **timer, t_player *player)
 static int	push(t_data *data, t_player *pusher, t_player *target)
 {
 	if (pusher->o == N)
-		target->y = mod(target->y - 1,data->y);
-    else if (pusher->o == S)
+		target->y = mod(target->y - 1, data->y);
+	else if (pusher->o == S)
 		target->y = mod(target->y + 1, data->y);
-    else if (pusher->o == W)
+	else if (pusher->o == W)
 		target->x = mod(target->x - 1, data->x);
-    else if (pusher->o == E)
+	else if (pusher->o == E)
 		target->x = mod(target->x + 1, data->x);
 	dprintf(target->cs, "deplacement %d\n", target->o);
 	gui_broadcast(data, gui_ppo, target);
@@ -53,7 +53,8 @@ static int	find(t_data *data, t_player *player)
 		while (list)
 		{
 			if (list->player != player
-				&& list->player->x == player->x && list->player->y == player->y)
+					&& list->player->x == player->x
+					&& list->player->y == player->y)
 				count += push(data, player, list->player);
 			list = list->next;
 		}

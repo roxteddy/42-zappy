@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt2.c                                             :+:      :+:    :+:   */
+/*   opt.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pciavald <pciavald@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/06/04 07:07:28 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/14 13:59:44 by mfebvay          ###   ########.fr       */
+/*   Created: 2014/06/23 11:14:51 by pciavald          #+#    #+#             */
+/*   Updated: 2014/06/23 11:20:36 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,6 @@ void	get_port(char *arg, t_data *data)
 {
 	if (arg)
 		data->port = atoi(arg);
-	else
-		usage(data->name);
-}
-
-void	get_width(char *arg, t_data *data)
-{
-	if (arg)
-		data->x = atoi(arg);
-	else
-		usage(data->name);
-}
-
-void	get_height(char *arg, t_data *data)
-{
-	if (arg)
-		data->y = atoi(arg);
 	else
 		usage(data->name);
 }

@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:32:13 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 23:31:05 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 10:55:45 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 void	ccmd_left(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
-    t_timeval	now;
+	t_timeval	now;
 
+	(void)cmd;
 	if (!(*t))
 	{
 		gettimeofday(&now, NULL);
@@ -26,7 +27,6 @@ void	ccmd_left(t_data *data, int cs, char **cmd, t_timeval **t)
 		**t = time_add(data, &now, MOVE_T);
 		return ;
 	}
-	(void)cmd;
 	player = &data->fds[cs].player;
 	if (--(player->o) == 0)
 		player->o = 4;

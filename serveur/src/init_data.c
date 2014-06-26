@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/12 14:09:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 08:44:47 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:13:09 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,6 @@
 #include <string.h>
 #include <sys/resource.h>
 #include <time.h>
-
-static void		check_opt(t_data *data)
-{
-//DEBUG
-	printf("port %d - x %d - y %d - teams %p - max client %d - time %d\n", data->port, data->x, data->y, data->teams, data->max_clients, data->time);
-
-	if (data->port == -1 || data->x == -1 || data->y == -1
-		  || data->teams == NULL || data->max_clients == -1 || data->time == -1)
-		usage(data->name);
-}
 
 static void		get_opt(t_data *data, char **av)
 {
@@ -94,11 +84,23 @@ static void		init_map(t_data *data)
 	}
 }
 
-void			init_data(t_data *data, char **av)
+static void		init_fds(t_data *data, char **av)
 {
 	struct rlimit	rlp;
 	int				i;
 
+	if (getrlimit(RLIMIT_NOFILE, &rlp) == -1)
+		error(av[0]);
+	data->max_fd = rlp.rlim_cur;
+	if (!(data->fds = (t_fd*)malloc(sizeof(*data->fds) * data->max_fd)))
+		error(av[0]);
+	i = -1;
+	while (++i < data->max_fd)
+		clean_fd(data->fds + i);
+}
+
+void			init_data(t_data *data, char **av)
+{
 	data->name = av[0];
 	data->port = -1;
 	data->x = -1;
@@ -109,14 +111,7 @@ void			init_data(t_data *data, char **av)
 	data->max_clients = -1;
 	data->time = -1;
 	data->map = NULL;
-	if (getrlimit(RLIMIT_NOFILE, &rlp) == -1)
-		error(av[0]);
-	data->max_fd = rlp.rlim_cur;
-	if (!(data->fds = (t_fd*)malloc(sizeof(*data->fds) * data->max_fd)))
-		error(av[0]);
-	i = -1;
-	while (++i < data->max_fd)
-		clean_fd(data->fds + i);
+	init_fds(data, av);
 	get_opt(data, av);
 	init_teams(data);
 	init_map(data);

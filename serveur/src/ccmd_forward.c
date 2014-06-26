@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:30:49 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 00:23:57 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 10:50:28 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ccmd_forward(t_data *data, int cs, char **cmd, t_timeval **t)
 	(void)cmd;
 	player = &data->fds[cs].player;
 	if (player->o == N)
-		player->y = mod(player->y - 1,data->y);
+		player->y = mod(player->y - 1, data->y);
 	else if (player->o == S)
 		player->y = mod(player->y + 1, data->y);
 	else if (player->o == W)

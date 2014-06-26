@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/26 03:51:37 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:28:08 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,11 @@ typedef struct		s_data
 	t_cmd			cmds[CMD_NB];
 }					t_data;
 
+void		disperse(t_data *data, t_spell *spell);
+void		disperse_linemate(t_data *data, t_spell *spell);
+void		disperse_deraumere(t_data *data, t_spell *spell);
+void		disperse_sibur(t_data *data, t_spell *spell);
+void		check_opt(t_data *data);
 void		init_spell_tab(t_data *data);
 void		create_cmds(t_data *data);
 void		action_add(t_data *data, t_alist **actions, t_cmd action, char **cmd);

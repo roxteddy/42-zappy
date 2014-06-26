@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 05:28:03 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:39:29 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:29:03 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	spell_del(t_spell **list, t_spell *spell)
 			current = current->next;
 		current->next = current->next->next;
 	}
-	while(spell->plist)
+	while (spell->plist)
 	{
 		tmp = spell->plist;
 		spell->plist = spell->plist->next;

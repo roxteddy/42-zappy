@@ -6,15 +6,16 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/14 16:22:17 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/22 22:15:08 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 11:19:52 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
-** "pin #n X Y q q q q q q q\n" "pin #n\n" Inventaire d’un joueur.
-*/
 
 #include "server.h"
 #include <stdlib.h>
+
+/*
+** "pin #n X Y q q q q q q q\n" "pin #n\n" Inventaire d’un joueur.
+*/
 
 void	gcmd_pin(t_data *data, int cs, char **cmd)
 {

@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:37:09 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/26 03:50:32 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 10:52:14 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 t_plist			*get_players(t_data *data, t_player *player, t_spell *spell)
 {
-	t_plist	*plist;
-	t_tlist	*team;
-	t_plist	*list;
+	t_plist		*plist;
+	t_tlist		*team;
+	t_plist		*list;
 
 	team = data->teams;
 	while (team)
@@ -27,7 +27,7 @@ t_plist			*get_players(t_data *data, t_player *player, t_spell *spell)
 		while (list)
 		{
 			if (list->player->x == player->x && list->player->y == player->y
-				&& list->player->level == player->level)
+					&& list->player->level == player->level)
 			{
 				player_add(&plist, list->player);
 				list->player->spell = spell;
@@ -42,9 +42,9 @@ t_plist			*get_players(t_data *data, t_player *player, t_spell *spell)
 
 int				get_player_nb(t_data *data, t_player *player)
 {
-	int		nb;
-	t_tlist	*team;
-	t_plist	*list;
+	int			nb;
+	t_tlist		*team;
+	t_plist		*list;
 
 	nb = 0;
 	team = data->teams;
@@ -54,7 +54,7 @@ int				get_player_nb(t_data *data, t_player *player)
 		while (list)
 		{
 			if (list->player->x == player->x && list->player->y == player->y
-				&& list->player->level == player->level)
+					&& list->player->level == player->level)
 				nb++;
 			list = list->next;
 		}

@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:33:58 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 00:55:24 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/23 10:57:23 by pciavald         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	*get_sitem(t_square *square, int i)
 		return (NULL);
 }
 
-static void timer_init(t_data *data, t_timeval **timer, t_player *player)
+static void	timer_init(t_data *data, t_timeval **timer, t_player *player)
 {
 	t_timeval	now;
 
@@ -86,7 +86,7 @@ static void timer_init(t_data *data, t_timeval **timer, t_player *player)
 	gui_broadcast(data, gui_pgt, player);
 }
 
-void	ccmd_take(t_data *data, int cs, char **cmd, t_timeval **t)
+void		ccmd_take(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
 	t_square	*square;

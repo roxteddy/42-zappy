@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/23 09:13:02 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/23 11:39:28 by pciavald         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,6 +14,7 @@
 
 FILES = main.c \
 		opt.c \
+		opt2.c \
 		team_add.c \
 		usage.c \
 		init_data.c \
@@ -96,7 +97,9 @@ FILES = main.c \
 		gui_eht.c \
 		gui_pbc.c \
 		pathfinder.c \
-		split_join.c
+		split_join.c \
+		routine_spell_disperse1.c \
+		routine_spell_disperse2.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)
