@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/23 04:22:54 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 09:05:24 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 03:52:24 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ void	do_spell(t_data *data, t_spell *spell)
 {
 	t_plist	*plist;
 
-//check success
-	spell->success = 1;
+	if (spell_check(data, spell->owner))
+		spell->success = 1;
 	gui_broadcast(data, gui_pie, spell);
 	plist = spell->plist;
 	while (plist)

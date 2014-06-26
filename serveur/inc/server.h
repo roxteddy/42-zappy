@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 09:02:15 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 03:51:37 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define BCAST_T	7
 # define INCANT_T	300
 # define FORK_T		42
-# define FOOD_T		7
+# define FOOD_T		126
 # define BIRTH_T	600
 
 # define SQUARE(X)	(X) * (X)
@@ -279,6 +279,7 @@ void		routine_spell(t_data *data);
 void		spell_del(t_spell **list, t_spell *spell);
 char		*split_join(char **split);
 char		**split_dup(char **split);
+int			spell_check(t_data *data, t_player *player);
 void		srv_accept(t_data *data, int sock);
 char		**strsplit(char const *s, char c);
 char		*strsub(char const *s, unsigned int start, size_t len);

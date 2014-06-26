@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:37:09 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 05:36:15 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 03:50:32 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,33 +63,6 @@ int				get_player_nb(t_data *data, t_player *player)
 	return (nb);
 }
 
-int				check_req(t_data *data, t_player *player, t_square *square)
-{
-	int	player_nb;
-
-	player_nb = get_player_nb(data, player);
-	if (player_nb >= data->spell_tab[player->level - 1][0]
-		&& square->linemate >= data->spell_tab[player->level - 1][1]
-		&& square->deraumere >= data->spell_tab[player->level - 1][2]
-		&& square->sibur >= data->spell_tab[player->level - 1][3]
-		&& square->mendiane >= data->spell_tab[player->level - 1][4]
-		&& square->phiras >= data->spell_tab[player->level - 1][5]
-		&& square->thystame >= data->spell_tab[player->level - 1][6])
-		return (1);
-	else
-		return (0);
-}
-
-int		check_square(t_data *data, t_player *player)
-{
-	t_square	*square;
-	square = get_square(data, player->x, player->y);
-		if (check_req(data, player, square))
-			return (1);
-		else
-			return (0);
-}
-
 void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 {
 	t_player	*player;
@@ -101,8 +74,6 @@ void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 	gettimeofday(&now, NULL);
 	player = &(data->fds[cs].player);
 	if (check_square(data, player))
-		dprintf(cs, "ko\n");
-	else
 	{
 		spell = (t_spell*)malloc(sizeof(t_spell));
 		spell->x = player->x;
@@ -115,4 +86,6 @@ void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 		data->spells = spell;
 		gui_broadcast(data, gui_pic, spell);
 	}
+	else
+		dprintf(cs, "ko\n");
 }
