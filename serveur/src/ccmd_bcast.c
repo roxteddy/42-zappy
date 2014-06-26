@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:36:27 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 11:37:38 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/26 09:23:38 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
-
-static void	find(t_data *data, t_player *origin, t_player *target, int *r)
-{
-	r[0] = pathfinder(data, get_square(data, origin->x, origin->y),
-			get_square(data, target->x, target->y - 1));
-	r[1] = pathfinder(data, get_square(data, origin->x, origin->y),
-			get_square(data, target->x - 1, target->y - 1));
-	r[2] = pathfinder(data, get_square(data, origin->x, origin->y),
-			get_square(data, target->x - 1, target->y));
-	r[3] = pathfinder(data, get_square(data, origin->x, origin->y),
-			get_square(data, target->x - 1, target->y + 1));
-	r[4] = pathfinder(data, get_square(data, origin->x, origin->y),
-			get_square(data, target->x, target->y + 1));
-	r[5] = pathfinder(data, get_square(data, origin->x, origin->y),
-			get_square(data, target->x + 1, target->y + 1));
-	r[6] = pathfinder(data, get_square(data, origin->x, origin->y),
-			get_square(data, target->x + 1, target->y));
-	r[7] = pathfinder(data, get_square(data, origin->x, origin->y),
-			get_square(data, target->x + 1, target->y - 1));
-}
 
 static int	direction(int dir, t_player *target)
 {
@@ -46,31 +26,44 @@ static int	direction(int dir, t_player *target)
 	return (dir);
 }
 
+static int	check_dir(int x, int y, t_player *target)
+{
+	if (!x && y < 0)
+		return (direction(1, target));
+	if (x < 0 && y < 0)
+		return (direction(2, target));
+	if (x < 0 && !y)
+		return (direction(3, target));
+	if (x < 0 && y > 0)
+		return (direction(4, target));
+	if (!x && y > 0)
+		return (direction(5, target));
+	if (x > 0 && y > 0)
+		return (direction(6, target));
+	if (x > 0 && !y)
+		return (direction(7, target));
+	if (x > 0 && y < 0)
+		return (direction(8, target));
+	return (0);
+}
+
 static void	bcast(t_data *data, t_player *origin, t_player *target)
 {
 	int		dir;
-	int		r[8];
-	int		i;
-	int		len;
+	int		x;
+	int		y;
 
-	if (origin->x == target->x && origin->y == target->y)
-		dir = 0;
-	else
-	{
-		find(data, origin, target, r);
-		i = 0;
-		dir = 1;
-		len = r[i];
-		while (++i < 8)
-		{
-			if (r[i] < len)
-			{
-				len = r[i];
-				dir = i + 1;
-			}
-		}
-	}
-	dir = direction(dir, target);
+	x = origin->x - target->x;
+	y = origin->y - target->y;
+	if (x > data->x / 2)
+		x -= data->x;
+	else if (x < 0 && abs(x) > data->x / 2)
+		x += data->x;
+	if (y > data->y / 2)
+		y -= data->y;
+	else if (y < 0 && abs(y) > data->y / 2)
+		y+= data->y;
+	dir = check_dir(x, y, target);
 	dprintf(target->cs, "message %d,%s\n", dir, origin->msg);
 }
 
