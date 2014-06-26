@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/26 09:17:57 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/26 09:39:36 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -122,9 +122,9 @@ fclean: clean
 	rm -rf $(NAME)
 
 launch: all
-	./serveur -p 4242 -x 20 -y 20 -n lol bop -c 100 -t 1
+	./serveur -p 4242 -x 20 -y 20 -n lol bop -c 1 -t 10
 
 debug: all
-	gdb -q --args serveur -p 4242 -x 20 -y 20 -n lol -c 100 -t 50
+	gdb -q --args serveur -p 4242 -x 20 -y 20 -n lol dop -c 1 -t 50
 
 re: fclean all
