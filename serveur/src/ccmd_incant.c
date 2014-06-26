@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/20 21:37:09 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/23 10:52:14 by pciavald         ###   ########.fr       */
+/*   Updated: 2014/06/26 03:59:18 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ccmd_incant(t_data *data, int cs, char **cmd, t_timeval **t)
 	(void)t;
 	gettimeofday(&now, NULL);
 	player = &(data->fds[cs].player);
-	if (check_square(data, player))
+	if (spell_check(data, player))
 	{
 		spell = (t_spell*)malloc(sizeof(t_spell));
 		spell->x = player->x;

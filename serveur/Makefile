@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/23 11:39:28 by pciavald         ###   ########.fr        #
+#    Updated: 2014/06/26 03:59:38 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -99,7 +99,8 @@ FILES = main.c \
 		pathfinder.c \
 		split_join.c \
 		routine_spell_disperse1.c \
-		routine_spell_disperse2.c
+		routine_spell_disperse2.c \
+		spell_check.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)

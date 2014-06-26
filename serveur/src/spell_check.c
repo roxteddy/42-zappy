@@ -6,13 +6,36 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/26 03:48:38 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/26 03:51:52 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 04:01:07 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-int		spell_check(t_data *data, t_player *player)
+static int		get_player_nb(t_data *data, t_player *player)
+{
+    int         nb;
+    t_tlist     *team;
+    t_plist     *list;
+
+    nb = 0;
+    team = data->teams;
+    while (team)
+    {
+        list = team->list;
+        while (list)
+        {
+            if (list->player->x == player->x && list->player->y == player->y
+				&& list->player->level == player->level)
+                nb++;
+            list = list->next;
+        }
+        team = team->next;
+    }
+    return (nb);
+}
+
+int			spell_check(t_data *data, t_player *player)
 {
 	int			player_nb;
     t_square	*square;
