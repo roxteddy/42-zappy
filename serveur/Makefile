@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/26 11:35:06 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/26 11:45:34 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -100,7 +100,8 @@ FILES = main.c \
 		routine_spell_disperse1.c \
 		routine_spell_disperse2.c \
 		spell_check.c \
-		gui_sbp.c
+		gui_sbp.c \
+		get_player.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)

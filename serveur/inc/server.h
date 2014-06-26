@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/26 11:36:52 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 11:44:37 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,7 +269,7 @@ void		gui_plv(void *param, int cs);
 void		gui_ppo(void *param, int cs);
 void		gui_sbp(void *null, int cs);
 void		gui_seg(t_tlist *team, int cs);
-void		gui_sgt(t_data *data, int cs);
+void		gui_sgt(void *param, int cs);
 void		gui_msg(char *msg, int cs);
 void		gui_suc(void *null, int cs);
 void		gui_tna(t_data *data, int cs);
