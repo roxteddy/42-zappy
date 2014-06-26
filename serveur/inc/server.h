@@ -6,7 +6,7 @@
 /*   By: mfebvay <mfebvay@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/06/04 07:57:59 by mfebvay           #+#    #+#             */
-/*   Updated: 2014/06/26 09:17:18 by mfebvay          ###   ########.fr       */
+/*   Updated: 2014/06/26 11:36:52 by mfebvay          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,6 +238,7 @@ void		gcmd_sst(t_data *data, int cs, char **cmd);
 void		gcmd_tna(t_data *data, int cs, char **cmd);
 void		get_height(char *arg, t_data *data);
 void		get_maxclients(char *arg, t_data *data);
+t_player	*get_player(t_data *data, int cs);
 void		get_port(char *arg, t_data *data);
 t_square	*get_square(t_data *data, int x, int y);
 void		get_teams(char **argv, int *i, t_data *data);

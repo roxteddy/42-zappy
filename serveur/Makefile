@@ -6,7 +6,7 @@
 #    By: fcorre <fcorre@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/04/26 19:25:11 by fcorre            #+#    #+#              #
-#    Updated: 2014/06/26 09:39:36 by mfebvay          ###   ########.fr        #
+#    Updated: 2014/06/26 11:35:06 by mfebvay          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -99,7 +99,8 @@ FILES = main.c \
 		split_join.c \
 		routine_spell_disperse1.c \
 		routine_spell_disperse2.c \
-		spell_check.c
+		spell_check.c \
+		gui_sbp.c
 CFLAGS = -Wall -Wextra -Werror -g0 -I ./inc
 SRC = $(addprefix src/, $(FILES))
 OBJ = $(SRC:src/%.c=obj/%.o)
@@ -122,7 +123,7 @@ fclean: clean
 	rm -rf $(NAME)
 
 launch: all
-	./serveur -p 4242 -x 20 -y 20 -n lol bop -c 1 -t 10
+	./serveur -p 4242 -x 20 -y 20 -n lol bop -c 2 -t 10
 
 debug: all
 	gdb -q --args serveur -p 4242 -x 20 -y 20 -n lol dop -c 1 -t 50
